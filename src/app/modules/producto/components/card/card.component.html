@@ -1,0 +1,22 @@
+<div class="row">
+    <mat-card class="col" *ngFor="let producto of coleccionProducto" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{producto.nombre}}</mat-card-title>
+          <mat-card-subtitle>${{producto.precio}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" height="200px" width="200px">
+        <mat-card-content>
+          <p>
+           {{producto.descripcion}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button tipe="button" class="btn btn-outline-primary" data-bs-toggle="modal" 
+          data-bs-target="#modalCard" (click)="mostrarVer(producto)"
+          mat-button>ver mas</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+      
+</div>
