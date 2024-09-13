@@ -1,30 +1,33 @@
-<mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
+<mat-toolbar style="background-color: blue; color: aliceblue;">
+  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto"><mat-icon>menu</mat-icon></button>
+  <mat-menu #producto="matMenu">
+      <button mat-menu-item routerLink="/producto">Todos los producto</button>
+      <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
+      <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
+      <button mat-menu-item routerLink="/herramienta">Herramientas</button>
+      <button mat-menu-item routerLink="/complementos">Complementos</button>
+  </mat-menu>
   <div class="col-lg-4">
     <img src="http://imgfz.com/i/oTdlWSY.png"  >
-  </div>
-  
+ </div>
+
+ <h1 class="title">Total Sport</h1>
+ <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+ <style>
+  .title{
+    font-family: "Zen Dots", sans-serif;
+    font-size:xx-large;
+  }
+ </style>
+<p></p>
 
 
-  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Bicicletas</button>
-    <mat-menu #producto="matMenu">
-        <button mat-menu-item routerLink="/producto">Todos los producto</button>
-        <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
-        <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
-        <button mat-menu-item routerLink="/herramienta">Herramientas</button>
-        <button mat-menu-item routerLink="/complementos">Complementos</button>
-    </mat-menu>
-
-  
-  
-  <span>BikeLife</span>
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>pedal_bike</mat-icon>
   </button>
-
+  <mat-slide-toggle></mat-slide-toggle>
 
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
 <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
@@ -38,4 +41,5 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
+  
 </mat-toolbar>

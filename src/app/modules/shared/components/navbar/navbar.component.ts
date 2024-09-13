@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
+import{ MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @Component({
