@@ -1,0 +1,57 @@
+/*estilos generales*/
+.row{
+    width:100%;
+    display:flex;
+    max-width:1100px;
+    margin: auto;
+    justify-content: space-around;
+}
+
+/*estilo de las card*/
+.col{
+    width:100%;
+    margin:20px;
+    border-radius:6px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0px 1px 10px rgba(0,0,0,0.2);
+    cursor: default;
+    transition:all 400ms ease;
+    justify-content: center;
+}
+
+/*animacion de las card sobre el cursor*/
+.col:hover{
+    box-shadow:5px 5px 20px rgba(0,0,0,0.4);
+    transform:translateY(-3%);
+}
+
+mat-card-contents{
+    display:flex;
+    justify-content: space-around;
+}
+
+/*define tamaños de las imagenes*/
+.col img{
+    width:100%;
+    height:200px;
+}
+
+.titulo{
+   font-weight: 400;
+   margin-bottom:15px;
+    text-align: center;
+}
+
+.descripcion{
+    line-height:1.5;
+    color:#6a6a6a;
+    text-align: center;
+}
+
+.precio{
+    padding:15px;
+    color: chartreuse;
+    text-align:center;
+    font-weight: bold;
+}
