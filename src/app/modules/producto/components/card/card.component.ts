@@ -4,6 +4,7 @@ import { CrudService } from 'src/app/modules/admin/services/crud.service';
 
 
 
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',

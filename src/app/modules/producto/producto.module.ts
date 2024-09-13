@@ -11,7 +11,6 @@ import { ProductoComponent } from './pages/producto/producto.component';
 
 
 
-
 @NgModule({
   declarations: [
     CardComponent,
@@ -23,7 +22,8 @@ import { ProductoComponent } from './pages/producto/producto.component';
   imports: [
     CommonModule,
     ProductoRoutingModule,
-    MatCardModule
+    MatCardModule,
+    
   
   ],
   exports:[
