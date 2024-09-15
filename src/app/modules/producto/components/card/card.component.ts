@@ -5,6 +5,7 @@ import { CarritoService } from 'src/app/modules/shared/services/carrito.service'
 
 
 
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
