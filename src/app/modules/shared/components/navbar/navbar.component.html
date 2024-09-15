@@ -1,31 +1,20 @@
+
+<!--boton que abre el menu desplegable hacia todas las vistas del sitio web-->
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="producto">
     <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #producto="matMenu">
+    <button mat-menu-item routerLink="/producto">Productos</button>
+    <button mat-menu-item routerLink="/rodado29">Indumentaria</button>
+    <button mat-menu-item routerLink="/rodado26">Articulos</button>
+    <button mat-menu-item routerLink="/herramienta">Mis pedidos</button>
+    <button mat-menu-item routerLink="/complementos">a</button>
+</mat-menu>
   <div class="col-lg-4">
     <img src="http://imgfz.com/i/oTdlWSY.png"  >
   </div>
   
-
-
-  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Bicicletas</button>
-    <mat-menu #producto="matMenu">
-        <button mat-menu-item routerLink="/producto">Todos los producto</button>
-        <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
-        <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
-        <button mat-menu-item routerLink="/herramienta">Herramientas</button>
-        <button mat-menu-item routerLink="/complementos">Complementos</button>
-    </mat-menu>
-
-  
-  
-  <span>BikeLife</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>pedal_bike</mat-icon>
-  </button>
-
-
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
 <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
 <mat-menu #usuario="matMenu">
@@ -35,7 +24,15 @@
 </mat-menu>
 
   
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><mat-icon>shopping_cart</mat-icon></button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">CARRITO DE COMPRAS</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-carrito></app-carrito>
+  </div>
+</div>
 </mat-toolbar>

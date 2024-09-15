@@ -26,7 +26,7 @@ export class RegistroComponent {
     nombre: '',
     apellido: '',
     email: '',
-    rol: '',
+    rol: 'vist',
     password: ''
   }
 
@@ -42,24 +42,6 @@ export class RegistroComponent {
 
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar(){
-    // CREDENCIALES = información que ingrese el usuario
-    //################################ LOCAL
-    /*
-    const credenciales = {
-      uid: this.usuarios.uid,
-      nombre: this.usuarios.nombre,
-      apellido: this.usuarios.apellido,
-      email: this.usuarios.email,
-      rol: this.usuarios.rol,
-      password: this.usuarios.password
-    }*/
-
-    // enviamos los nuevos registros por medio del método push a la colección
-    // this.coleccionUsuarios.push(credenciales);
-
-    // Notificamos al usuario el correcto registro
-    // alert("Te registraste con éxito :)");
-    // ############################### FIN LOCAL
 
     const credenciales = {
       email: this.usuarios.email,
@@ -93,13 +75,7 @@ export class RegistroComponent {
 
     this.usuarios.uid = uid;
 
-    // ENCRIPTACIÓN DE LA CONTRASEÑA DE USUARIO
-    /**
-     * SHA-256: Es un algoritmo de hashing seguro que toma una entrada (en este caso la
-     * contraseña) y produce una cadena de caracteres HEXADECIMAL que representa su HASH
-     * 
-     * toString(): Convierte el resultado del hash en una cadena de caracteres legible
-     */
+   
     this.usuarios.password = CryptoJS.SHA256(this.usuarios.password).toString();
 
     // this.guardarUsuario() guardaba la información del usuario en la colección

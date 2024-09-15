@@ -32,7 +32,7 @@ export class CrudService {
   }
   //OBTENER PRODUCTOS
   obtenerProducto(){
-    //snapshotChanges -> tima una captura del estado del estado de los datos
+    //snapshotChanges -> toma una captura del estado del estado de los datos
     // pipe -> funciona como una tuberia que retorna el nuevo arreglo de datos
     // map -> "mapea" o recorre esa informacion
     //a -> resguarda la nueva informacion y la envia

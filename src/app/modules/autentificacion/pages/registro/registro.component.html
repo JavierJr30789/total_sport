@@ -23,15 +23,7 @@
             <input [(ngModel)]="usuarios.email" matInput placeholder="Ej: superpepe@gmail.com" required>
         </mat-form-field>
 
-        <!-- Rol de usuario -->
-        <mat-form-field>
-            <mat-label>Seleccione un rol:</mat-label>
-            <mat-select [(ngModel)]="usuarios.rol" required>
-              <mat-option value="admin">Administrador</mat-option>
-              <mat-option value="vis">Visitante</mat-option>
-            </mat-select>
-        </mat-form-field>
-
+   
         <!-- Contraseña de usuario -->
         <mat-form-field>
             <mat-label>Ingrese su contraseña</mat-label>

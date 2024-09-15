@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { CarritoService } from 'src/app/modules/shared/services/carrito.service';
 
 
 
@@ -16,7 +17,9 @@ export class CardComponent {
 
   modalVisible: boolean = false;
 
-  constructor(public servicioCrud: CrudService) { }
+  /*en este connstructor llamamos como parametros a al CrudService para usar la logica del crud y
+   tambien llamamos al CarritoService  para usar la logica del servicio carrito*/
+  constructor(public servicioCrud: CrudService, public carritoService: CarritoService) { }
 
   ngOnInit(): void {
     this.servicioCrud.obtenerProducto().subscribe(producto => {
@@ -30,4 +33,8 @@ export class CardComponent {
     this.productoSeleccionado = info
   }
 
+  addCarrito(){
+    //esta funcion va a usar un metodo del carritoService, como funcion del metodo addCarrito
+this.carritoService.addProducto(this.productoSeleccionado);
+  }
 }
