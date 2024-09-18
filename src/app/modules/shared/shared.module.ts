@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+//importaciones de componentes locales del proyecto
 import { NavbarComponent } from './components/navbar/navbar.component';
-//material
+import { FooterComponent } from './components/footer/footer.component';
+import { CarritoComponent } from './carrito/carrito.component'
+
+//importaciones de componentes de angular material
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { CardComponent } from './components/card/card.component';
 import {MatCardModule} from '@angular/material/card';
-import { FooterComponent } from './components/footer/footer.component';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 
@@ -18,8 +22,8 @@ import { MatMenuModule } from '@angular/material/menu'
 @NgModule({
   declarations: [
     NavbarComponent,
-    CardComponent,
-    FooterComponent
+    FooterComponent,
+    CarritoComponent
     
   ],
   imports: [
@@ -34,7 +38,6 @@ import { MatMenuModule } from '@angular/material/menu'
   ],
   exports:[
     NavbarComponent,
-    CardComponent,
     FooterComponent,
     MatMenuModule,
     MatButtonModule,

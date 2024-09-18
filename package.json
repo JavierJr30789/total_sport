@@ -21,12 +21,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-<<<<<<< HEAD
-    "bootstrap": "^5.3.0",
-=======
     "angular": "^1.8.3",
     "bootstrap": "^5.3.3",
->>>>>>> e9e1a9ee9a11888962a85b7e94e9f1cd579f8e6f
     "crypto-js": "^4.2.0",
     "firebase": "^10.13.1",
     "rxjs": "~7.8.0",
