@@ -8,10 +8,10 @@
   
 
 
-  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Bicicletas</button>
+  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Categorias</button>
     <mat-menu #producto="matMenu">
         <button mat-menu-item routerLink="/producto">Todos los producto</button>
-        <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
+        <button mat-menu-item routerLink="/rodado29">Futbol</button>
         <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
         <button mat-menu-item routerLink="/herramienta">Herramientas</button>
         <button mat-menu-item routerLink="/complementos">Complementos</button>
@@ -21,9 +21,7 @@
   
   <span>BikeLife</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>pedal_bike</mat-icon>
-  </button>
+  
 
 
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
@@ -35,7 +33,20 @@
 </mat-menu>
 
   
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+  
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><mat-icon>shopping_cart</mat-icon></button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">CARRITO DE COMPRAS</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ME GUSTA TODO DE TI
+  </div>
+</div>
+  
+
+
 </mat-toolbar>
