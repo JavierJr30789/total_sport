@@ -47,11 +47,20 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+
+       
       <ul class="list-group">
-        <li *ngFor="let producto of productosEnCarrito" class="list-group-item">
-          {{ producto.nombre }} - ${{ producto.precio }}
+        <li *ngFor="let item of productosEnCarrito" class="list-group-item">
+          <img src="{{item.Producto.imagen}}">
+
+        <div>
+          {{ item.Producto.nombre }} - ${{ item.Producto.precio }} (cantidad: {{ item.Cantidad }})
+        </div>
         </li>
       </ul>
+    
+
+
     </div>
   </div>
   

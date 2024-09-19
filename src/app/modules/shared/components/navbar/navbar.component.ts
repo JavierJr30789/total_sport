@@ -2,8 +2,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
-import { Producto } from 'src/app/models/producto';
+import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from '../../services/carrito.service';
+
+
 
 
 @Component({
@@ -12,7 +14,7 @@ import { CarritoService } from '../../services/carrito.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  productosEnCarrito: Producto[] = [];
+  productosEnCarrito: ProductoItemCart[] = [];
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
   deslogueado = false; // variable booleana para el botón de Cerrar Sesión
 
@@ -39,11 +41,37 @@ export class NavbarComponent {
   }
 
 
+  
+
+
   ngOnInit(): void {
     // Suscribirse al carrito de compras para recibir actualizaciones
     this.carritoService.carrito$.subscribe(productos => {
-      this.productosEnCarrito = productos;
+      this.productosEnCarrito = productos.map(producto => ({
+        Producto: producto,
+        Cantidad: 1
+      }));
     });
   }
 
+
+
+  agregarProductoAlCarrito(producto: Producto) {
+    const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
+
+
+    if (productoExistente) {
+      // Si ya existe el producto, aumentar la cantidad
+      productoExistente.Cantidad++;
+    } else {
+      // Si no existe, agregar el producto con cantidad 1
+      this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
+    }
+  }
+
+
+
+
+
 }
+

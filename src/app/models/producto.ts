@@ -9,7 +9,7 @@ export interface Producto {
 }
 
 
-export interface ProductItemCart {
+export interface ProductoItemCart {
     Producto: Producto;
-    quantity: number
+    Cantidad: number;
 }
