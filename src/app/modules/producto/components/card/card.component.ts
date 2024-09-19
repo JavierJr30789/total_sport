@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { Producto } from 'src/app/models/producto';
+import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
 import { CarritoService } from 'src/app/modules/shared/services/carrito.service';
 
@@ -44,8 +44,14 @@ export class CardComponent {
   this.productoSeleccionado = info;
 
  }
- agregarProducto(producto: Producto) {
-  this.carritoService.agregarProducto(producto); // Agregar producto al carrito
+
+
+agregarProducto(producto: Producto) {
+  // Crear un ProductoItemCart con el producto y una cantidad inicial de 1
+  const productoItemCart = { Producto: producto, Cantidad: 1 };
+
+  // Agregar producto al carrito
+  this.carritoService.agregarProducto(productoItemCart); 
 }
 
 }
