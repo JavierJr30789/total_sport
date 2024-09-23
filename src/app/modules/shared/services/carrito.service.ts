@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,25 +11,49 @@ export class CarritoService {
   private carrito = new BehaviorSubject<ProductoItemCart[]>([]);
   carrito$ = this.carrito.asObservable(); // Observable que se puede suscribir
 
+
   constructor() { }
+
 
   // Método para agregar productos al carrito
   agregarProducto(productoItemCart: ProductoItemCart) {
     const productosActuales = this.carrito.value;
-  
-    // Busca si el producto ya está en el carrito
+ 
+
+
     const productoExistente = productosActuales.find(item => item.Producto.idProducto === productoItemCart.Producto.idProducto);
-  
+ 
     if (productoExistente) {
-      // Si ya existe, actualiza la cantidad
       productoExistente.Cantidad += productoItemCart.Cantidad;
     } else {
-      // Si no existe, lo agrega al carrito
-      this.carrito.next([...productosActuales, productoItemCart]);
+      productosActuales.push(productoItemCart);
     }
+ 
+    // Actualizar el carrito en ambos casos
+    this.carrito.next(productosActuales);
   }
+
 
   actualizarCarrito(productos: ProductoItemCart[]) {
     this.carrito.next(productos);
   }
+
+
+
+
+  obtenerCantidadTotalProductos(): number {
+    return this.carrito.value.reduce((total: number, item: ProductoItemCart) => total + item.Cantidad, 0);
 }
+
+
+eliminarProducto(idProducto: string) {
+  // No es necesario hacer la conversión a .toString() aquí porque idProducto ya es de tipo string
+  const productosActualizados = this.carrito.value.filter(item => item.Producto.idProducto !== idProducto);
+
+
+  // Actualizar el BehaviorSubject con los productos restantes
+  this.carrito.next(productosActualizados);
+}
+}
+
+

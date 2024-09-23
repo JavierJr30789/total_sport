@@ -12,16 +12,25 @@
     <mat-menu #producto="matMenu">
         <button mat-menu-item routerLink="/producto">Todos los producto</button>
         <button mat-menu-item routerLink="/rodado29">Futbol</button>
-        <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
-        <button mat-menu-item routerLink="/herramienta">Herramientas</button>
-        <button mat-menu-item routerLink="/complementos">Complementos</button>
+
+        <button mat-menu-item routerLink="/rodado26">Voley</button>
+        <button mat-menu-item routerLink="/herramienta">Basquet</button>
+        <button mat-menu-item routerLink="/complementos">indumentaria</button>
+
     </mat-menu>
 
   
-  
-  <span>BikeLife</span>
-  <span class="example-spacer"></span>
-  
+
+
+    <h1 class="title">Total Sport</h1>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <style>
+     .title{
+       font-family: "Zen Dots", sans-serif;
+       font-size:xx-large;
+     }
+    </style>
+   <p></p>
 
 
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
@@ -38,10 +47,12 @@
   <!--BOTON OFFCANVAS CARRITO DE COMPRA-->
 
   <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-    Carrito ({{ productosEnCarrito.length }})
+
+    Carrito  ({{ cantidadTotalProductos }})
   </button>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+  <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -50,16 +61,32 @@
 
        
       <ul class="list-group">
-        <li *ngFor="let item of productosEnCarrito" class="list-group-item">
-          <img src="{{item.Producto.imagen}}">
 
-        <div>
-          {{ item.Producto.nombre }} - ${{ item.Producto.precio }} (cantidad: {{ item.Cantidad }})
-        </div>
-        </li>
-      </ul>
-    
+        <ng-container *ngFor="let item of productosEnCarrito">
+          <li class="list-group-item">
+            <div class="card" style="width: 18rem;">
+              <img src="{{item.Producto.imagen}}" class="card-img-top" alt="{{item.Producto.nombre}}">
+              <div class="card-body">
+                <p class="card-text">
+                  {{ item.Producto.nombre }} <br> {{ item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+                  <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+                   <br> (cantidad: {{ item.Cantidad }}) <br>
+                  Subtotal: {{ item.Cantidad * item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+                </p>
+                <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
+                <span>{{ item.Cantidad }}</span>
+                <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+              
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul> 
+      <p class="card-text">
+        Total de la compra: {{ calcularTotal() |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+      </p>
 
+      <button mat-raised-button (click)="irAlCarrito()">Ir al carrito</button>
 
     </div>
   </div>

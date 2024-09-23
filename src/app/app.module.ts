@@ -13,6 +13,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 
+
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+import { LOCALE_ID } from '@angular/core';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -26,7 +31,11 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
     AngularFireAuthModule,
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-AR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+registerLocaleData(localeEsAr, 'es-AR');

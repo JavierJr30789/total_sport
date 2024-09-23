@@ -17,7 +17,7 @@ export class NavbarComponent {
   productosEnCarrito: ProductoItemCart[] = [];
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
   deslogueado = false; // variable booleana para el botón de Cerrar Sesión
-
+  cantidadTotalProductos: number = 0;
   constructor(
     public servicioAuth: AuthService,
     public servicioRutas: Router,
@@ -41,21 +41,27 @@ export class NavbarComponent {
   }
 
 
-  
-
-
-  ngOnInit(): void {
-    // Suscribirse al carrito de compras para recibir actualizaciones
-    this.carritoService.carrito$.subscribe(productos => {
-      this.productosEnCarrito = productos; // No necesitas mapear nada, simplemente asigna el valor directamente
-    });
+  irAlCarrito() {
+    this.servicioRutas.navigate(['/carrito']); // Asegúrate de que '/carrito' es la ruta correcta a tu componente Carrito
   }
 
 
 
+  ngOnInit(): void {
+  // Suscribirse al carrito de compras para recibir actualizaciones
+  this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
+    this.productosEnCarrito = productos;
+    this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+  });
+
+
+  }
+
+
   agregarProductoAlCarrito(producto: Producto) {
     const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
-    
+   
+
 
     if (productoExistente) {
       // Si ya existe el producto, aumentar la cantidad
@@ -64,14 +70,50 @@ export class NavbarComponent {
       // Si no existe, agregar el producto con cantidad 1
       this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
     }
-  
+ 
     // Actualizar el carrito
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
 
 
-  
+
+
+   //aumentar la cantidad de un producto
+  aumentarCantidad(producto: ProductoItemCart){
+    producto.Cantidad++;
+
+
+    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  }
+
+
+
+
+  //Disminuir la cantidad de un producto (no menor a 1)
+  restarCantidad(producto: ProductoItemCart){
+    if (producto.Cantidad >1){
+      producto.Cantidad--;
+    }
+    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  }
+ 
+ 
+   // Método para calcular el total
+   calcularTotal(): number {
+    return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
+  }
+
+
+
+
+  eliminarProductoDelCarrito(idProducto: string) {
+    this.carritoService.eliminarProducto(idProducto);
+  }
+ 
+
+
 
 
 }
+
 
