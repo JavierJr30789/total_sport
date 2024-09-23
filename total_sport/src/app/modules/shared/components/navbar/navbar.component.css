@@ -1,0 +1,47 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+img{
+  width: 70px;
+  height: 70px;
+}
+ /*Declaramos con palabra reservada MEDIA -> Dispositivos pequeños (ej: celular) */
+ @media (min-width:300px) and (max-width:700px){
+  mat-toolbar{
+    background-color: aqua;
+  }
+  #menuInicio{
+    display: none;
+  }
+  #menuProducto{
+    display: none;
+  }
+}
+/* Dispositivos mas grandes (ej: computadora)*/
+@media (min-width:700px){
+  mat-toolbar{
+    background-color: blueviolet;
+  }
+  #menuSecciones{
+    display: none;
+  }
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.list-group-item img {
+  max-width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: auto;
+  margin-right: 10px;
+}
+
+.list-group-item div {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

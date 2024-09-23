@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*aplica imagen de fondo*/
+body {
+    background-image: url(../../../../../assets/imagenes/fondo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 300vh;
+}
+
+/*titulo del carrucel*/
+h2 {
+    text-align: center;
+    padding-top:70px;
+    font-size: 40px;
+    font-family: arial;
+    color: blue;
+    text-shadow: 0px 0px 6px black;
+}
+
+/*les da un margen a las imagenes, las posiciona, ajusta el tamaño y les da perspectiva*/
+.content-all {
+    width: 210px;
+    margin: auto;
+    perspective: 450px;
+    position: relative;
+    margin-top: 50px;
+}
+
+/*le damos animacion al carrosel, lo transformamos en un carrusel 3D y le damos la velocidad de rotacion*/
+.content-carrousel {
+    width: 100%;
+    position: absolute;
+    animation: rotar 15s infinite linear;
+    transform-style: preserve-3d;
+}
+
+/*detenemos la animacion del carrucel al pararnos sobre una imagen y modificamos el cursor con esta misma accion*/
+.content-carrousel:hover {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+/*modificamos las figures que contienen a las imagenes para que estas queden todas de un mismo tamaño y sea cimetrico ademas le agregamos sombra a estas*/
+.content-carrousel figure {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    position: absolute;
+    box-shadow: 0px 0px 20px 0px black;
+    transition: all 300ms;
+}
+
+/*al posicionarse sobre la imagen el sombreado de esta desaparecera */
+.content-carrousel figure:hover {
+    box-shadow: 0px 0px 0px 0px black;
+    transition: all 300ms;
+}
+
+/*con los siguientes valores asignados a cada figure se le asignara una posicion espesifica para generar una perspectiva de 360. para obtener estos valores dividiremos 360 entre la cantidad de imagenes el resultado es el valor de la segunda y el de la tercera sera sumando este 2 veces y asi sucecivamente*/
+.content-carrousel figure:nth-child(1) {
+    transform: rotateY(0deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(2) {
+    transform: rotateY(45deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(3) {
+    transform: rotateY(90deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(4) {
+    transform: rotateY(135deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(5) {
+    transform: rotateY(180deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(6) {
+    transform: rotateY(225deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(7) {
+    transform: rotateY(270deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(8) {
+    transform: rotateY(315deg) translateZ(300px);
+}
+
+.content-carrousel figure:nth-child(9) {
+    transform: rotateY(360deg) translateZ(300px);
+}
+
+/*especifica la velocidad a la que la imagen volvera a la normalidad lugo de sacar el cursor de encima*/
+.content-carrousel img {
+    width: 100%;
+    transition: all 300ms;
+}
+
+/*al posicionar el cursor sobre una imagen esta se agrandara*/
+.content-carrousel img:hover {
+    transform: scale(1.2);
+    transition: all 300ms;
+}
+
+/*indicamos que el carrucel arrancara con un valor de 0 e ira rotando paralelamente en Y en unos 360 grados*/
+@keyframes rotar {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
