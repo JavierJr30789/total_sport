@@ -32,6 +32,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     MatMenuModule,
     MatSlideToggleModule
+    
   ],
   exports: [
     NavbarComponent,

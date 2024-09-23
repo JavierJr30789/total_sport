@@ -12,6 +12,18 @@ import{ MatSlideToggleModule} from '@angular/material/slide-toggle';
 export class NavbarComponent {
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
   deslogueado = false; // variable booleana para el botón de Cerrar Sesión
+  isDarkTheme = false; //Declara una propiedad booleana llamada isDarkTheme y la inicializa en false. Esta propiedad se utiliza para rastrear si el tema oscuro está activado o no.
+
+  //esto permite alternar entre un tema claro y un tema oscuro
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    if (this.isDarkTheme) {
+      document.documentElement.classList.add('dark-theme');
+    } else {
+      document.documentElement.classList.remove('dark-theme');
+    }
+  };
+  
 
   constructor(
     public servicioAuth: AuthService,

@@ -20,14 +20,21 @@
     font-size:xx-large;
   }
  </style>
+
 <p></p>
 
 
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>pedal_bike</mat-icon>
+  <!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
+  botón.-->
+  <button mat-button (click)="toggleTheme()">
+    <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
+     (wb_sunny) si isDarkTheme es false.-->
+   <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny'}}</mat-icon> <label for="toggle" id="label_toggle"></label>
+   <mat-slide-toggle></mat-slide-toggle>
   </button>
-  <mat-slide-toggle></mat-slide-toggle>
+  
+  
 
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
 <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
@@ -36,10 +43,5 @@
     <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
     <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
 </mat-menu>
-
-  
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
   
 </mat-toolbar>
