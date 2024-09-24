@@ -7,4 +7,41 @@ img{
   width: 70px;
   height: 70px;
 }
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.mat-toolbar {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.mat-warn {
+  background-color: var(--warn-color);
+  color: var(--text-color);
+}
+
+.mat-card {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.mat-menu {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.mat-slide-toggle-thumb {
+  background-color: var(--primary-color);
+}
+
+.mat-slide-toggle-bar {
+  background-color: var(--accent-color);
+}
 

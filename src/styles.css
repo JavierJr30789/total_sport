@@ -62,19 +62,19 @@ button {
 
 /* Variables para el tema claro */
 :root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --primary-color: #6200ea; /* Color frío */
-  --accent-color: #ff9800;  /* Color cálido */
-  --warn-color: #f44336;    /* Color cálido */
+  --background-color: rgb(255, 255, 255);
+  --text-color: #f30b0b;
+  --primary-color: #030ea1; /* Color frío */
+  --accent-color:#0314a5 ;  /* Color cálido */
+  --warn-color: #fc1100;    /* Color cálido */
 }
 
 /* Variables para el tema oscuro */
 :root.dark-theme {
-  --background-color: #121212;
-  --text-color: #ffffff;
-  --primary-color: #bb86fc; /* Color frío */
-  --accent-color: #ff5722;  /* Color cálido */
+  --background-color: rgb(15, 1, 41);
+  --text-color: #f30b0b;
+  --primary-color: #090541; /* Color frío */
+  --accent-color: #030b4e;  /* Color cálido */
   --warn-color: #e91e63;    /* Color cálido */
 }
 

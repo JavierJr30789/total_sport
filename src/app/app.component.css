@@ -53,9 +53,9 @@ button {
 :root {
   --background-color: #ffffff;
   --text-color: #000000;
-  --primary-color: #6200ea; /* Color frío */
+  --primary-color: #27ea00; /* Color frío */
   --accent-color: #ff9800;  /* Color cálido */
-  --warn-color: #f44336;    /* Color cálido */
+  --warn-color: #3f0c09;    /* Color cálido */
 }
 
 /* Variables para el tema oscuro */
@@ -64,7 +64,7 @@ button {
   --text-color: #ffffff;
   --primary-color: #bb86fc; /* Color frío */
   --accent-color: #ff5722;  /* Color cálido */
-  --warn-color: #e91e63;    /* Color cálido */
+  --warn-color: #46071c;    /* Color cálido */
 }
 
 
