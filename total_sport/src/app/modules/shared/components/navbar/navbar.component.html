@@ -1,0 +1,95 @@
+<mat-toolbar>
+  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto"><mat-icon>menu</mat-icon></button>
+  <mat-menu #producto="matMenu">
+    <button mat-menu-item routerLink="/inicio">inicio</button>
+    <button mat-menu-item routerLink="/producto">Todos los producto</button>
+    <button mat-menu-item routerLink="/admin">Futbol</button>
+    <!--<button mat-menu-item routerLink="/rodado26">Voley</button>
+    <button mat-menu-item routerLink="/herramienta">Basquet</button>-->
+    <button mat-menu-item routerLink="/carrito">indumentaria</button>
+</mat-menu>
+    
+  <div class="col-lg-4">
+    <img src="http://imgfz.com/i/oTdlWSY.png"  >
+  </div>
+
+  
+  
+    <h1 class="title">Total Sport</h1>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <style>
+     .title{
+       font-family: "Zen Dots", sans-serif;
+       font-size:xx-large;
+     }
+    </style>
+   <p></p>
+  
+
+<!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
+  botón.-->
+  <button mat-button (click)="toggleTheme()">
+    <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
+     (wb_sunny) si isDarkTheme es false.-->
+   <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny'}}</mat-icon> <label for="toggle" id="label_toggle"></label>
+   <mat-slide-toggle></mat-slide-toggle>
+   </button>
+  
+
+
+<!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
+<button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
+<mat-menu #usuario="matMenu">
+    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/registro">Registrarse</button>
+    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
+    <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
+</mat-menu>
+  
+
+  <!--BOTON OFFCANVAS CARRITO DE COMPRA-->
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+    <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon>  
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+       
+      <ul class="list-group">
+        <ng-container *ngFor="let item of productosEnCarrito">
+          <li class="list-group-item">
+            <div class="card" style="width: 18rem;">
+              <img src="{{item.Producto.imagen}}" class="card-img-top" alt="{{item.Producto.nombre}}">
+              <div class="card-body">
+                <p class="card-text">
+                  {{ item.Producto.nombre }} <br> {{ item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+                  <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+                   <br> (cantidad: {{ item.Cantidad }}) <br>
+                  Subtotal: {{ item.Cantidad * item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+                </p>
+                <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
+                <span>{{ item.Cantidad }}</span>
+                <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+              
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul> 
+      <p class="card-text">
+        Total de la compra: {{ calcularTotal() |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+      </p>
+
+      <button mat-raised-button (click)="irAlCarrito()">Ir al carrito</button>
+
+    </div>
+  </div>
+  
+
+
+</mat-toolbar>
