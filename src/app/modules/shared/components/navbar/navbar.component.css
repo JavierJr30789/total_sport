@@ -1,7 +1,33 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
-img{
+  flex: 1 1 auto;
+}
+
+img {
   width: 70px;
   height: 70px;
 }
+
+.container {
+  position: relative;
+}
+
+input {
+  width: 150px;
+  font-size: 1rem;
+  padding: 10px;
+  padding-right: 35px;
+  border-radius: 5px 0 0 5px;
+  border: 0;
+  outline: none;
+}
+
+.lupa {
+  background-color: crimson;
+  padding: 10px 15px;
+  position: absolute;
+  margin: auto;
+  border-radius: 0 5px 5px 0;
+  color: white;
+  cursor:pointer;
+}
+.lupa:hover{background-color: darkred;}
