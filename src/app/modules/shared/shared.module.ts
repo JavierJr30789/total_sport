@@ -7,13 +7,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CarritoComponent } from './carrito/carrito.component'
 
 //importaciones de componentes de angular material
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -24,7 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NavbarComponent,
     FooterComponent,
     CarritoComponent
-    
+
   ],
   imports: [
     CommonModule,
@@ -33,16 +34,16 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSlideToggleModule
     
   ],
-  exports:[
+  exports: [
     NavbarComponent,
     FooterComponent,
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule,
-
   ]
 })
 export class SharedModule { }

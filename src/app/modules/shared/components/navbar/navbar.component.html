@@ -1,55 +1,53 @@
 <!--boton que abre el menu desplegable hacia todas las vistas del sitio web-->
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-    [matMenuTriggerFor]="producto">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto"><mat-icon>menu</mat-icon></button>
   <mat-menu #producto="matMenu">
-    <button mat-menu-item routerLink="/producto">Productos</button>
-    <button mat-menu-item routerLink="/rodado29">Indumentaria</button>
-    <button mat-menu-item routerLink="/rodado26">Articulos</button>
-    <button mat-menu-item routerLink="/herramienta">Mis pedidos</button>
-    <button mat-menu-item routerLink="/complementos">a</button>
+      <button mat-menu-item routerLink="/producto">Todos los producto</button>
+      <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
+      <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
+      <button mat-menu-item routerLink="/herramienta">Herramientas</button>
+      <button mat-menu-item routerLink="/complementos">Complementos</button>
   </mat-menu>
   <div class="col-lg-4">
-    <img src="http://imgfz.com/i/oTdlWSY.png">
-  </div>
+    <img src="http://imgfz.com/i/oTdlWSY.png"  >
+ </div>
+
+ <h1 class="title">Total Sport</h1>
+ <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+ <style>
+  .title{
+    font-family: "Zen Dots", sans-serif;
+    font-size:xx-large;
+  }
+ </style>
+
+<p></p>
 
 
-
-  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Bicicletas</button>
-  <mat-menu #producto="matMenu">
-    <button mat-menu-item routerLink="/producto">Todos los producto</button>
-    <button mat-menu-item routerLink="/rodado29">Rodados 29</button>
-    <button mat-menu-item routerLink="/rodado26">Rodados 26</button>
-    <button mat-menu-item routerLink="/herramienta">Herramientas</button>
-    <button mat-menu-item routerLink="/complementos">Complementos</button>
-  </mat-menu>
-
-
-
-  <span>BikeLife</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>pedal_bike</mat-icon>
+  <!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
+  botón.-->
+  <button mat-button (click)="toggleTheme()">
+    <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
+     (wb_sunny) si isDarkTheme es false.-->
+   <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny'}}</mat-icon> <label for="toggle" id="label_toggle"></label>
+   <mat-slide-toggle></mat-slide-toggle>
   </button>
-
-  <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
-  <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
-  <mat-menu #usuario="matMenu">
-    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/registro">Registrarse</button>
-    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
-    <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
-  </mat-menu>
-
-
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
-  
   <div class="container">
     <input type="text" placeholder="Buscar...">
     <button class=lupa><i class="fa-solid fa-magnifying-glass"></i>
     </button>
   </div>
+  
+  
+
+<!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
+<button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
+<mat-menu #usuario="matMenu">
+    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/registro">Registrarse</button>
+    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
+    <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
+</mat-menu>
+  
 </mat-toolbar>

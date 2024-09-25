@@ -15,7 +15,7 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireStorageModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
