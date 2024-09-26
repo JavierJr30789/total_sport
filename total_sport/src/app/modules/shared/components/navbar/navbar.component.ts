@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
-import { CrudService } from 'src/app/modules/admin/services/crud.service';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from '../../services/carrito.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 
@@ -13,19 +13,22 @@ import { CarritoService } from '../../services/carrito.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
   productosEnCarrito: ProductoItemCart[] = [];
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
   deslogueado = false; // variable booleana para el botón de Cerrar Sesión
   cantidadTotalProductos: number = 0;
   isDarkTheme = false; //Declara una propiedad booleana llamada isDarkTheme y la inicializa en false. Esta propiedad se utiliza para rastrear si el tema oscuro está activado o no.
+  isLoggedIn = false;//este inicializa la variable el estado de la variable de inicio de sesion como falso
 
   constructor(
     public servicioAuth: AuthService,
     public servicioRutas: Router,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private auth: AngularFireAuth,
   ){}
+
 
 
     //esto permite alternar entre un tema claro y un tema oscuro
@@ -65,6 +68,9 @@ export class NavbarComponent {
   this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
     this.productosEnCarrito = productos;
     this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+    this.auth.authState.subscribe(user => {
+      this.isLoggedIn = !!user;
+    });
   });
 
 

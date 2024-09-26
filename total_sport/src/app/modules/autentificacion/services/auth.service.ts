@@ -7,12 +7,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class AuthService {
+
   // Referenciar Auth de Firebase para inicializarlo
   constructor(
     private auth: AngularFireAuth,
     private servicioFirestore: AngularFirestore
   ) { }
 
+  
   // Función para REGISTRO
   registrar(email: string, password: string){
     // Retorna nueva información de EMAIL y CONTRASEÑA
@@ -51,4 +53,16 @@ export class AuthService {
   obtenerUsuario(email: string){
     return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise();
   }
+
+    // Guardar productos comprados
+    savePurchasedProducts(products: any[]) {
+      this.auth.currentUser.then(user => {
+        if (user) {
+          const userRef = this.servicioFirestore.collection('users').doc(user.uid);
+          products.forEach(product => {
+            userRef.collection('purchasedProducts').add(product);
+          });
+        }
+      });
+    }
 }

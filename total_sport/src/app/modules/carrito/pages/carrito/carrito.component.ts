@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from 'src/app/modules/shared/services/carrito.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class CarritoComponent {
     
     private carritoService: CarritoService,
     public servicioRutas: Router,
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -71,6 +73,7 @@ export class CarritoComponent {
     this.carritoService.eliminarProducto(idProducto);
   }
   confirmarCompra() {
+    this.authService.savePurchasedProducts(this.productosEnCarrito);
     // Lógica para confirmar la compra
     alert('Compra confirmada');
     // Navegar a otra vista si es necesario

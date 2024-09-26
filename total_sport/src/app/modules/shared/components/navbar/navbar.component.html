@@ -37,7 +37,9 @@
    <mat-slide-toggle></mat-slide-toggle>
    </button>
   
-
+   <div *ngIf="isLoggedIn">
+    <img src="path/to/icon.png" alt="User Icon">
+  </div>
 
 <!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
 <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
