@@ -27,6 +27,10 @@ img{
   }
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 .list-group-item {
   display: flex;
   align-items: center;

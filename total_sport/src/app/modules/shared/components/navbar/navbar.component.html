@@ -1,4 +1,5 @@
 <mat-toolbar>
+  
   <button id="menuProducto" mat-button [matMenuTriggerFor]="producto"><mat-icon>menu</mat-icon></button>
   <mat-menu #producto="matMenu">
     <button mat-menu-item routerLink="/inicio">inicio</button>
@@ -28,6 +29,7 @@
 
 <!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
   botón.-->
+  <span class="spacer"></span>
   <button mat-button (click)="toggleTheme()">
     <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
      (wb_sunny) si isDarkTheme es false.-->

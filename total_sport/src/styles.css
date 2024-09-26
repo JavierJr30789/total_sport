@@ -18,6 +18,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Variables para el tema claro */
 
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -61,10 +62,11 @@ button {
 /* Variables para el tema claro */
 :root {
   --background-color: rgb(255, 255, 255);
-  --text-color: #f30b0b;
+  --background-footer-color:#38afff; 
+  --text-color: #f7f7f7;
   --text-title-color:#4d41f1;
-  --primary-color: #030ea1; /* Color frío */
-  --accent-color:#0314a5 ;  /* Color cálido */
+  --primary-color: #00a8db; /* Color frío */
+  --accent-color:#00a8db ;  /* Color cálido */
   --warn-color: #fc1100;    /* Color cálido */
 }
 
@@ -72,6 +74,7 @@ button {
 :root.dark-theme {
   --background-color: rgb(15, 1, 41);
   --text-title-color:#ffffff;
+  --background-footer-color:#0a0444; 
   --text-color: #f30b0b;
   --primary-color: #090541; /* Color frío */
   --accent-color: #030b4e;  /* Color cálido */

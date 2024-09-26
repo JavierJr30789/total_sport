@@ -46,6 +46,17 @@ button {
   background-color: var(--accent-color);
 }
 
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-top: 450px; /* Espacio superior */
+}
+
 
 /* Aplica las variables a otros componentes según sea necesario */
 

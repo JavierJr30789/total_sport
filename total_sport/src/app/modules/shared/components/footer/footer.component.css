@@ -19,7 +19,7 @@ margin: auto;
     margin-bottom: 60px;
 }
 .footer{
-    background-color: black;
+    background-color: var(--background-footer-color);
     padding: 70px o;
     align-content: center;
     width: 100%;
@@ -30,7 +30,7 @@ margin: auto;
 }
 .footer-links h4{
     font-size: 18px;
-    color:aliceblue;
+    color:var(--text-title-color);
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
@@ -76,6 +76,13 @@ margin: auto;
 
 .form-label{
     color: #fff;
+}
+
+footer {
+
+    text-align: center;
+    padding: 10px;
+    
 }
 @media(max-width:991px) {
     .row{
