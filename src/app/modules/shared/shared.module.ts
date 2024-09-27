@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //importaciones de componentes locales del proyecto
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,16 +17,11 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-
-
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     CarritoComponent
-
   ],
   imports: [
     CommonModule,
@@ -35,8 +31,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatCardModule,
     MatMenuModule,
-    MatSlideToggleModule
-    
+    MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,

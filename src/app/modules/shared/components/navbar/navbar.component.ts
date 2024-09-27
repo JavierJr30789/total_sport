@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
-import{ MatSlideToggleModule} from '@angular/material/slide-toggle';
-
 
 @Component({
   selector: 'app-navbar',
@@ -23,20 +21,19 @@ export class NavbarComponent {
       document.documentElement.classList.remove('dark-theme');
     }
   };
-  
+
 
   constructor(
     public servicioAuth: AuthService,
-    public servicioRutas: Router
-  ){}
+    public servicioRutas: Router) { }
 
   // Cambia los valores de logueado y deslogueado para ocultar los primeros y mostrar el último
-  iniciar(){
+  iniciar() {
     this.logueado = false;
     this.deslogueado = true;
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     this.deslogueado = false;
     // va a eliminar el "token" actual del usuario
     // token: estado actual del usuario en el navegador para mantener la sesión abierta

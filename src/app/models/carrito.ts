@@ -3,25 +3,25 @@
 //aca importamos la interfaz producto
 import { Producto } from "./producto";
 
-export interface cliente{ 
+export interface cliente {
     uid: string;
     email: string;
     nombre: string;
-    celular: string; 
+    celular: string;
     foto: string;
     referencia: string;
     ubicacion: any;
 }
 
-interface ProductoPedido{
+interface ProductoPedido {
     producto: Producto;
     cantidad: number;
-    
+
 }
 export interface Pedido {
     id: string;
     cliente: cliente;
- productos: Producto;
+    productos: Producto;
     precio: number;
     estado: EstadoPedido;
     fecha: Date;

@@ -1,24 +1,22 @@
 <div class="row">
-    <mat-card class="col" *ngFor="let producto of coleccionProducto" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title class="titulo">{{producto.nombre}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" height="200px" width="200px">
-        <mat-card-content>
-          <p class="descripcion">{{producto.descripcion}}</p>
-          <mat-card-subtitle class="precio" >${{producto.precio}}</mat-card-subtitle>
-
-        </mat-card-content>
-        <mat-card-actions>
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" 
-          data-bs-target="#modalCard" (click)="mostrarVer(producto)"
-          mat-button>ver mas</button>
-<<<<<<< HEAD
-          <button (click)="addCarrito()">Agregar al carrito</button>
-=======
-          <button mat-button>SHARE</button>
-          <button>Agregar al carrtio</button>
->>>>>>> 50caed4828baf3016fe9c533b0e4b9bf1f3348c1
-        </mat-card-actions>
-      </mat-card>
+  <div>
+    <input type="text" placeholder="Buscar productos..." [(ngModel)]="searchQuery" (input)="filterProducts()" />
+    <button disabled class="lupa"><i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <mat-card class="col" *ngFor="let producto of filteredProductos" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title class="titulo">{{producto.nombre}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" height="200px" width="200px">
+    <mat-card-content>
+      <p class="descripcion">{{producto.descripcion}}</p>
+      <mat-card-subtitle class="precio">${{producto.precio}}</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCard"
+        (click)="mostrarVer(producto)" mat-button>ver mas</button>
+      <button (click)="addCarrito()">Agregar al carrito</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

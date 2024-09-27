@@ -7,38 +7,38 @@ import { Producto } from 'src/app/models/producto';
 })
 export class CarritoService {
 
- private pedido! : Pedido;
+  private pedido!: Pedido;
 
   constructor() {
 
     this.loadCarrito();
-    
-   }
 
- 
-loadCarrito(){
+  }
 
-}
+
+  loadCarrito() {
+
+  }
 
   //esta funcion sirve para que nos devuelva lo que tengamos en el carrito de compras
-  getCarrito(){
+  getCarrito() {
     return this.pedido;
-       }
+  }
 
   //esta funcion se encarga de añadir un producto al carrito de compras
-  addProducto(producto: Producto){
+  addProducto(producto: Producto) {
 
   }
 
-  removeProducto(productos: Producto){
-    
-  }
-
-  realizarPedido(){
+  removeProducto(productos: Producto) {
 
   }
 
-  clearCarrito(){
+  realizarPedido() {
+
+  }
+
+  clearCarrito() {
 
   }
 }
