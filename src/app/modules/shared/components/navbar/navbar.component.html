@@ -54,7 +54,7 @@
   <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
 
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras</h5>
+      <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras </h5> <mat-icon>shopping_cart</mat-icon> 
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -69,13 +69,15 @@
               <div class="card-body">
                 <p class="card-text">
                   {{ item.Producto.nombre }} <br> {{ item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-                  <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+                 
                    <br> (cantidad: {{ item.Cantidad }}) <br>
                   Subtotal: {{ item.Cantidad * item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
                 </p>
                 <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
                 <span>{{ item.Cantidad }}</span>
                 <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+
+                <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)" class="button"> <mat-icon class="red-icon">delete</mat-icon> </button>
               
               </div>
             </div>

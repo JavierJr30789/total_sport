@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from '../../services/carrito.service';
+import { CarritoComponent } from 'src/app/modules/carrito/pages/carrito/carrito.component';
 
 
 
@@ -110,6 +111,7 @@ export class NavbarComponent {
     this.carritoService.eliminarProducto(idProducto);
   }
  
+
 
 
 

@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 export class RegistroComponent {
   // Este "hide" es para el input de contraseña
   hide = true;
+  aceptaTerminos = false; // Nueva propiedad para el checkbox
 
   // IMPORTACIÓN DEL MODELO / INTERFAZ
   usuarios: Usuario = {
@@ -40,6 +41,21 @@ export class RegistroComponent {
     public servicioRutas: Router // método de navegación
   ){}
 
+  // Método para abrir el modal
+  openModal() {
+    // Lógica para abrir el modal
+    this.aceptaTerminos = true; 
+  }
+
+  closeModal() {
+    // Lógica para cerrar el modal
+    
+  }
+
+  aceptarTerminos() {
+    this.aceptaTerminos = true;
+}
+
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar(){
     // CREDENCIALES = información que ingrese el usuario
@@ -60,6 +76,15 @@ export class RegistroComponent {
     // Notificamos al usuario el correcto registro
     // alert("Te registraste con éxito :)");
     // ############################### FIN LOCAL
+
+    if (!this.aceptaTerminos) {
+      Swal.fire({
+        title: "Error",
+        text: "Debes aceptar los términos y condiciones para registrarte.",
+        icon: "error"
+      });
+      return;
+    }
 
     const credenciales = {
       email: this.usuarios.email,
@@ -107,6 +132,10 @@ export class RegistroComponent {
 
     // Llamamos a la función limpiarInputs() para que se ejecute
     this.limpiarInputs();
+
+
+   
+
   }
 
   // función para agregar NUEVO USUARIO

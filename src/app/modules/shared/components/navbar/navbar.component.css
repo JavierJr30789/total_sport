@@ -5,3 +5,12 @@ img{
   width: 70px;
   height: 70px;
 }
+.red-icon{
+  color: red;
+  
+}
+.button{
+  border-radius:  11px;
+  padding: 10px;
+  float: right;
+}

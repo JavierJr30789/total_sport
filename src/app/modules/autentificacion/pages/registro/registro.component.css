@@ -9,3 +9,15 @@
     width: 120px;
     margin: auto;
 }
+.form-check-label{
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-check-input {
+    width: 18px; /* Aumenta el tamaño del checkbox */
+    height: 18px;
+    border: 2px solid #007bff; /* Cambia el color del borde */
+    border-radius: 3px; /* Esquinas redondeadas */
+   
+    
+}
