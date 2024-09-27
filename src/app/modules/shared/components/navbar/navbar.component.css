@@ -83,6 +83,10 @@ button {
   object-fit: cover; /* Asegura que la imagen se ajuste sin deformarse */
   border: 2px solid #fff; /* Opcional: un borde alrededor de la imagen */
 }
+
+.hidden {
+  display: none;
+}
 /* Aplica las variables a otros componentes según sea necesario */
 /* Variables para el tema claro */
 :root {

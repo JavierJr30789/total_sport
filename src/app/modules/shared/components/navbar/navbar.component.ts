@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from '../../services/carrito.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 
 
@@ -21,6 +22,8 @@ export class NavbarComponent implements OnInit {
   cantidadTotalProductos: number = 0;
   isDarkTheme = false; //Declara una propiedad booleana llamada isDarkTheme y la inicializa en false. Esta propiedad se utiliza para rastrear si el tema oscuro está activado o no.
   isLoggedIn = false;//este inicializa la variable el estado de la variable de inicio de sesion como falso
+  @ViewChild(MatMenuTrigger)
+  menuTrigger!: MatMenuTrigger;
 
   constructor(
     public servicioAuth: AuthService,

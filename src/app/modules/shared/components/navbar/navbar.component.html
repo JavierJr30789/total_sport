@@ -2,12 +2,10 @@
   
   <button id="menuProducto" mat-button [matMenuTriggerFor]="producto"><mat-icon>menu</mat-icon></button>
   <mat-menu #producto="matMenu">
-    <button mat-menu-item routerLink="/inicio">inicio</button>
+    <button mat-menu-item routerLink="/inicio">Inicio</button>
     <button mat-menu-item routerLink="/producto">Todos los producto</button>
-    <button mat-menu-item routerLink="/admin">Futbol</button>
-    <!--<button mat-menu-item routerLink="/rodado26">Voley</button>
-    <button mat-menu-item routerLink="/herramienta">Basquet</button>-->
-    <button mat-menu-item routerLink="/carrito">indumentaria</button>
+    <button mat-menu-item routerLink="/admin">Admin</button>
+    <button mat-menu-item routerLink="/carrito">Carrito</button>
 </mat-menu>
     
   <div class="col-lg-4">
@@ -37,17 +35,31 @@
    <mat-slide-toggle></mat-slide-toggle>
    </button>
   
-   <div *ngIf="isLoggedIn">
-    <img src="assets/imagenes/icono.png" alt="X" class="profile-image">
+   <div class="menu-container">
+    <!-- Mostrar la imagen si el usuario está logueado -->
+    <img 
+      [hidden]="!isLoggedIn" 
+      src="assets/imagenes/icono.png" 
+      alt="X" 
+      class="profile-image" 
+      [matMenuTriggerFor]="usuarioMenu">
+  
+    <!-- Mostrar el ícono si no está logueado -->
+    <button 
+      mat-icon-button 
+      [hidden]="isLoggedIn" 
+      [matMenuTriggerFor]="usuarioMenu">
+      <mat-icon>person</mat-icon>
+    </button>
   </div>
+  
+  <!-- Menú del usuario -->
+  <mat-menu #usuarioMenu="matMenu">
+    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</button>
+    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/inicio-sesion">Iniciar sesión</button>
+    <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar Sesión</button>
+  </mat-menu>
 
-<!-- Manejo del inicio (registro e inicio de sesión) y del cerrar sesión -->
-<button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
-<mat-menu #usuario="matMenu">
-    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/registro">Registrarse</button>
-    <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
-    <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
-</mat-menu>
   
 
   <!--BOTON OFFCANVAS CARRITO DE COMPRA-->
