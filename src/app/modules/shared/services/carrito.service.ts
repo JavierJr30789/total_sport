@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Pedido } from 'src/app/models/carrito';
-import { Producto } from 'src/app/models/producto';
+import { BehaviorSubject } from 'rxjs';
+import { Producto, ProductoItemCart } from 'src/app/models/producto';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
+  // Lista de productos en el carrito (usamos BehaviorSubject para poder suscribirnos a los cambios)
+  private carrito = new BehaviorSubject<ProductoItemCart[]>([]);
+  carrito$ = this.carrito.asObservable(); // Observable que se puede suscribir
 
-  private pedido!: Pedido;
+  constructor() { }
 
-  constructor() {
+  // Método para agregar productos al carrito
+  agregarProducto(productoItemCart: ProductoItemCart) {
+    const productosActuales = this.carrito.value;
 
-    this.loadCarrito();
+    const productoExistente = productosActuales.find(item => item.Producto.idProducto === productoItemCart.Producto.idProducto);
 
+    if (productoExistente) {
+      productoExistente.Cantidad += productoItemCart.Cantidad;
+    } else {
+      productosActuales.push(productoItemCart);
+    }
+
+    // Actualizar el carrito en ambos casos
+    this.carrito.next(productosActuales);
   }
 
-
-  loadCarrito() {
-
+  actualizarCarrito(productos: ProductoItemCart[]) {
+    this.carrito.next(productos);
   }
 
-  //esta funcion sirve para que nos devuelva lo que tengamos en el carrito de compras
-  getCarrito() {
-    return this.pedido;
+  obtenerCantidadTotalProductos(): number {
+    return this.carrito.value.reduce((total: number, item: ProductoItemCart) => total + item.Cantidad, 0);
   }
 
-  //esta funcion se encarga de añadir un producto al carrito de compras
-  addProducto(producto: Producto) {
+  eliminarProducto(idProducto: string) {
+    // No es necesario hacer la conversión a .toString() aquí porque idProducto ya es de tipo string
+    const productosActualizados = this.carrito.value.filter(item => item.Producto.idProducto !== idProducto);
 
-  }
-
-  removeProducto(productos: Producto) {
-
-  }
-
-  realizarPedido() {
-
-  }
-
-  clearCarrito() {
-
+    // Actualizar el BehaviorSubject con los productos restantes
+    this.carrito.next(productosActualizados);
   }
 }

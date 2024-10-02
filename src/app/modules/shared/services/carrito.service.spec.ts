@@ -1,15 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CarritoService } from './carrito.service';
-
-describe('CarritoService', () => {
-  let service: CarritoService;
-
+import { FirestoreService } from './firestore.service';
+describe('FirestoreService', () => {
+  let service: FirestoreService;
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CarritoService);
+    service = TestBed.inject(FirestoreService);
   });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });

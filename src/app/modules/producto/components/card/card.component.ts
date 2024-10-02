@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Producto } from 'src/app/models/producto';
+import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
 import { CarritoService } from 'src/app/modules/shared/services/carrito.service';
 
@@ -32,9 +32,11 @@ export class CardComponent {
     this.productoSeleccionado = info;
   }
 
-  addCarrito(){
-    //esta funcion va a usar un metodo del carritoService, como funcion del metodo addCarrito
-    this.carritoService.addProducto(this.productoSeleccionado);
+  agregarProducto(producto: Producto) {
+    // Crear un ProductoItemCart con el producto y una cantidad inicial de 1
+    const productoItemCart = { Producto: producto, Cantidad: 1 };
+    // Agregar producto al carrito
+    this.carritoService.agregarProducto(productoItemCart); 
   }
 
   filterProducts() {

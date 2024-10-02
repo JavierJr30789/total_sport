@@ -17,9 +17,11 @@ const routes: Routes = [
   },
   {
     path: "", loadChildren: () => import('./modules/producto/producto.module').then(m => m.ProductoModule)
+  },
+  {
+    path: "", loadChildren: () => import('./modules/carrito/carrito.module').then(m => m.CarritoModule)
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

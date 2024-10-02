@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { Producto, ProductoItemCart } from 'src/app/models/producto';
+import { CarritoService } from '../../services/carrito.service';
+import { CarritoComponent } from 'src/app/modules/carrito/pages/carrito/carrito.component';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  productosEnCarrito: ProductoItemCart[] = [];
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
   deslogueado = false; // variable booleana para el botón de Cerrar Sesión
+  cantidadTotalProductos: number = 0;
   isDarkTheme = false; //Declara una propiedad booleana llamada isDarkTheme y la inicializa en false. Esta propiedad se utiliza para rastrear si el tema oscuro está activado o no.
 
   //esto permite alternar entre un tema claro y un tema oscuro
@@ -25,8 +31,50 @@ export class NavbarComponent {
 
   constructor(
     public servicioAuth: AuthService,
-    public servicioRutas: Router) { }
+    public servicioRutas: Router,
+    private carritoService: CarritoService) { }
 
+  ngOnInit(): void {
+    // Suscribirse al carrito de compras para recibir actualizaciones
+    this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
+      this.productosEnCarrito = productos;
+      this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+    });
+  }
+  agregarProductoAlCarrito(producto: Producto) {
+    const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
+    if (productoExistente) {
+      // Si ya existe el producto, aumentar la cantidad
+      productoExistente.Cantidad++;
+    } else {
+      // Si no existe, agregar el producto con cantidad 1
+      this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
+    }
+    // Actualizar el carrito
+    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  }   //aumentar la cantidad de un producto
+  aumentarCantidad(producto: ProductoItemCart) {
+    producto.Cantidad++;
+    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  }
+  //Disminuir la cantidad de un producto (no menor a 1)
+  restarCantidad(producto: ProductoItemCart) {
+    if (producto.Cantidad > 1) {
+      producto.Cantidad--;
+    }
+    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  }
+
+  // Método para calcular el total
+  calcularTotal(): number {
+    return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
+  }
+  eliminarProductoDelCarrito(idProducto: string) {
+    this.carritoService.eliminarProducto(idProducto);
+  }
+  irAlCarrito() {
+    this.servicioRutas.navigate(['/carrito']); // Asegúrate de que '/carrito' es la ruta correcta a tu componente Carrito
+  }
   // Cambia los valores de logueado y deslogueado para ocultar los primeros y mostrar el último
   iniciar() {
     this.logueado = false;
