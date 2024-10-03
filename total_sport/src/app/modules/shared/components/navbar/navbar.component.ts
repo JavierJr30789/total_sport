@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from '../../services/carrito.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
-
+import { Usuario } from 'src/app/models/usuario';
 
 
 @Component({
@@ -14,6 +13,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  colecionUsuarios:Usuario[] = [];
+
 
   productosEnCarrito: ProductoItemCart[] = [];
   logueado = true; // variable booleana para el botón de Registro e Inicio de Sesión
@@ -27,26 +29,26 @@ export class NavbarComponent implements OnInit {
     public servicioRutas: Router,
     private carritoService: CarritoService,
     private auth: AngularFireAuth,
-  ){}
+  ) { }
 
 
 
-    //esto permite alternar entre un tema claro y un tema oscuro
-    toggleTheme() {
-      this.isDarkTheme = !this.isDarkTheme;
-      if (this.isDarkTheme) {
-        document.documentElement.classList.add('dark-theme');
-      } else {
-        document.documentElement.classList.remove('dark-theme');
-      }
-    };
+  //esto permite alternar entre un tema claro y un tema oscuro
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    if (this.isDarkTheme) {
+      document.documentElement.classList.add('dark-theme');
+    } else {
+      document.documentElement.classList.remove('dark-theme');
+    }
+  };
   // Cambia los valores de logueado y deslogueado para ocultar los primeros y mostrar el último
-  iniciar(){
+  iniciar() {
     this.logueado = false;
     this.deslogueado = true;
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     this.deslogueado = false;
     // va a eliminar el "token" actual del usuario
     // token: estado actual del usuario en el navegador para mantener la sesión abierta
@@ -64,22 +66,27 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-  // Suscribirse al carrito de compras para recibir actualizaciones
-  this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
-    this.productosEnCarrito = productos;
-    this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
-    this.auth.authState.subscribe(user => {
-      this.isLoggedIn = !!user;
+    // Suscribirse al carrito de compras para recibir actualizaciones
+    this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
+      this.productosEnCarrito = productos;
+      this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+      this.auth.authState.subscribe(user => {
+        this.isLoggedIn = !!user;
+      });
     });
-  });
 
+    //suscribe ->notifica constantemente los cambios actuales del sistema
+    this.servicioAuth.obtenerDatosUsuario().subscribe(usuario => {
+      //guarda la informacion recibida como un nuevo "producto" a la coleccion
+      this.colecionUsuarios = usuario;
+    })
 
   }
 
 
   agregarProductoAlCarrito(producto: Producto) {
     const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
-   
+
 
 
     if (productoExistente) {
@@ -89,7 +96,7 @@ export class NavbarComponent implements OnInit {
       // Si no existe, agregar el producto con cantidad 1
       this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
     }
- 
+
     // Actualizar el carrito
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
@@ -97,8 +104,8 @@ export class NavbarComponent implements OnInit {
 
 
 
-   //aumentar la cantidad de un producto
-  aumentarCantidad(producto: ProductoItemCart){
+  //aumentar la cantidad de un producto
+  aumentarCantidad(producto: ProductoItemCart) {
     producto.Cantidad++;
 
 
@@ -109,16 +116,16 @@ export class NavbarComponent implements OnInit {
 
 
   //Disminuir la cantidad de un producto (no menor a 1)
-  restarCantidad(producto: ProductoItemCart){
-    if (producto.Cantidad >1){
+  restarCantidad(producto: ProductoItemCart) {
+    if (producto.Cantidad > 1) {
       producto.Cantidad--;
     }
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
- 
- 
-   // Método para calcular el total
-   calcularTotal(): number {
+
+
+  // Método para calcular el total
+  calcularTotal(): number {
     return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
   }
 
@@ -128,7 +135,7 @@ export class NavbarComponent implements OnInit {
   eliminarProductoDelCarrito(idProducto: string) {
     this.carritoService.eliminarProducto(idProducto);
   }
- 
+
 
 
 

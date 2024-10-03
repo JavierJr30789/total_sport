@@ -28,7 +28,8 @@ export class InicioSesionComponent {
     apellido: '',
     email: '',
     rol: '',
-    password: ''
+    password: '',
+    icono:'',
   }
 
   // Función para el inicio de sesión

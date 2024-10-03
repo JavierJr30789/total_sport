@@ -36,7 +36,7 @@ export class CrudService {
     // pipe -> funciona como una tuberia que retorna el nuevo arreglo de datos
     // map -> "mapea" o recorre esa informacion
     //a -> resguarda la nueva informacion y la envia
-    return this.productosCollection.snapshotChanges().pipe(map(Action=>Action.map(a=>a.payload.doc.data())));
+    return this.productosCollection.snapshotChanges().pipe(map(action=>action.map(a=>a.payload.doc.data())));
   }
   //EDITAR PRODUCTOS
   modificarProducto(idProducto:string, nuevaData: Producto){

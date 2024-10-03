@@ -27,7 +27,8 @@ export class RegistroComponent {
     apellido: '',
     email: '',
     rol: 'vist',
-    password: ''
+    password: '',
+    icono:'',
   }
 
   // CREAR UNA COLECCIÓN QUE SOLO RECIBE OBJETOS DEL TIPO USUARIOS
