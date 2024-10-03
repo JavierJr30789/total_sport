@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 // Importamos paquetería de SweetAlert para alertas personalizadas
 import Swal from 'sweetalert2';
+// Importamos emailjs para enviar correos de agradecimiento
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com'; 
 
 @Component({
   selector: 'app-registro',
@@ -130,6 +132,16 @@ export class RegistroComponent {
     // this.guardarUsuario() guardaba la información del usuario en la colección
     this.guardarUsuario();
 
+    
+
+console.log(this.usuarios); // Verifica si los datos están completos
+this.enviarCorreoDeAgradecimiento(this.usuarios);
+
+    
+     // Si el registro es exitoso, llama a la función para enviar el correo
+  this.enviarCorreoDeAgradecimiento(this.usuarios);
+
+
     // Llamamos a la función limpiarInputs() para que se ejecute
     this.limpiarInputs();
 
@@ -160,4 +172,31 @@ export class RegistroComponent {
       password: this.usuarios.password = ''
     }
   }
+  
+
+  enviarCorreoDeAgradecimiento(usuario: Usuario) {
+    if (!usuario.email || !usuario.nombre) {
+      console.error("El correo o nombre del usuario están vacíos.");
+      return;
+    }
+  
+    console.log('Datos de usuario para correo:', {
+      nombre: usuario.nombre,
+      email: usuario.email,
+    });
+  
+    emailjs.send('service_48xvchx', 'template_xm4elup', {
+      to_name: usuario.nombre,  // Asegúrate de usar el nombre del campo correcto
+      to_email: usuario.email,  // Cambia esto si tu plantilla espera otro nombre de campo
+    }, 'mBPxyJ78tUymGlB3a')
+    .then((response: EmailJSResponseStatus) => {
+      console.log('Correo enviado con éxito!', response.status, response.text);
+    }, (error) => {
+      console.error('Error al enviar el correo:', error);
+    });
+  }
+  
+  
+  
+  
 }
