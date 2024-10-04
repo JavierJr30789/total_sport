@@ -45,9 +45,11 @@ export class CardComponent {
 
  }
 
-
  agregarProducto(producto: Producto) {
-  const productoItemCart = { Producto: producto, Cantidad: 1 };
-  this.carritoService.agregarProducto(productoItemCart); 
+  const productoItemCart: ProductoItemCart = { Producto: producto, Cantidad: 1 };
+  this.carritoService.agregarProducto(productoItemCart);
+  
+  // Emitir el evento para notificar al padre
+  this.productoAgregado.emit(producto);
 }
 }

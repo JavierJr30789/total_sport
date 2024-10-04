@@ -27,8 +27,15 @@ export class CarritoService {
       try {
         const productoExistente = this.carrito.value.find(item => item.Producto.idProducto === productoItemCart.Producto.idProducto);
         if (productoExistente) {
-          productoExistente.Cantidad += productoItemCart.Cantidad;
-          await cartRef.doc(productoExistente.Producto.idProducto).update(productoExistente);
+          // Evitar mutación directa de objetos dentro de BehaviorSubject
+          const carritoActualizado = this.carrito.value.map(item => {
+            if (item.Producto.idProducto === productoExistente.Producto.idProducto) {
+              return { ...item, Cantidad: item.Cantidad + productoItemCart.Cantidad };
+            }
+            return item;
+          });
+          await cartRef.doc(productoExistente.Producto.idProducto).update({ ...productoExistente, Cantidad: productoExistente.Cantidad + productoItemCart.Cantidad });
+          this.carrito.next(carritoActualizado);
         } else {
           await cartRef.doc(productoItemCart.Producto.idProducto).set(productoItemCart);
           this.carrito.next([...this.carrito.value, productoItemCart]);
@@ -38,6 +45,7 @@ export class CarritoService {
       }
     }
   }
+  
   
 
   actualizarCarrito(productos: ProductoItemCart[]) {
@@ -53,7 +61,7 @@ export class CarritoService {
 async cargarCarrito() {
   const uid = await this.authService.obtenerUid();
   if (uid) {
-    const cartRef = this.firestore.collection<ProductoItemCart>(`usuarios/${uid}/carrito`); // Especifica el tipo aquí
+    const cartRef = this.firestore.collection<ProductoItemCart>(`usuarios/${uid}/carrito`);
     cartRef.valueChanges().subscribe(productos => {
       this.carrito.next(productos);
     });

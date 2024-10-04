@@ -67,69 +67,65 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
       this.productosEnCarrito = productos;
-      this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+      this.cantidadTotalProductos = productos.reduce((total, item) => total + item.Cantidad, 0); // Calcula la cantidad en base al valor actualizado del carrito
+    });
       this.auth.authState.subscribe(user => {
         this.isLoggedIn = !!user;
       });
-    });
+   
   }
   
-
-
-  agregarProductoAlCarrito(producto: Producto) {
-    const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
+  
+  
+    agregarProductoAlCarrito(producto: Producto) {
+      const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
+     
+  
+  
+      if (productoExistente) {
+        // Si ya existe el producto, aumentar la cantidad
+        productoExistente.Cantidad++;
+      } else {
+        // Si no existe, agregar el producto con cantidad 1
+        this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
+      }
    
-
-
-    if (productoExistente) {
-      // Si ya existe el producto, aumentar la cantidad
-      productoExistente.Cantidad++;
-    } else {
-      // Si no existe, agregar el producto con cantidad 1
-      this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
+      // Actualizar el carrito
+      this.carritoService.actualizarCarrito(this.productosEnCarrito);
     }
- 
-    // Actualizar el carrito
-    this.carritoService.actualizarCarrito(this.productosEnCarrito);
-  }
-
-
-
-
-   //aumentar la cantidad de un producto
-  aumentarCantidad(producto: ProductoItemCart){
-    producto.Cantidad++;
-
-
-    this.carritoService.actualizarCarrito(this.productosEnCarrito);
-  }
-
-
-
-
-  //Disminuir la cantidad de un producto (no menor a 1)
-  restarCantidad(producto: ProductoItemCart){
-    if (producto.Cantidad >1){
-      producto.Cantidad--;
+  
+  
+  
+  
+     //aumentar la cantidad de un producto
+    aumentarCantidad(producto: ProductoItemCart){
+      producto.Cantidad++;
+  
+  
+      this.carritoService.actualizarCarrito(this.productosEnCarrito);
     }
-    this.carritoService.actualizarCarrito(this.productosEnCarrito);
+  
+  
+  
+  
+    //Disminuir la cantidad de un producto (no menor a 1)
+    restarCantidad(producto: ProductoItemCart){
+      if (producto.Cantidad >1){
+        producto.Cantidad--;
+      }
+      this.carritoService.actualizarCarrito(this.productosEnCarrito);
+    }
+   
+   
+     // Método para calcular el total
+     calcularTotal(): number {
+      return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
+    }
+  
+  
+  
+  
+    eliminarProductoDelCarrito(idProducto: string) {
+      this.carritoService.eliminarProducto(idProducto);
+    }
   }
- 
- 
-   // Método para calcular el total
-   calcularTotal(): number {
-    return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
-  }
-
-
-
-
-  eliminarProductoDelCarrito(idProducto: string) {
-    this.carritoService.eliminarProducto(idProducto);
-  }
- 
-
-
-
-
-}

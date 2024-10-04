@@ -80,3 +80,6 @@ button {
   --accent-color: #030b4e;  /* Color cálido */
   --warn-color: #e91e63;    /* Color cálido */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
