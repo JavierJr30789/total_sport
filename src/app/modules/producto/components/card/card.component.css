@@ -1,9 +1,14 @@
-.row{
+/* Animación para la fila */
+.row {
   animation-duration: 2.7s;
   animation-name: animCart;
-  margin: 20px;
-  
+  margin: 0; /* Cambiado de 'center' a '0' */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Alinea las tarjetas al inicio */
 }
+
+/* Clave de animación para el cart */
 @keyframes animCart {
   from {
     margin-left: 100%;
@@ -14,132 +19,65 @@
     width: 100%;
   }
 }
-.btn{
-background-color: #0099ff; 
-box-shadow: inset 2px 2px 5px #106daf;
-border: 1px solid #bbb; 
-color: #ffffff; 
-cursor: pointer; 
-transition: all 0.3s ease; 
-}
-.btn:active{
-  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.4), inset -4px -4px 8px rgba(11, 5, 60, 0.6); /* Sombra interna más pronunciada al hacer clic */
-background-color: #1d1ae7; /* Color de fondo más oscuro al hacer clic */
-color: #ffffff;
-}
-
-/* Estilos generales */
-.row {
-    width: 100%;
-    display: flex;
-    max-width: 1100px;
-    margin: auto;
-    justify-content: space-around;
-}
 
 /* Estilo de las tarjetas */
 .col {
-    width: 100%;
-    margin: 20px;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #9265fc;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
-    cursor: default;
-    transition: all 400ms ease;
-    justify-content: center;
+  flex: 0 0 calc(33.333% - 20px); /* Tres tarjetas por fila con espacio */
+  margin: 10px; /* Espacio entre tarjetas */
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--primary-color);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  cursor: default;
+  transition: all 400ms ease;
+  display: flex; /* Asegura que el contenido se alinee correctamente */
+  flex-direction: column; /* Permite que los elementos hijos se apilen verticalmente */
 }
 
 /* Animación de las tarjetas sobre el cursor */
 .col:hover {
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
-    transform: translateY(-3%);
-}
-
-mat-card-contents {
-    display: flex;
-    justify-content: space-around;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
 }
 
 /* Define tamaños de las imágenes */
-.col img {
-    width: 100%;
-    height: 200px;
+.card-image {
+  width: 100%;               /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: 200px;            /* Altura fija para todas las imágenes */
+  object-fit: contain;      /* Ajusta la imagen manteniendo su proporción y centrada */
+  display: block;           /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto;          /* Centra la imagen horizontalmente */
+  border: none;             /* Quita el borde si se muestra */
+  background-color: var(--background-color); /* Color de fondo opcional */
 }
 
-.titulo {
-    font-weight: 400;
-    margin-bottom: 15px;
-    text-align: center;
-    
-}
-
-.alt{
-    color: var(--text-color)
-}
-.descripcion {
-    line-height: 1.5;
-    color: var(--text-color);
-    text-align: center;
-}
-
-.precio {
-    padding: 15px;
-    color: chartreuse;
-    text-align: center;
-    font-weight: bold;
+/* Asegura que la imagen esté centrada verticalmente */
+.mat-card-content {
+  display: flex; /* Alinea el contenido de las tarjetas */
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
 }
 
 
-/* Estilos específicos para el modal */
-.modal-content .col {
-    width: auto; /* Ajusta el ancho para que se adapte al contenido del modal */
-    margin: 0; /* Elimina el margen para evitar desplazamientos */
-    box-shadow: none; /* Elimina la sombra para evitar conflictos visuales */
-    transition: none; /* Elimina la animación para evitar el bug */
-}
-
-.mat-toolbar {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  button {
-    background-color: var(--accent-color);
-    color: var(--text-color);
-  }
-  .mat-warn {
-    background-color: var(--warn-color);
-    color: var(--text-color);
-  }
+/* Aumenta el tamaño de las tarjetas según sea necesario */
+@media (min-width: 768px) {
   .mat-card {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    height: 350px; /* Ajusta la altura como desees */
   }
-  .mat-menu {
-    background-color: var(--background-color);
-    color: var(--text-color);
+}
+
+/* Espacio entre las tarjetas */
+@media (max-width: 768px) {
+  .col {
+    flex: 0 0 calc(50% - 20px); /* Dos tarjetas en pantallas medianas */
+    max-width: calc(50% - 20px); /* Ajusta el max-width */
   }
-  .mat-slide-toggle-thumb {
-    background-color: var(--primary-color);
+}
+
+@media (max-width: 576px) {
+  .col {
+    flex: 0 0 calc(100% - 20px); /* Una tarjeta en pantallas pequeñas */
+    max-width: calc(100% - 20px); /* Ajusta el max-width */
   }
-  .mat-slide-toggle-bar {
-    background-color: var(--accent-color);
-  }
-  
-  /* Aplica las variables a otros componentes según sea necesario */
-  /* Variables para el tema claro */
-  :root {
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --primary-color: #6200ea; /* Color frío */
-    --accent-color: #ff9800;  /* Color cálido */
-    --warn-color: #f44336;    /* Color cálido */
-  }
-  /* Variables para el tema oscuro */
-  :root.dark-theme {
-    --background-color: #220f38;
-    --text-color: #ffffff;
-    --primary-color: #bb86fc; /* Color frío */
-    --accent-color: #ff5722;  /* Color cálido */
-    --warn-color: #e91e63;    /* Color cálido */
-  }
+}
