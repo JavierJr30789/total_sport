@@ -17,7 +17,12 @@
             </button>
             <mat-hint align="start">Mínimo:6/{{input.value.length}}</mat-hint>
         </mat-form-field>
+        <!-- <ngx-recaptcha2 
+         (success)="resolvedCaptcha($event)" 
+           [siteKey]="'6LfjrVYqAAAAAAMY2gs1432dPj5sf-ahEsWZ0ZbS'">
+             </ngx-recaptcha2> -->
 
-        <button class="boton" mat-raised-button color="primary" (click)="iniciarSesion()">Iniciar Sesión</button>
+        
     </div>
+    <button mat-raised-button color="primary" (click)="iniciarSesion()" >Iniciar Sesión</button>
 </div>

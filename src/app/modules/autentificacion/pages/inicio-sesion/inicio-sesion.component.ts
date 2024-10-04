@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class InicioSesionComponent {
   hide = true;
+//   captchaResolved = false;
+// captchaResponse: string | null = null;
 
   constructor(
     public servicioAuth: AuthService,
@@ -20,6 +22,10 @@ export class InicioSesionComponent {
     public servicioRutas: Router
   ) { }
 
+  // resolvedCaptcha(captchaResponse: string) {
+  //   this.captchaResolved = !!captchaResponse;
+  //   this.captchaResponse = captchaResponse;
+  // }
   // ####################################### INGRESADO
   // Importamos la interfaz de usuario e inicializamos vacío
   usuarioIngresado: Usuario = {
@@ -33,7 +39,15 @@ export class InicioSesionComponent {
 
   // Función para el inicio de sesión
   async iniciarSesion() {
-   
+
+    // if (!this.captchaResolved) {
+    //   Swal.fire({
+    //     text: "Por favor, completa el captcha.",
+    //     icon: "error"
+    //   });
+    //   return;
+    // }
+
     const credenciales = {
       email: this.usuarioIngresado.email,
       password: this.usuarioIngresado.password

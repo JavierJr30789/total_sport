@@ -20,7 +20,6 @@ export class CarritoService {
   ) { }
 
 
-  // Método para agregar productos al carrito
   async agregarProducto(productoItemCart: ProductoItemCart) {
     const uid = await this.authService.obtenerUid();
     if (uid) {
@@ -36,7 +35,6 @@ export class CarritoService {
         }
       } catch (error) {
         console.error("Error al agregar producto al carrito: ", error);
-        // Manejar el error (ej. mostrar un mensaje al usuario)
       }
     }
   }

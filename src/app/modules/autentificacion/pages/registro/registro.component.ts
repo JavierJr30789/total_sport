@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 // Importamos paquetería de SweetAlert para alertas personalizadas
 import Swal from 'sweetalert2';
+// Importamos emailjs para enviar correos de agradecimiento
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com'; 
 
 @Component({
   selector: 'app-registro',
@@ -19,6 +21,7 @@ import Swal from 'sweetalert2';
 export class RegistroComponent {
   // Este "hide" es para el input de contraseña
   hide = true;
+  aceptaTerminos = false; // Nueva propiedad para el checkbox
 
   // IMPORTACIÓN DEL MODELO / INTERFAZ
   usuarios: Usuario = {
@@ -26,7 +29,7 @@ export class RegistroComponent {
     nombre: '',
     apellido: '',
     email: '',
-    //rol: 'vist',
+    //rol: '',
     password: ''
   }
 
@@ -40,65 +43,112 @@ export class RegistroComponent {
     public servicioRutas: Router // método de navegación
   ){}
 
+  // Método para abrir el modal
+  openModal() {
+    // Lógica para abrir el modal
+    this.aceptaTerminos = true; 
+  }
+
+  closeModal() {
+    // Lógica para cerrar el modal
+    
+  }
+
+  aceptarTerminos() {
+    this.aceptaTerminos = true;
+}
+
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
-  async registrar() {
+  async registrar(){
+    // CREDENCIALES = información que ingrese el usuario
+    //################################ LOCAL
+    /*
+    const credenciales = {
+      uid: this.usuarios.uid,
+      nombre: this.usuarios.nombre,
+      apellido: this.usuarios.apellido,
+      email: this.usuarios.email,
+      rol: this.usuarios.rol,
+      password: this.usuarios.password
+    }*/
+
+    // enviamos los nuevos registros por medio del método push a la colección
+    // this.coleccionUsuarios.push(credenciales);
+
+    // Notificamos al usuario el correcto registro
+    // alert("Te registraste con éxito :)");
+    // ############################### FIN LOCAL
+
+    if (!this.aceptaTerminos) {
+      Swal.fire({
+        title: "Error",
+        text: "Debes aceptar los términos y condiciones para registrarte.",
+        icon: "error"
+      });
+      return;
+    }
+
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password
-    };
-  
-    let registroExitoso = false;  // Variable para controlar el estado del registro
-  
+    }
+
     // constante "res" = resguarda una respuesta
-    await this.servicioAuth.registrar(credenciales.email, credenciales.password)
-      .then(res => {
-        Swal.fire({
-          title: "¡Buen trabajo!",
-          text: "¡Se pudo registrar con éxito! :)",
-          icon: "success"
-        });
-        registroExitoso = true;  // Registro fue exitoso
-        this.servicioRutas.navigate(['/inicio']);
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          // Manejo específico del error de correo ya en uso
-          Swal.fire({
-            title: "¡Oh no!",
-            text: "El correo electrónico ya está en uso. Por favor, intenta con otro correo.",
-            icon: "error"
-          });
-        } else {
-          // Manejo de otros errores
-          Swal.fire({
-            title: "¡Oh no!",
-            text: "Hubo un problema al registrar el nuevo usuario :(",
-            icon: "error"
-          });
-        }
+    const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
+    // El método THEN nos devuelve la respuesta esperada por la promesa
+    .then(res => {
+      Swal.fire({
+        title: "¡Buen trabajo!",
+        text: "¡Se pudo registrar con éxito! :)",
+        icon: "success"
       });
-  
-    if (!registroExitoso) {
-      // Si hubo un error en el registro, detener el proceso aquí
-      return;
-    }
-  
+
+      // Accedemos al servicio de rutas -> método navigate
+      // método NAVIGATE = permite dirigirnos a diferentes vistas
+      this.servicioRutas.navigate(['/inicio']);
+    })
+    // El método CATCH toma una falla y la vuelve un ERROR
+    .catch(error => {
+      Swal.fire({
+        title: "¡Oh no!",
+        text: "Hubo un problema al registrar el nuevo usuario :(",
+        icon: "error"
+      });
+    })
+
     const uid = await this.servicioAuth.obtenerUid();
-    
-    // Verifica si el UID es válido
-    if (!uid) {
-      console.error("UID vacío, no se puede agregar a Firestore.");
-      return;
-    }
-  
+
     this.usuarios.uid = uid;
-  
-    // Encriptar la contraseña antes de guardarla en Firestore
+
+    // ENCRIPTACIÓN DE LA CONTRASEÑA DE USUARIO
+    /**
+     * SHA-256: Es un algoritmo de hashing seguro que toma una entrada (en este caso la
+     * contraseña) y produce una cadena de caracteres HEXADECIMAL que representa su HASH
+     * 
+     * toString(): Convierte el resultado del hash en una cadena de caracteres legible
+     */
     this.usuarios.password = CryptoJS.SHA256(this.usuarios.password).toString();
-  
-    // Guardar usuario solo si el UID es válido
+
+    // this.guardarUsuario() guardaba la información del usuario en la colección
     this.guardarUsuario();
-  }  
+
+    
+
+console.log(this.usuarios); // Verifica si los datos están completos
+this.enviarCorreoDeAgradecimiento(this.usuarios);
+
+    
+     // Si el registro es exitoso, llama a la función para enviar el correo
+  this.enviarCorreoDeAgradecimiento(this.usuarios);
+
+
+    // Llamamos a la función limpiarInputs() para que se ejecute
+    this.limpiarInputs();
+
+
+   
+
+  }
 
   // función para agregar NUEVO USUARIO
   async guardarUsuario(){
@@ -118,8 +168,35 @@ export class RegistroComponent {
       nombre: this.usuarios.nombre = '',
       apellido: this.usuarios.apellido = '',
       email: this.usuarios.email = '',
-     // rol: this.usuarios.rol = '',
+      
       password: this.usuarios.password = ''
     }
   }
+  
+
+  enviarCorreoDeAgradecimiento(usuario: Usuario) {
+    if (!usuario.email || !usuario.nombre) {
+      console.error("El correo o nombre del usuario están vacíos.");
+      return;
+    }
+  
+    console.log('Datos de usuario para correo:', {
+      nombre: usuario.nombre,
+      email: usuario.email,
+    });
+  
+    emailjs.send('service_48xvchx', 'template_xm4elup', {
+      to_name: usuario.nombre,  // Asegúrate de usar el nombre del campo correcto
+      to_email: usuario.email,  // Cambia esto si tu plantilla espera otro nombre de campo
+    }, 'mBPxyJ78tUymGlB3a')
+    .then((response: EmailJSResponseStatus) => {
+      console.log('Correo enviado con éxito!', response.status, response.text);
+    }, (error: any) => {
+      console.error('Error al enviar el correo:', error);
+    });
+  }
+  
+  
+  
+  
 }

@@ -32,8 +32,6 @@ export class NavbarComponent implements OnInit {
     private auth: AngularFireAuth,
   ){}
 
-
-
     //esto permite alternar entre un tema claro y un tema oscuro
     toggleTheme() {
       this.isDarkTheme = !this.isDarkTheme;
@@ -67,17 +65,15 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-  // Suscribirse al carrito de compras para recibir actualizaciones
-  this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
-    this.productosEnCarrito = productos;
-    this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
-    this.auth.authState.subscribe(user => {
-      this.isLoggedIn = !!user;
+    this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
+      this.productosEnCarrito = productos;
+      this.cantidadTotalProductos = this.carritoService.obtenerCantidadTotalProductos();
+      this.auth.authState.subscribe(user => {
+        this.isLoggedIn = !!user;
+      });
     });
-  });
-
-
   }
+  
 
 
   agregarProductoAlCarrito(producto: Producto) {

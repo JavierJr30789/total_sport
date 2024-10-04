@@ -22,7 +22,6 @@ export class CarritoComponent {
   ngOnInit(): void {
     this.carritoService.cargarCarrito();
     
-    // Suscribirse al carrito de compras para recibir actualizaciones
     this.carritoService.carrito$.subscribe(productos => {
       this.productosEnCarrito = productos;
     });

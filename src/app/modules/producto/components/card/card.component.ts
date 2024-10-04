@@ -46,12 +46,8 @@ export class CardComponent {
  }
 
 
-agregarProducto(producto: Producto) {
-  // Crear un ProductoItemCart con el producto y una cantidad inicial de 1
+ agregarProducto(producto: Producto) {
   const productoItemCart = { Producto: producto, Cantidad: 1 };
-
-  // Agregar producto al carrito
   this.carritoService.agregarProducto(productoItemCart); 
 }
-
 }

@@ -84,6 +84,17 @@ button {
   border: 2px solid #fff; /* Opcional: un borde alrededor de la imagen */
 }
 
+
+.red-icon{
+  color: red;
+  
+}
+.button{
+  border-radius:  11px;
+  padding: 10px;
+  float: right;
+}
+
 .hidden {
   display: none;
 }

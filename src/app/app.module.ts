@@ -16,6 +16,10 @@ import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
 import { LOCALE_ID } from '@angular/core';
 
+//Catpcha
+import { NgxCaptchaModule } from 'ngx-captcha';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -28,6 +32,7 @@ import { LOCALE_ID } from '@angular/core';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
+    NgxCaptchaModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-AR'}

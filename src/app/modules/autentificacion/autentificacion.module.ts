@@ -14,6 +14,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { NgxCaptchaModule } from 'ngx-captcha';
+                 
+
+
 
 // COMPONENTES DE ANGULAR
 import { FormsModule } from '@angular/forms';
@@ -32,8 +36,13 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
+    
     // ANGULAR
     FormsModule,
+
+    //Catpcha
+    NgxCaptchaModule
+    
   ],
   exports: [
     RegistroComponent,
@@ -42,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxCaptchaModule
     
   ]
 })
