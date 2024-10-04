@@ -2,16 +2,27 @@ import { Injectable } from '@angular/core';
 // Servicio de AUTENTIFICACIÓN de FIREBASE
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private usuarioActual = new BehaviorSubject<any>(null);
   // Referenciar Auth de Firebase para inicializarlo
   constructor(
     private auth: AngularFireAuth,
     private servicioFirestore: AngularFirestore
-  ) { }
+  ) {
+      // Suscribirse a los cambios en el estado de autenticación y actualizar el usuario actual
+      this.auth.authState.subscribe(user => {
+        this.usuarioActual.next(user);
+      });
+   }
+  // Método para obtener el usuario actual como observable
+   obtenerUsuarioActual() {
+    return this.usuarioActual.asObservable();
+  }
 
   // Función para REGISTRO
   registrar(email: string, password: string){

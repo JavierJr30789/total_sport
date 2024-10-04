@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 // Importamos Firestore y colecciones de la misma
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Usuario } from 'src/app/models/usuario';
+import { Pedido } from 'src/app/models/pedido';
+
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +42,9 @@ export class FirestoreService {
       }
     })
   }
+
+  agregarPedido(pedido: Pedido) {
+    return this.database.collection('pedidos').add(pedido);  // Usamos 'database' en lugar de 'firetore'
+  }
+
 }
