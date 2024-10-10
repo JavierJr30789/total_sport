@@ -47,4 +47,31 @@ export class FirestoreService {
     return this.database.collection('pedidos').add(pedido);  // Usamos 'database' en lugar de 'firetore'
   }
 
+  obtenerUsuarioPorUID(uid: string): Promise<Usuario | undefined> {
+    return new Promise((resolve, reject) => {
+      this.database.collection<Usuario>('usuarios').doc(uid).get().toPromise()
+        .then(docSnapshot => {
+          // Verificamos que docSnapshot no sea undefined
+          if (docSnapshot && docSnapshot.exists) {
+            resolve(docSnapshot.data() as Usuario);
+          } else {
+            resolve(undefined); // Si el documento no existe, retornamos undefined
+          }
+        })
+        .catch(error => {
+          reject(error); // Capturamos cualquier error durante la consulta
+        });
+    });
+  }
+
+  obtenerPedidos() {
+    return this.database.collection('pedidos').valueChanges();
+  }
+  
+  eliminarPedido(pedidoId: string): Promise<void> {
+    return this.database.collection('pedidos').doc(pedidoId).delete();
+  }
+  
+  
+
 }

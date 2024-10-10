@@ -69,32 +69,43 @@ export class CarritoComponent {
 
   confirmarCompra() {
     if (this.productosEnCarrito.length === 0 || !this.usuarioActual) {
-      console.error("No hay productos en el carrito o no hay usuario autenticado");
-      return;
+        console.error("No hay productos en el carrito o no hay usuario autenticado");
+        return;
     }
-  
-    // Extraer solo los campos relevantes del usuario
-    const usuarioSimplificado = {
-      uid: this.usuarioActual.uid,
-      nombre: this.usuarioActual.displayName || 'Usuario desconocido',
-      email: this.usuarioActual.email
-    };
-  
-    const pedido: Pedido = {
-      usuario: usuarioSimplificado, // Solo datos relevantes
-      productos: this.productosEnCarrito,
-      fecha: Timestamp.now(),
-    };
-  
-    this.firestoreService.agregarPedido(pedido)
-      .then(() => {
-        console.log("Pedido guardado con éxito");
-        this.limpiarCarrito();
-      })
-      .catch(err => {
-        console.error("Error al guardar el pedido:", err);
-      });
-  }
+
+    // Obtener el usuario por su uid desde Firestore
+    this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
+        // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
+        const usuarioSimplificado = {
+            uid: this.usuarioActual.uid,
+            nombre: usuarioFirestore?.nombre || 'Usuario',
+            apellido: usuarioFirestore?.apellido || 'Desconocido',
+            email: this.usuarioActual.email
+        };
+
+        const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
+
+        const pedido: Pedido = {
+            usuario: usuarioSimplificado, // Incluimos nombre y apellido
+            productos: this.productosEnCarrito,
+            fecha: Timestamp.now(),
+            totalprecio: totalPrecio // Agrega el precio total aquí
+        };
+
+        // Guardamos el pedido en Firestore
+        this.firestoreService.agregarPedido(pedido)
+            .then(() => {
+                console.log("Pedido guardado con éxito");
+                this.limpiarCarrito();
+                alert("Se realizó la compra con éxito");
+            })
+            .catch(err => {
+                console.error("Error al guardar el pedido:", err);
+                alert("Algo salió mal :(");
+            });
+    });
+}
+
   
 
 

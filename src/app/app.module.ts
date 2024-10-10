@@ -17,10 +17,12 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
 import { LOCALE_ID } from '@angular/core';
+import { PedidosComponent } from './modules/pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,
