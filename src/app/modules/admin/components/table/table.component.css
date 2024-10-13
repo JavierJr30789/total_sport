@@ -1,0 +1,71 @@
+/* Estilo general para la tabla */
+.table {
+    background-color:var(--primary-color); /* Color de fondo */
+}
+
+/* Encabezados de la tabla */
+.table th {
+    background-color:var(--primary-color); /* Color de fondo para encabezados */
+    color: white; /* Color del texto */
+}
+
+/* Filas de la tabla */
+.table tbody tr {
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.table tbody tr:hover {
+    background-color: var(--primary-color); /* Color al pasar el mouse */
+}
+
+/* Botones */
+.btn-outline-warning {
+    border-color: #ffc107; /* Color del borde */
+    color: #ffc107; /* Color del texto */
+}
+.modal-body{
+    background-color:var(--primary-color); /* Color de fondo para encabezados */
+    color: white; /* Color del texto */
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107; /* Color de fondo al pasar el mouse */
+    color: var(--text-color); /* Color del texto al pasar el mouse */
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #f1f1f1;
+}
+
+.btn-outline-primary {
+    border-color: #007bff;
+    color: var(--accent-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: var();
+}
+
+
+/* Modal header */
+.modal-header {
+    background-color: var(--primary-color); /* Color de fondo del header del modal */
+    color: var(--text-color); /* Color del texto */
+}
+
+/* Modal footer */
+.modal-footer {
+    background-color: var(--primary-color); /* Color de fondo del footer del modal */
+}
+
+.modal-footer{
+    text-align: center;
+    justify-content: center;
+    }
