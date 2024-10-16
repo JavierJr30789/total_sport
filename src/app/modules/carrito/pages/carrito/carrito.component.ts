@@ -7,6 +7,7 @@ import { Timestamp } from 'firebase/firestore';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { Usuario } from 'src/app/models/usuario';
 export class CarritoComponent {
   productosEnCarrito: ProductoItemCart[] = [];
   constructor(
-    
+    private database: AngularFirestore,
     private cartService: CarritoService,
     public servicioRutas: Router,
     private authService: AuthService,
@@ -73,6 +74,8 @@ export class CarritoComponent {
         return;
     }
 
+    
+
     // Obtener el usuario por su uid desde Firestore
     this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
         // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
@@ -85,10 +88,14 @@ export class CarritoComponent {
 
         const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
 
+       
+        const pedidoId = this.firestoreService.generarId(); // Generar un ID único
+
         const pedido: Pedido = {
+          id: pedidoId,
             usuario: usuarioSimplificado, // Incluimos nombre y apellido
             productos: this.productosEnCarrito,
-            fecha: Timestamp.now(),
+            fecha: new Date(),
             totalprecio: totalPrecio // Agrega el precio total aquí
         };
 

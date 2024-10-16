@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Usuario } from 'src/app/models/usuario';
 import { Pedido } from 'src/app/models/pedido';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';  // Añade esta línea
+
 
 
 @Injectable({
@@ -19,6 +22,9 @@ export class FirestoreService {
   constructor(private database: AngularFirestore) {
     this.usuariosCollection = this.database.collection<Usuario>('usuarios');
   }
+  generarId(): string {
+    return this.database.createId(); // Devuelve un ID único
+}
 
   agregarUsuario(usuario: Usuario, id: string){
     /* Generamos nueva PROMESA y utiliza los métodos:
@@ -43,9 +49,11 @@ export class FirestoreService {
     })
   }
 
-  agregarPedido(pedido: Pedido) {
-    return this.database.collection('pedidos').add(pedido);  // Usamos 'database' en lugar de 'firetore'
-  }
+  async agregarPedido(pedido: Pedido): Promise<void> {
+    const pedidosRef = this.database.collection<Pedido>('pedidos'); 
+    await pedidosRef.add(pedido); 
+}
+
 
   obtenerUsuarioPorUID(uid: string): Promise<Usuario | undefined> {
     return new Promise((resolve, reject) => {
@@ -64,9 +72,16 @@ export class FirestoreService {
     });
   }
 
-  obtenerPedidos() {
-    return this.database.collection('pedidos').valueChanges();
+  obtenerPedidos(): Observable<Pedido[]> {
+    return this.database.collection('pedidos').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Pedido;
+        const pedidoId = a.payload.doc.id;  // Renombramos 'id' para evitar conflicto
+        return { ...data, id: pedidoId };   // De esta manera, garantizas que no haya sobrescritura
+      }))
+    );
   }
+  
   
   eliminarPedido(pedidoId: string): Promise<void> {
     return this.database.collection('pedidos').doc(pedidoId).delete();
