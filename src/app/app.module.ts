@@ -18,11 +18,13 @@ import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
 import { LOCALE_ID } from '@angular/core';
 import { PedidosComponent } from './modules/pedidos/pedidos.component';
+import { MiscomprasComponent } from './modules/miscompras/miscompras.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PedidosComponent
+    PedidosComponent,
+    MiscomprasComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,11 @@ export class FirestoreService {
     return this.database.createId(); // Devuelve un ID único
 }
 
+// Método para obtener pedidos de un usuario específico
+obtenerPedidosPorUsuario(uid: string): Observable<Pedido[]> {
+  return this.database.collection<Pedido>('pedidos', ref => ref.where('usuario.uid', '==', uid)).valueChanges();
+}
+
   agregarUsuario(usuario: Usuario, id: string){
     /* Generamos nueva PROMESA y utiliza los métodos:
       RESOLVE: promesa resuelta -> funciona correctamente
