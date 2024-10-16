@@ -20,6 +20,7 @@ export class CarritoService {
   ) { }
 
 
+  
   async agregarProducto(productoItemCart: ProductoItemCart) {
     const uid = await this.authService.obtenerUid();
     if (uid) {
@@ -27,15 +28,8 @@ export class CarritoService {
       try {
         const productoExistente = this.carrito.value.find(item => item.Producto.idProducto === productoItemCart.Producto.idProducto);
         if (productoExistente) {
-          // Evitar mutación directa de objetos dentro de BehaviorSubject
-          const carritoActualizado = this.carrito.value.map(item => {
-            if (item.Producto.idProducto === productoExistente.Producto.idProducto) {
-              return { ...item, Cantidad: item.Cantidad + productoItemCart.Cantidad };
-            }
-            return item;
-          });
-          await cartRef.doc(productoExistente.Producto.idProducto).update({ ...productoExistente, Cantidad: productoExistente.Cantidad + productoItemCart.Cantidad });
-          this.carrito.next(carritoActualizado);
+          productoExistente.Cantidad += productoItemCart.Cantidad;
+          await cartRef.doc(productoExistente.Producto.idProducto).update(productoExistente);
         } else {
           await cartRef.doc(productoItemCart.Producto.idProducto).set(productoItemCart);
           this.carrito.next([...this.carrito.value, productoItemCart]);
@@ -60,10 +54,32 @@ export class CarritoService {
 }
 async cargarCarrito() {
   const uid = await this.authService.obtenerUid();
+  
   if (uid) {
     const cartRef = this.firestore.collection<ProductoItemCart>(`usuarios/${uid}/carrito`);
+    
+    // Cargar el carrito de Firestore
     cartRef.valueChanges().subscribe(productos => {
-      this.carrito.next(productos);
+      // Combinar productos de localStorage si existen
+      let carritoLocal: ProductoItemCart[] = JSON.parse(localStorage.getItem('carrito') || '[]');
+      
+      // Aquí puedes fusionar los productos
+      carritoLocal.forEach(item => {
+        const productoExistente = productos.find(p => p.Producto.idProducto === item.Producto.idProducto);
+        if (productoExistente) {
+          productoExistente.Cantidad += item.Cantidad; // Combinar cantidades si existe
+        } else {
+          productos.push(item); // Agregar el nuevo producto si no existe
+        }
+      });
+
+      // Evitar duplicados en el carrito
+      const carritoSinDuplicados = Array.from(new Map(productos.map(item => [item.Producto.idProducto, item])).values());
+
+      this.carrito.next(carritoSinDuplicados);
+      
+      // Limpiar localStorage si el carrito se ha sincronizado
+      localStorage.removeItem('carrito');
     });
   }
 }
@@ -71,15 +87,22 @@ async cargarCarrito() {
 
 async eliminarProducto(idProducto: string) {
   const uid = await this.authService.obtenerUid();
+  
   if (uid) {
+    // Si el usuario está autenticado, eliminar del Firestore
     const cartRef = this.firestore.collection(`usuarios/${uid}/carrito`);
     try {
       await cartRef.doc(idProducto).delete();
       this.carrito.next(this.carrito.value.filter(item => item.Producto.idProducto !== idProducto));
     } catch (error) {
       console.error("Error al eliminar producto del carrito: ", error);
-      // Manejar el error
     }
+  } else {
+    // Si no está autenticado, eliminar del localStorage
+    let carritoLocal: ProductoItemCart[] = JSON.parse(localStorage.getItem('carrito') || '[]');
+    carritoLocal = carritoLocal.filter(item => item.Producto.idProducto !== idProducto);
+    localStorage.setItem('carrito', JSON.stringify(carritoLocal));
+    this.carrito.next(carritoLocal);
   }
 }
 }

@@ -85,9 +85,7 @@
                   <p class="card-text">
                     {{ item.Producto.nombre }} <br> 
                     {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }} 
-                    <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)"> 
-                      <mat-icon class="red-icon">delete</mat-icon>
-                    </button>
+                    
                     <br> (cantidad: {{ item.Cantidad }}) <br>
                     Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
                   </p>
@@ -95,6 +93,9 @@
                     <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
                     <span>{{ item.Cantidad }}</span>
                     <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+                  <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)"> 
+                    <mat-icon class="red-icon">delete</mat-icon>
+                  </button>
                   </div>
                 </div>
               </div>

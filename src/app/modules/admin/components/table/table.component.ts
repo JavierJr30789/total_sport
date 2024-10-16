@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
+
   // Crear colección de productos del tipo producto -> lo definimos como un array
   coleccionProductos: Producto[] = [];
 
@@ -32,7 +33,7 @@ export class TableComponent {
     precio: new FormControl(0, Validators.required),
     descripcion: new FormControl('', Validators.required),
     categoria: new FormControl('', Validators.required),
-    imagen: new FormControl('', Validators.required),
+    // imagen: new FormControl('', Validators.required),
     alt: new FormControl('', Validators.required)
   })
 
@@ -97,6 +98,7 @@ export class TableComponent {
 
   // Función para eliminar definitivamente al producto
   borrarProducto() {
+    // Envía ID del producto eliminado y la ubicación en el almacenamiento de STORAGE
     this.servicioCrud.eliminarProducto(this.productoSeleccionado.idProducto, this.productoSeleccionado.imagen)
       .then(respuesta => {
         alert("El producto se ha eliminado correctamente.")
@@ -117,7 +119,7 @@ export class TableComponent {
       precio: productoSeleccionado.precio,
       descripcion: productoSeleccionado.descripcion,
       categoria: productoSeleccionado.categoria,
-      imagen: productoSeleccionado.imagen,
+      // imagen: productoSeleccionado.imagen,
       alt: productoSeleccionado.alt
     })
   }
@@ -130,10 +132,43 @@ export class TableComponent {
       precio: this.producto.value.precio!,
       descripcion: this.producto.value.descripcion!,
       categoria: this.producto.value.categoria!,
-      imagen: this.producto.value.imagen!,
+      /* Imagen toma información desde el servicio, no del formulario */
+      imagen: this.productoSeleccionado.imagen,
       alt: this.producto.value.alt!
     }
 
+    // Verificamos que el usuario ingrese una nueva imagen o no
+    if(this.imagen){
+      this.servicioCrud.subirImagen(this.nombreImagen, this.imagen, "productos")
+      .then(resp => {
+        this.servicioCrud.obtenerUrlImagen(resp)
+        .then(url => {
+          // Actualizamos URL de la imagen en los datos del formulario
+          datos.imagen = url;
+
+          // Actualizamos los datos desde el formulario de edición
+          this.actualizarProducto(datos);
+
+          // Vaciamos casillas del formulario
+          this.producto.reset();
+        })
+        .catch(error => {
+          alert ("Hubo un problema al subir la imagen :( \n"+error);
+
+          this.producto.reset();
+        })
+      })
+    }else{
+      /*
+        Actualizamos formulario con los datos recibidos del usuario, pero sin modificar la
+        imagen ya existente en Firestore y Storage
+      */
+      this.actualizarProducto(datos);
+    }
+  }
+
+  // ACTUALIZA la información ya existente de los productos
+  actualizarProducto(datos: Producto){
     this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
       .then(producto => {
         alert("El producto fue modificado con éxito.");
@@ -141,5 +176,37 @@ export class TableComponent {
       .catch(error => {
         alert("Hubo un problema al modificar el producto.");
       })
+  }
+
+  // Método para CARGAR IMÁGENES
+  cargarImagen(event: any){
+    // Variable para obtener el archivo subido desde el input del HTML
+    let archivo = event.target.files[0];
+
+    // Variable para crear un nuevo objeto de tipo "archivo" o "file" y poder leerlo
+    let reader = new FileReader();
+
+    if (archivo != undefined){
+      /*
+        Llamamos a método readAsDataUrl para leer toda la información recibida.
+        Enviamos como parámetro el archivo porque será el encargado de tener la info. 
+        ingresada por el usuario
+      */
+      reader.readAsDataURL(archivo);
+
+      // Definimos qué haremos con la información mediante función flecha
+      reader.onloadend = () => {
+        let url = reader.result;
+
+        // Verificamos que la URL sea existente y diferente a "nula"
+        if(url != null){
+          // Definimos nombre de la imagen con atributo "name" del input
+          this.nombreImagen = archivo.name;
+
+          // Definimos ruta de la imagen según URL recibida en formato cadena (string)
+          this.imagen = url.toString();
+        }
+      }
+    }
   }
 }

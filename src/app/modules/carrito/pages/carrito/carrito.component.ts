@@ -74,11 +74,18 @@ export class CarritoComponent {
 
   }
   confirmarCompra() {
+    const uid = this.authService.obtenerUid();
     
-    // Lógica para confirmar la compra
-    alert('Compra confirmada');
-    // Navegar a otra vista si es necesario
-    this.servicioRutas.navigate(['/']);
+    if (!uid) {
+      // Mostrar un mensaje o redirigir al usuario a iniciar sesión
+      alert('Debes iniciar sesión para confirmar la compra.');
+      this.servicioRutas.navigate(['/login']); // Redirigir a la página de inicio de sesión
+    } else {
+      // Lógica para confirmar la compra
+      alert('Compra confirmada');
+      // Navegar a otra vista si es necesario
+      this.servicioRutas.navigate(['/']);
+    }
   }
 
 }

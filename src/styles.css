@@ -68,6 +68,7 @@ button {
   --primary-color: #00a8db; /* Color frío */
   --accent-color:#00a8db ;  /* Color cálido */
   --warn-color: #fc1100;    /* Color cálido */
+  --input-color:#0a0444 ;
 }
 
 /* Variables para el tema oscuro */
@@ -79,6 +80,7 @@ button {
   --primary-color: #090541; /* Color frío */
   --accent-color: #030b4e;  /* Color cálido */
   --warn-color: #e91e63;    /* Color cálido */
+  --input-color:#ffffff;
 }
 
 html, body { height: 100%; }

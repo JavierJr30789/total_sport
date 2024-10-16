@@ -22,7 +22,20 @@
            [siteKey]="'6LfjrVYqAAAAAAMY2gs1432dPj5sf-ahEsWZ0ZbS'">
              </ngx-recaptcha2> -->
 
-             <button mat-raised-button color="primary" (click)="iniciarSesion()" >Iniciar Sesión</button>    
+             <div>
+              <button (click)="iniciarSesion()" class="btn">Iniciar sesión</button>
+            </div>
+            <div class="spacer"></div> <!-- Spacer con clase CSS -->
+            <div>
+              <button (click)="iniciarSesionConGoogle()" class="btn btn-google"><img src="../../../../../assets/logitos/google-Photoroom.png" alt="Google icon" width="5%"> Iniciar sesión con Google </button>
+            </div>
+          
+          <div class="spacer"></div>
+          <div>
+           <div>
+             <button mat-raised-button color="primary" (click)="recuperarContrasena()">¿Olvidaste tu contraseña?</button>
+            </div>
+          </div>
     </div>
     
 </div>

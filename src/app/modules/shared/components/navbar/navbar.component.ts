@@ -65,14 +65,17 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.carritoService.carrito$.subscribe((productos: ProductoItemCart[]) => {
+    // Cargar el carrito al iniciar
+    this.carritoService.cargarCarrito();
+  
+    this.carritoService.carrito$.subscribe(productos => {
       this.productosEnCarrito = productos;
-      this.cantidadTotalProductos = productos.reduce((total, item) => total + item.Cantidad, 0); // Calcula la cantidad en base al valor actualizado del carrito
+      this.cantidadTotalProductos = productos.reduce((total, item) => total + item.Cantidad, 0);
     });
-      this.auth.authState.subscribe(user => {
-        this.isLoggedIn = !!user;
-      });
-   
+  
+    this.auth.authState.subscribe(user => {
+      this.isLoggedIn = !!user;
+    });
   }
   
   

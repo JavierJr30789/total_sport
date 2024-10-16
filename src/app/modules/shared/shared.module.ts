@@ -6,7 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { CardComponent } from './components/card/card.component';
+
 import {MatCardModule} from '@angular/material/card';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu'
@@ -20,7 +20,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     NavbarComponent,
-    CardComponent,
     FooterComponent
     
   ],
@@ -37,7 +36,6 @@ import {MatBadgeModule} from '@angular/material/badge';
   ],
   exports:[
     NavbarComponent,
-    CardComponent,
     FooterComponent,
     MatMenuModule,
     MatButtonModule,

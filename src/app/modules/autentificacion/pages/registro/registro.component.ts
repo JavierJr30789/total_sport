@@ -59,13 +59,13 @@ export class RegistroComponent {
 }
 
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
-  async registrar(){
+  async registrar() {
+    const usuarioExistente = await this.servicioAuth.obtenerUsuario(this.usuarios.email);
   
-
-    if (!this.aceptaTerminos) {
+    if (usuarioExistente && !usuarioExistente.empty) {
       Swal.fire({
         title: "Error",
-        text: "Debes aceptar los términos y condiciones para registrarte.",
+        text: "Este correo ya está registrado.",
         icon: "error"
       });
       return;
@@ -135,15 +135,19 @@ this.enviarCorreoDeAgradecimiento(this.usuarios);
 
   // función para agregar NUEVO USUARIO
   async guardarUsuario(){
+    if (!this.usuarios.uid) {
+      console.error('El UID está vacío. No se puede guardar el usuario.');
+      return;
+    }
+  
     this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
     .then(res => {
       console.log(this.usuarios);
     })
     .catch(err => {
       console.log('Error =>', err);
-    })
+    });
   }
-
   // Función para vaciar el formulario
   limpiarInputs(){
     const inputs = {
@@ -156,10 +160,14 @@ this.enviarCorreoDeAgradecimiento(this.usuarios);
     }
   }
   
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
   enviarCorreoDeAgradecimiento(usuario: Usuario) {
-    if (!usuario.email || !usuario.nombre) {
-      console.error("El correo o nombre del usuario están vacíos.");
+    if (!this.isValidEmail(usuario.email)) {
+      console.error("El correo del usuario está vacío o mal formateado.");
       return;
     }
   
@@ -169,8 +177,8 @@ this.enviarCorreoDeAgradecimiento(this.usuarios);
     });
   
     emailjs.send('service_48xvchx', 'template_xm4elup', {
-      to_name: usuario.nombre,  // Asegúrate de usar el nombre del campo correcto
-      to_email: usuario.email,  // Cambia esto si tu plantilla espera otro nombre de campo
+      to_name: usuario.nombre,
+      to_email: usuario.email,
     }, 'mBPxyJ78tUymGlB3a')
     .then((response: EmailJSResponseStatus) => {
       console.log('Correo enviado con éxito!', response.status, response.text);
@@ -178,7 +186,6 @@ this.enviarCorreoDeAgradecimiento(this.usuarios);
       console.error('Error al enviar el correo:', error);
     });
   }
-  
   
   
   

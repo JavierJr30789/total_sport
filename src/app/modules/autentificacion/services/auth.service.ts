@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 // Servicio de AUTENTIFICACIÓN de FIREBASE
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { GoogleAuthProvider } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,9 @@ export class AuthService {
     private servicioFirestore: AngularFirestore
   ) { }
 
-
+  obtenerEstadoUsuario(): Observable<any> {
+    return this.auth.authState; // Devuelve un observable del estado del usuario
+  }
   // Función para REGISTRO
   registrar(email: string, password: string){
     // Retorna nueva información de EMAIL y CONTRASEÑA
@@ -38,24 +41,29 @@ export class AuthService {
   // Función para tomar UID
   async obtenerUid():Promise<string | null> {
 
-    
     const user = await this.auth.currentUser;
-  return user?.uid ?? null; // Devuelve null si user es null o undefined
-    // Nos va a generar una promesa, y la constante la va a capturar
-    
-
-    /*
-      Si el usuario no respeta la estructura de la interfaz /
-      Si tuvo problemas para el registro -> ej.: mal internet
-    */
+    return user?.uid ?? null; // Devuelve null si user es null o undefined
+      // Nos va a generar una promesa, y la constante la va a capturar
+      
   
-  }
+      /*
+        Si el usuario no respeta la estructura de la interfaz /
+        Si tuvo problemas para el registro -> ej.: mal internet
+      */
+    
+    }
 
-  // Función que busca un usuario en la colección de 'usuarios' cuyo correo electrónico coincida con el valor proporcionado
-  obtenerUsuario(email: string){
-    return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise();
-  }
-
-   
+    iniciarSesionConGoogle() {
+      const provider = new GoogleAuthProvider();
+      return this.auth.signInWithPopup(provider);
+    }
+  
+    // Función que busca un usuario en la colección de 'usuarios' cuyo correo electrónico coincida con el valor proporcionado
+    obtenerUsuario(email: string){
+      return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise();
+    }
+    recuperarContrasena(email: string) {
+      return this.auth.sendPasswordResetEmail(email);
+    }
   
 }

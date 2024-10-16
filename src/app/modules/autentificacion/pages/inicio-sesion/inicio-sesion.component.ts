@@ -122,4 +122,51 @@ export class InicioSesionComponent {
       password: this.usuarioIngresado.password = ''
     }
   }
+
+  async recuperarContrasena() {
+    const { value: email } = await Swal.fire({
+      title: 'Recuperar contraseña',
+      input: 'email',
+      inputLabel: 'Ingresa tu correo electrónico',
+      inputPlaceholder: 'Correo electrónico',
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      cancelButtonText: 'Cancelar'
+    });
+  
+    if (email) {
+      this.servicioAuth.recuperarContrasena(email)
+        .then(() => {
+          Swal.fire({
+            title: '¡Listo!',
+            text: 'Se ha enviado un enlace de recuperación a tu correo.',
+            icon: 'success'
+          });
+        })
+        .catch(error => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un problema al intentar recuperar la contraseña: ' + error.message,
+            icon: 'error'
+          });
+        });
+    }
+  }
+
+  async iniciarSesionConGoogle() {
+    try {
+      const res = await this.servicioAuth.iniciarSesionConGoogle();
+      Swal.fire({
+        text: "¡Se ha logueado con Google exitosamente! :D",
+        icon: "success"
+      });
+      this.servicioRutas.navigate(['/inicio']);
+    } catch (error: any) {  // Definimos el tipo de error como 'any'
+      Swal.fire({
+        text: "Hubo un problema al iniciar sesión con Google: " + error.message,
+        icon: "error"
+      });
+    }
+  }
+  
 }
