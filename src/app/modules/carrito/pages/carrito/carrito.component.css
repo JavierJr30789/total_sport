@@ -3,8 +3,13 @@
     color: var(--text-color);
   }
   button {
-    background-color: var(--accent-color);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--input-color);
+  }
+  
+  button:hover {
+    background-color: var(--accent-color); /* Cambia al color de acento cuando el cursor está encima */
+    color: var(--text-color);             /* Puedes modificar el color del texto al pasar el cursor */
   }
   .mat-warn {
     background-color: var(--warn-color);

@@ -40,18 +40,19 @@
 
 .btn-outline-danger:hover {
     background-color: #dc3545;
-    color: #f1f1f1;
+    color: var(--text-color);
 }
 
 .btn-outline-primary {
     border-color: #007bff;
-    color: var(--accent-color);
+    color: var(--input-color);
 }
 
 .btn-outline-primary:hover {
     background-color: #007bff;
-    color: var();
+    color: var(--text-color);
 }
+
 
 
 /* Modal header */

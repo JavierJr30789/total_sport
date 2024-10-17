@@ -95,7 +95,7 @@ h1 {
 /*le damos el color del texto y le damos un margen*/
 .content-carrousel figure .capa p{
     color: aliceblue;
-    font-size: 15px;
+    font-size: 7px;
     line-height: 1.5;
     width: 100%;
     max-width:220px;

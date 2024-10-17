@@ -28,11 +28,15 @@
         <mat-form-field>
             <mat-label>Ingrese su contraseña</mat-label>
             <input [(ngModel)]="usuarios.password" matInput [type]="hide ? 'password' : 'text'" #input minlength="6" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            
+            <!-- Botón para mostrar/ocultar la contraseña -->
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="toggle-password-btn">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-hint text-align="start">Mínimo:6/{{input.value.length}}</mat-hint>
-        </mat-form-field>
+          
+            <mat-hint text-align="start">Mínimo: 6/{{input.value.length}}</mat-hint>
+          </mat-form-field>
+          
  <!-- Checkbox para aceptar términos -->
  <div class="form-check">
     <input class="form-check-input" type="checkbox" [(ngModel)]="aceptaTerminos" id="aceptaTerminos" required>
@@ -92,6 +96,6 @@ Para consultas sobre estos términos y condiciones, por favor contáctenos a tra
 </div>
 
         <!-- Botón para enviar la información -->
-        <button mat-raised-button color="primary" class="boton" (click)="registrar()">Registrar</button>
+        <button class="btn" (click)="registrar()">Registrar</button>
     </div>
 </div>

@@ -15,9 +15,43 @@
     color: var(--text-color);
   }
   button {
-    background-color: var(--accent-color);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--input-color);
   }
+  button:hover {
+    background-color: var(--text-title-color); /* Cambia esto por el color que desees al pasar el cursor */
+    color: var(--primary-color);       /* Puedes también modificar el color del texto si lo necesitas */
+    cursor: pointer;                      /* Para mostrar el cursor como una mano */
+  }
+
+  /* Cambiar colores del botón y el ícono */
+button.toggle-password-btn {
+  background-color: var(--primary-color);  /* Fondo del botón del "ojito" */
+  color: var(--input-color);               /* Color del ícono */
+}
+
+button.toggle-password-btn:hover {
+  background-color: var(--accent-color);   /* Cambia fondo al pasar el cursor */
+  color: var(--text-color);                /* Cambia el color del ícono al pasar el cursor */
+}
+
+/* Cambiar colores del input cuando está en focus o tiene valor */
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--primary-color);             /* Cambia el color del label cuando el input está activo */
+}
+
+.mat-form-field-underline {
+  background-color: var(--primary-color);  /* Cambia el color de la línea debajo del input */
+}
+
+.mat-input-element {
+  color: var(--input-color);               /* Color del texto dentro del input */
+}
+
+/* Cambiar el color del hint (el texto debajo del input) */
+.mat-hint {
+  color: var(--text-color);                /* Color del hint */
+}
   .mat-warn {
     background-color: var(--warn-color);
     color: var(--text-color);
@@ -60,18 +94,4 @@
 }
   /* Aplica las variables a otros componentes según sea necesario */
   /* Variables para el tema claro */
-  :root {
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --primary-color: #6200ea; /* Color frío */
-    --accent-color: #ff9800;  /* Color cálido */
-    --warn-color: #f44336;    /* Color cálido */
-  }
-  /* Variables para el tema oscuro */
-  :root.dark-theme {
-    --background-color: #220f38;
-    --text-color: #ffffff;
-    --primary-color: #bb86fc; /* Color frío */
-    --accent-color: #ff5722;  /* Color cálido */
-    --warn-color: #e91e63;    /* Color cálido */
-  }
+ 

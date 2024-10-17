@@ -33,7 +33,7 @@
         <div class="card-body">
           <h5 class="card-title">subtotal</h5>
           <p class="card-text">{{ calcularTotal() |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
-          <button mat-raised-button color="primary" (click)="confirmarCompra()">Confirmar Compra</button>
+          <button  (click)="confirmarCompra()" class="btn">Confirmar Compra</button>
         </div>
       </div>
     </div>
