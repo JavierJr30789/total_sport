@@ -3,7 +3,7 @@ import { Usuario } from "./usuario";
 import { Timestamp } from 'firebase/firestore';
 
 export interface Pedido {
-  id: string
+  id: string;
     usuario: {
       uid: string;
       nombre: string;
@@ -13,5 +13,7 @@ export interface Pedido {
     productos: ProductoItemCart[];
     fecha: Date;
     totalprecio: number;
+    fechaEntrega: Date;
   }
+  
   

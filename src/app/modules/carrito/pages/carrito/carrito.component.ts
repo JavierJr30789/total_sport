@@ -96,7 +96,8 @@ export class CarritoComponent {
             usuario: usuarioSimplificado, // Incluimos nombre y apellido
             productos: this.productosEnCarrito,
             fecha: new Date(),
-            totalprecio: totalPrecio // Agrega el precio total aquí
+            totalprecio: totalPrecio, // Agrega el precio total aquí
+            fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
         };
 
         // Guardamos el pedido en Firestore
