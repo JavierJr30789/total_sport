@@ -33,7 +33,7 @@ export class InicioSesionComponent {
     nombre: '',
     apellido: '',
     email: '',
-    //rol: '',
+    rol: '',
     password: ''
   }
 
@@ -53,64 +53,62 @@ export class InicioSesionComponent {
       password: this.usuarioIngresado.password
     }
 
-    try{
-      // Obtenemos el usuario desde la BD -> Cloud Firestore
-      const usuarioBD = await this.servicioAuth.obtenerUsuario(credenciales.email);
 
-      // ! -> si es diferente
-      // .empy -> método de Firebase para marcar si algo es vacío
-      if(!usuarioBD || usuarioBD.empty){
-        Swal.fire({
-          text: "Correo electrónico no registrado",
-          icon: "error"
-        })
+    try {
+      const usuarioBD = await this.servicioAuth.obtenerUsuario(credenciales.email);
+      //! -> si es diferente
+      //.empty-> metodo
+      if (!usuarioBD || usuarioBD.empty) {
+        alert('el correo electronico no esta registrado.');
         this.limpiarInputs();
         return;
       }
-      
-      /* Primer documento (registro) en la colección de usuarios que se obtiene desde la 
-        consulta.
-      */
+      /**
+       * primer documento (registro) en la coleccion de usuarios que se obt6iene desde la consulta.
+       */
       const usuarioDoc = usuarioBD.docs[0];
 
       /**
-       * Extrae los datos del documento en forma de un objeto y se específica como de tipo 
-       * "Usuario" -> haciendo referencia a nuestra interfaz de Usuario.
+       * extrae los datos del documento en formas de objeto y especifica como un tipo
+       * 'usuario'-> haciendo eferencia a nuestra interfas de usuario
        */
+
       const usuarioData = usuarioDoc.data() as Usuario;
 
-      // Hash de la contraseña ingresada por el usuario
-      
       const hashedPassword = CryptoJS.SHA256(credenciales.password).toString();
 
-      if(hashedPassword !== usuarioData.password){
-        Swal.fire({
-          text: "Contraseña incorrecta",
-          icon: "error"
-        })
-
+      if (hashedPassword !== usuarioData.password) {
+        alert("contraseña incorrecta");
         this.usuarioIngresado.password = '';
         return;
       }
-      //Funcion para ingresar el email
-      const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
-      .then(res => {
-        Swal.fire({
-          text: "¡Se ha logueado con éxito! :D",
-          icon: "success"
-        });
 
-        this.servicioRutas.navigate(['/inicio']);
-      })
-      .catch(err => {
-        Swal.fire({
-          text: "Hubo un problema al iniciar sesión :(" + err,
-          icon: "error"
+      const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
+        .then(res => {
+          alert('¡Se ha logueado con éxito! :D');
+          //almacena el rol del usuario en el servicio de autentificacion
+          this.servicioAuth.enviarRolUsuario(usuarioData.rol);
+
+          if (usuarioData.rol === "admin") {
+            console.log("inicio de sesion de usuario administrador")
+
+            this.servicioRutas.navigate(['/admin']);
+          } else {
+            console.log("inicio de sesion de usuario visitante")
+
+          this.servicioRutas.navigate(['/inicio']);
+
+          }
+
         })
 
-        this.limpiarInputs();
-      })
-    }catch(error){
+        .catch(err => {
+          alert('Hubo un problema al iniciar sesión :( ' + err);
+
+          this.limpiarInputs();
+        })
+
+    } catch (error) {
       this.limpiarInputs();
     }
   }

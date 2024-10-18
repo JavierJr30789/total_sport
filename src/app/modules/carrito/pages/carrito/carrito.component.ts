@@ -83,6 +83,7 @@ export class CarritoComponent {
     } else {
       // Lógica para confirmar la compra
       alert('Compra confirmada');
+      
       // Navegar a otra vista si es necesario
       this.servicioRutas.navigate(['/']);
     }

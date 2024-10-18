@@ -21,7 +21,8 @@ export class CardComponent {
     nombre: '',
     apellido: '',
     email: '',
-    password: ''
+    password: '',
+    rol: ''
   };
 
   modalVisible: boolean = false;
