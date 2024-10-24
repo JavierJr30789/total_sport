@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './modules/inicio/pages/inicio/inicio.component';
 import { PedidosComponent } from './modules/pedidos/pedidos.component';
 import { MiscomprasComponent } from './modules/miscompras/miscompras.component';
+import { ProductoComponent } from './modules/producto/pages/producto/producto.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,9 @@ const routes: Routes = [
   {
     path:"",loadChildren:()=>import('./modules/carrito/carrito.module').then(m=>m.CarritoModule)
   },
-  { path: 'pedidos', component: PedidosComponent },
-  { path: 'miscompras', component: MiscomprasComponent }
+  { path: 'pedidos', component: PedidosComponent }, //LO HIZO FRANCO MONDONGO
+  { path: 'miscompras', component: MiscomprasComponent }, //LO HIZO FRANCO MONDONGO
+  { path: 'producto', component: ProductoComponent }
 ];
 
 @NgModule({

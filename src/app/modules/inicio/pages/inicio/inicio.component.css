@@ -150,6 +150,66 @@ h1 {
     transform: rotateY(360deg) translateZ(300px);
 }
 
+    /* Tu CSS aquí (incluye el CSS proporcionado anteriormente) */
+
+    /* Estilo del botón */
+    .btn {
+        position: absolute; /* Posiciona el botón de manera absoluta */
+        bottom: 10px; /* Ajusta la posición del botón */
+        left: 50%; /* Centra horizontalmente */
+        transform: translateX(-50%); /* Centra el botón */
+        background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+        color: black; /* Color del texto */
+        border: none; /* Sin borde */
+        padding: 10px 20px; /* Espaciado interno */
+        border-radius: 5px; /* Bordes redondeados */
+        z-index: 10; /* Asegúrate de que el botón esté encima */
+        opacity: 0; /* Comienza invisible */
+        transition: opacity 0.3s; /* Suaviza la transición */
+        width: 100%;
+        height: 100%;
+    
+    }
+        .btn-text {
+        opacity: 0; /* Inicialmente oculto */
+        transition: opacity 0.3s ease; /* Transición suave */
+    }
+    
+    .btn:hover .btn-text {
+        opacity: 1; /* Mostrar texto al pasar el cursor */
+    }
+    
+    
+        .btn:hover {
+          background-color: var(--accent-color);
+          color: var(--text-color);
+        }
+    
+        /* Asegúrate de que el contenedor de la descripción tenga suficiente espacio */
+        .capa {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(79, 93, 172, 0.7);
+          transition: all 500ms ease-out;
+          opacity: 0;
+          visibility: hidden;
+          text-align: center;
+          padding: 10px; /* Agrega padding para espacio alrededor del texto */
+        }
+    
+        .content-carrousel figure:hover > .capa {
+          opacity: 1;
+          visibility: visible;
+        }
+    
+        /* Asegúrate de que el texto no se corte */
+        .capa h3, .capa p {
+          margin: 10px 0; /* Margen entre elementos */
+          line-height: 1.5; /* Mejora la legibilidad */
+        }
+
 /*indicamos que el carrucel arrancara con un valor de 0 e ira rotando paralelamente en Y en unos 360 grados*/
 @keyframes rotar {
     from {
