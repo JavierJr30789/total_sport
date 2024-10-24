@@ -1,0 +1,28 @@
+<div class="mis-compras-container">
+    <h2>Mis Compras</h2>
+  
+    <div *ngIf="misPedidos.length === 0" class="no-pedidos">
+      <p>No has realizado compras todavía.</p>
+    </div>
+  
+    <div *ngFor="let pedido of misPedidos" class="pedido-card">
+      <div class="pedido-header">
+        <h3>Pedido ID: {{ pedido.id }}</h3><br>
+      </div>
+      <h2>Usuario: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}</h2>
+      <h2>Fecha de compra: {{ pedido.fecha | date:'short' }}</h2>
+      <div class="productos">
+        <div *ngFor="let item of pedido.productos" class="producto">
+          <img [src]="item.Producto.imagen" alt="{{ item.Producto.nombre }}" class="producto-imagen" />
+          <div class="producto-info">
+            <h4>{{ item.Producto.nombre }}</h4>
+            <p>Cantidad: {{ item.Cantidad }}</p>
+            <p>Precio Total: ${{ (item.Producto.precio * item.Cantidad) | number:'1.2-2' }}</p>
+          </div>
+        </div>
+        <p>TOTAL:${{pedido.totalprecio| number:'1.2-2'}}</p>
+        <p>Fecha de Entrega: {{ pedido.fechaEntrega | date:'shortDate' }}</p>
+      </div>
+    </div>
+  </div>
+  

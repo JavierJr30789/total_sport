@@ -1,0 +1,26 @@
+
+<h1>KARI <3</h1>
+
+
+
+  
+<div class="container">
+<div *ngIf="pedidos.length > 0; else noPedidos">
+    <div *ngFor="let pedido of pedidos">
+      <h3>Pedido realizado por: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}</h3>
+      <h4>Fecha: {{ pedido.fecha | date:'medium' }}</h4>
+      <ul>
+        <li *ngFor="let item of pedido.productos">
+          <h5>Producto: {{ item.Producto.nombre }}</h5> 
+          <br><img src="{{item.Producto.imagen}}" class="card-img-top" alt="{{item.Producto.nombre}}">
+          <br><h6>Cantidad: {{ item.Cantidad  }}</h6>
+        </li>
+      </ul>
+      <h5>Precio Total: {{ pedido.totalprecio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</h5>
+      <button (click)="despacharPedido(pedido.id)">Despachar Producto</button> 
+    </div>
+  </div>
+</div>
+  <ng-template #noPedidos>
+    <p>No hay pedidos realizados.</p>
+  </ng-template>
