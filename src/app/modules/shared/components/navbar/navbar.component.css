@@ -54,10 +54,7 @@ img{
   background-color: var(--primary-color);
   color: var(--text-color);
 }
-button {
-  background-color: var(--accent-color);
-  color: var(--text-color);
-}
+
 .mat-warn {
   background-color: var(--warn-color);
   color: var(--text-color);
@@ -98,20 +95,26 @@ button {
 .hidden {
   display: none;
 }
-/* Aplica las variables a otros componentes según sea necesario */
-/* Variables para el tema claro */
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --primary-color: #6200ea; /* Color frío */
-  --accent-color: #ff9800;  /* Color cálido */
-  --warn-color: #f44336;    /* Color cálido */
+
+.btn.btn-primary {
+  /* Tus estilos personalizados aquí */
+  border: none; /* Ejemplo: quitar bordes */
+  background-color: var(--primary-color); /* Cambiar color de fondo */
+  /* Otros estilos */
 }
-/* Variables para el tema oscuro */
-:root.dark-theme {
-  --background-color: #220f38;
-  --text-color: #ffffff;
-  --primary-color: #bb86fc; /* Color frío */
-  --accent-color: #ff5722;  /* Color cálido */
-  --warn-color: #e91e63;    /* Color cálido */
+
+.btn.btn-primary:hover {
+  /* Estilos para el estado hover */
+  background-color: var(--input-color); /* Cambiar color al pasar el cursor */
 }
+
+
+.mat-icon {
+  color: var(--text-color); /* Cambia el color del icono */
+}
+
+/* Si deseas cambiar el color en estado hover del botón */
+.custom-button:hover .mat-icon {
+  color: var(--background-footer-color); /* Cambia el color del icono en hover */
+}
+

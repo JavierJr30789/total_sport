@@ -6,6 +6,8 @@
     <button mat-menu-item routerLink="/producto">Todos los producto</button>
     <button mat-menu-item routerLink="/admin">Admin</button>
     <button mat-menu-item routerLink="/carrito">Carrito</button>
+    <button mat-menu-item routerLink="/pedidos">Mis Pedidos</button>
+    <button mat-menu-item routerLink="/miscompras">Comprado</button>
 </mat-menu>
     
   <div class="col-lg-4">
@@ -23,18 +25,18 @@
      }
     </style>
    <p></p>
-  
 
-<!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
-  botón.-->
-  <span class="spacer"></span>
-  <button mat-button (click)="toggleTheme()">
-    <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
-     (wb_sunny) si isDarkTheme es false.-->
-   <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny'}}</mat-icon> <label for="toggle" id="label_toggle"></label>
-   <mat-slide-toggle></mat-slide-toggle>
-   </button>
+   <span class="spacer"></span>
+
+   <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+    <mat-icon>shopping_bag</mat-icon>
+  </button>
   
+  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+    <mat-icon>local_shipping</mat-icon>
+  </button>
+
+   
    <div class="menu-container">
     <!-- Mostrar la imagen si el usuario está logueado -->
     <img 
@@ -61,11 +63,23 @@
   </mat-menu>
 
   
+  
+
+  <!--El evento ("toggleTheme()" llama a la función toggleTheme() en tu componente cuando se hace clic en el 
+  botón.-->
+  
+  <button mat-button (click)="toggleTheme()">
+    <!--Usa una interpolación para mostrar un icono de luna (brightness_3) si isDarkTheme es true, o un icono de sol
+     (wb_sunny) si isDarkTheme es false.-->
+   <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny'}}</mat-icon> <label for="toggle" id="label_toggle"></label>
+   <mat-slide-toggle></mat-slide-toggle>
+   </button>
+
 
   <!--BOTON OFFCANVAS CARRITO DE COMPRA-->
 
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-    <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon>  
+  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+    <mat-icon matBadge="{{ cantidadTotalProductos }}" >add_shopping_cart</mat-icon>
   </button>
   <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
     <div class="offcanvas-header">
