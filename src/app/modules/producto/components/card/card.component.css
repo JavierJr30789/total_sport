@@ -71,6 +71,22 @@
   max-width: 400px; /* Limita el ancho máximo si es necesario */
 }
 
+.search-bar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group-text {
+  background-color: #f8f9fa; /* Color de fondo del texto */
+  color: #6c757d; /* Color del texto */
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+  color: #343a40; /* Color del texto ingresado */
+}
+
 
 /* Color del label para todos los modos */
 .custom-label {

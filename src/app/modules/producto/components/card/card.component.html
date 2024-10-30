@@ -1,9 +1,17 @@
 <!-- Barra de búsqueda para filtrar productos -->
-<div class="search-bar">
-  <mat-form-field class="custom-label"  appearance="outline">
-    <mat-label class="custom-label">Buscar producto</mat-label>
-    <input matInput [(ngModel)]="filtroNombre" placeholder="Nombre del producto" />
-  </mat-form-field>
+<div class="search-bar d-flex justify-content-center mt-4">
+  <div class="input-group" style="max-width: 400px;">
+    <!-- Etiqueta de búsqueda -->
+   
+    <!-- Campo de entrada con el modelo de Angular -->
+    <input 
+      type="text" 
+      class="form-control" 
+      [(ngModel)]="filtroNombre" 
+      placeholder="🔎Nombre del producto" 
+      
+    />
+  </div>
 </div>
 
 <!-- Fila para los productos -->
