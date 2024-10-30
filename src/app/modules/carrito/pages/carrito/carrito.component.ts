@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/modules/autentificacion/services/auth.servi
 import { Usuario } from 'src/app/models/usuario';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -17,6 +16,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class CarritoComponent {
   productosEnCarrito: ProductoItemCart[] = [];
+
   constructor(
     private database: AngularFirestore,
     private cartService: CarritoService,
@@ -26,11 +26,13 @@ export class CarritoComponent {
     private authService: AuthService
   ){}
 
-  usuarioActual: any; 
+  usuarioActual: any;
 
   ngOnInit(): void {
+    // Cargar el carrito desde el servicio
     this.carritoService.cargarCarrito();
     
+    // Suscribirse al carrito de compras para recibir actualizaciones
     this.carritoService.carrito$.subscribe(productos => {
       this.productosEnCarrito = productos;
     });
@@ -40,19 +42,17 @@ export class CarritoComponent {
       this.productosEnCarrito = productos; // No necesitas mapear nada, simplemente asigna el valor directamente
     });
 
-        // Suscribirse al usuario actual
-        this.authService.obtenerEstadoUsuario().subscribe(usuario => {
-          this.usuarioActual = usuario;
-          console.log('Usuario actual:', this.usuarioActual);
-        });
-        
-
+    // Suscribirse al usuario actual
+    this.authService.obtenerEstadoUsuario().subscribe(usuario => {
+      this.usuarioActual = usuario;
+      console.log('Usuario actual:', this.usuarioActual);
+    });
   }
 
+  // Agregar producto al carrito
   agregarProductoAlCarrito(producto: Producto) {
     const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
     
-
     if (productoExistente) {
       // Si ya existe el producto, aumentar la cantidad
       productoExistente.Cantidad++;
@@ -60,52 +60,47 @@ export class CarritoComponent {
       // Si no existe, agregar el producto con cantidad 1
       this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
     }
-  
+    
     // Actualizar el carrito
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
 
+  // Aumentar cantidad de un producto en el carrito
   aumentarCantidad(producto: ProductoItemCart){
     producto.Cantidad++;
-
-
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
 
-
-
-
-  //Disminuir la cantidad de un producto (no menor a 1)
+  // Disminuir la cantidad de un producto (no menor a 1)
   restarCantidad(producto: ProductoItemCart){
-    if (producto.Cantidad >1){
+    if (producto.Cantidad > 1){
       producto.Cantidad--;
     }
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
- 
- 
-   // Método para calcular el total
-   calcularTotal(): number {
+
+  // Método para calcular el total del carrito
+  calcularTotal(): number {
     return this.productosEnCarrito.reduce((total, item) => total + (item.Producto.precio * item.Cantidad), 0);
   }
 
+  // Método para calcular el subtotal del carrito
   calcularSubtotal() {
     return this.productosEnCarrito.reduce((total, item) => total + item.Producto.precio * item.Cantidad, 0);
   }
 
-
-    
+  // Limpiar el carrito
   limpiarCarrito() {
     this.productosEnCarrito = [];
     this.cartService.actualizarCarrito(this.productosEnCarrito);
   }
 
-
-
+  // Eliminar un producto del carrito
   eliminarProductoDelCarrito(idProducto: string) {
     this.carritoService.eliminarProducto(idProducto);
-
   }
+
+  // Confirmar la compra
   confirmarCompra() {
     const uid = this.authService.obtenerUid();
     
@@ -118,47 +113,43 @@ export class CarritoComponent {
       if (this.productosEnCarrito.length === 0 || !this.usuarioActual) {
         console.error("No hay productos en el carrito o no hay usuario autenticado");
         return;
-    }
+      }
     }
 
-        // Obtener el usuario por su uid desde Firestore
-        this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
-          // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
-          const usuarioSimplificado = {
-              uid: this.usuarioActual.uid,
-              nombre: usuarioFirestore?.nombre || 'Usuario',
-              apellido: usuarioFirestore?.apellido || 'Desconocido',
-              email: this.usuarioActual.email
-          };
-  
-          const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
-  
-         
-          const pedidoId = this.firestoreService.generarId(); // Generar un ID único
-  
-          const pedido: Pedido = {
-            id: pedidoId,
-              usuario: usuarioSimplificado, // Incluimos nombre y apellido
-              productos: this.productosEnCarrito,
-              fecha: new Date(),
-              totalprecio: totalPrecio, // Agrega el precio total aquí
-              fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
-          };
-  
-          // Guardamos el pedido en Firestore
-          this.firestoreService.agregarPedido(pedido)
-              .then(() => {
-                  console.log("Pedido guardado con éxito");
-                  this.limpiarCarrito();
-                  alert("Se realizó la compra con éxito");
-              })
-              .catch(err => {
-                  console.error("Error al guardar el pedido:", err);
-                  alert("Algo salió mal :(");
-              });
-      });
+    // Obtener el usuario por su uid desde Firestore
+    this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
+      // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
+      const usuarioSimplificado = {
+        uid: this.usuarioActual.uid,
+        nombre: usuarioFirestore?.nombre || 'Usuario',
+        apellido: usuarioFirestore?.apellido || 'Desconocido',
+        email: this.usuarioActual.email
+      };
 
+      const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
+
+      const pedidoId = this.firestoreService.generarId(); // Generar un ID único
+
+      const pedido: Pedido = {
+        id: pedidoId,
+        usuario: usuarioSimplificado, // Incluimos nombre y apellido
+        productos: this.productosEnCarrito,
+        fecha: new Date(),
+        totalprecio: totalPrecio, // Agrega el precio total aquí
+        fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
+      };
+
+      // Guardamos el pedido en Firestore
+      this.firestoreService.agregarPedido(pedido)
+        .then(() => {
+          console.log("Pedido guardado con éxito");
+          this.limpiarCarrito();
+          alert("Se realizó la compra con éxito");
+        })
+        .catch(err => {
+          console.error("Error al guardar el pedido:", err);
+          alert("Algo salió mal :(");
+        });
+    });
   }
-
-  
 }

@@ -1,43 +1,52 @@
+<!-- Indica que el componente del carrito está funcionando -->
 <p>carrito works!</p>
+
+<!-- Fila para los productos en el carrito -->
 <div class="row">
+  <!-- Itera sobre los productos en el carrito -->
   <div class="col-lg-3" *ngFor="let item of productosEnCarrito">
-      
-        
-          <div class="card" style="width: 18rem;">
-            <img src="{{item.Producto.imagen}}" class="card-img-top" alt="{{item.Producto.nombre}}">
-            <div class="card-body">
-              <p class="card-text">
-                {{ item.Producto.nombre }} <br> {{ item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-                <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
-                 <br> (cantidad: {{ item.Cantidad }}) <br>
-                Subtotal: {{ item.Cantidad * item.Producto.precio |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-              </p>
-              <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
-              <span>{{ item.Cantidad }}</span>
-              <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
-            
-            </div>
-          </div>
-        </div>
-        
-      
-
+    <!-- Tarjeta de producto -->
+    <div class="card" style="width: 18rem;">
+      <!-- Imagen del producto -->
+      <img src="{{item.Producto.imagen}}" class="card-img-top" alt="{{item.Producto.nombre}}">
+      <div class="card-body">
+        <!-- Descripción del producto -->
+        <p class="card-text">
+          {{ item.Producto.nombre }} <br>
+          <!-- Precio del producto con formato de moneda -->
+          {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+          <!-- Botón para eliminar producto del carrito -->
+          <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+          <br>
+          <!-- Cantidad del producto -->
+          (cantidad: {{ item.Cantidad }}) <br>
+          <!-- Subtotal para la cantidad del producto -->
+          Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+        </p>
+        <!-- Botones para restar y aumentar cantidad del producto -->
+        <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
+        <span>{{ item.Cantidad }}</span>
+        <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+      </div>
     </div>
+  </div>
+</div>
 
-      <!-- Contenedor para el subtotal y el botón de confirmación -->
+<!-- Contenedor para el subtotal y el botón de confirmación -->
 <div class="row">
   <div class="col-lg-12">
     <div class="col-lg-3">
       <div class="card">
+        <!-- Encabezado de la tarjeta de resumen de compra -->
         <h5 class="card-header"> Total de la compra</h5>
         <div class="card-body">
-          <h5 class="card-title">subtotal</h5>
-          <p class="card-text">{{ calcularTotal() |  currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
-          <button  (click)="confirmarCompra()" class="btn">Confirmar Compra</button>
+          <h5 class="card-title">Subtotal</h5>
+          <!-- Texto del subtotal con formato de moneda -->
+          <p class="card-text">{{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
+          <!-- Botón para confirmar la compra -->
+          <button (click)="confirmarCompra()" class="btn">Confirmar Compra</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-   
-    

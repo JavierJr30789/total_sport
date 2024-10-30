@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 import { Pedido } from 'src/app/models/pedido';
-import { Timestamp } from 'firebase/firestore'; 
-
-
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-miscompras',
@@ -12,6 +10,7 @@ import { Timestamp } from 'firebase/firestore';
   styleUrls: ['./miscompras.component.css']
 })
 export class MiscomprasComponent implements OnInit {
+  // Arreglo para almacenar los pedidos del usuario
   misPedidos: Pedido[] = [];
   usuarioActual: any;
 
@@ -21,22 +20,24 @@ export class MiscomprasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Obtener el usuario actual al inicializar el componente
     this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.usuarioActual = usuario;
-      this.cargarMisPedidos();
+      this.cargarMisPedidos(); // Cargar los pedidos del usuario
     });
   }
 
-  
   cargarMisPedidos() {
+    // Verificar si el usuario actual está definido
     if (this.usuarioActual) {
+      // Obtener los pedidos del usuario desde Firestore
       this.firestoreService.obtenerPedidosPorUsuario(this.usuarioActual.uid).subscribe(pedidos => {
+        // Convertir las fechas de Timestamp a objetos Date si es necesario
         this.misPedidos = pedidos.map(pedido => {
-          // Convertimos la fecha solo si es un Timestamp
           return {
             ...pedido,
             fecha: pedido.fecha instanceof Timestamp ? pedido.fecha.toDate() : pedido.fecha,
-            fechaEntrega: pedido.fechaEntrega instanceof Timestamp ? pedido.fechaEntrega.toDate() : pedido.fechaEntrega // Asegúrate de convertir también aquí
+            fechaEntrega: pedido.fechaEntrega instanceof Timestamp ? pedido.fechaEntrega.toDate() : pedido.fechaEntrega // Convertir fechaEntrega también
           };
         });
         console.log('Mis pedidos:', this.misPedidos);

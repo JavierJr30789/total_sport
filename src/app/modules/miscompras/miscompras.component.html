@@ -1,45 +1,55 @@
-<h1 class="text-center title-pedidos p-3">🛒 Mis Compras</h1>
+<!-- Título de la página de compras -->
+<h1 class="text-center title-pedidos p-3"> Mis Compras</h1>
 
+<!-- Mensaje cuando no hay compras realizadas -->
 <div *ngIf="misPedidos.length === 0" class="no-pedidos">
   <p>No has realizado compras todavía.</p>
 </div>
 
+<!-- Iteración sobre cada pedido realizado -->
 <div *ngFor="let pedido of misPedidos" class="pedido-card card mb-4">
   <div class="pedido-header card-header">
     <h3>Pedido ID: {{ pedido.id }}</h3>
   </div>
   <div class="card-body">
+    <!-- Información del usuario que realizó el pedido -->
     <h4><b>
       Usuario: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}
     </b></h4>
+    <!-- Fecha de la compra -->
     <h4>Fecha de compra: {{ pedido.fecha | date : "short" }}</h4>
-
+    
     <div class="productos mt-3">
+      <!-- Iteración sobre cada producto en el pedido -->
       <div
         *ngFor="let item of pedido.productos"
         class="producto d-flex align-items-center mb-3"
       >
+        <!-- Imagen del producto -->
         <img
           [src]="item.Producto.imagen"
           alt="{{ item.Producto.nombre }}"
           class="producto-imagen img-fluid rounded"
         />
         <div class="producto-info ms-3">
+          <!-- Nombre del producto -->
           <p>Producto: {{ item.Producto.nombre }}</p>
+          <!-- Cantidad del producto -->
           <p>Cantidad: {{ item.Cantidad }}</p>
+          <!-- Precio total del producto -->
           <p>
-            Precio Total: ${{
-              item.Producto.precio * item.Cantidad | number : "1.2-2"
-            }}
+            Precio Total: ${{ item.Producto.precio * item.Cantidad | number : "1.2-2" }}
           </p>
         </div>
       </div>
     </div>
-
+    
     <div class="pedido-total mt-3">
+      <!-- Total del pedido -->
       <p class="fw-bold text-success">
         TOTAL: ${{ pedido.totalprecio | number : "1.2-2" }}
       </p>
+      <!-- Fecha de entrega del pedido -->
       <h4><b>Fecha de Entrega: {{ pedido.fechaEntrega | date : "shortDate" }}</b></h4>
     </div>
   </div>

@@ -13,8 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class InicioSesionComponent {
   hide = true;
-//   captchaResolved = false;
-// captchaResponse: string | null = null;
+  // captchaResolved = false;
+  // captchaResponse: string | null = null;
 
   constructor(
     public servicioAuth: AuthService,
@@ -22,10 +22,12 @@ export class InicioSesionComponent {
     public servicioRutas: Router
   ) { }
 
+  // Resuelto del Captcha (comentado)
   // resolvedCaptcha(captchaResponse: string) {
   //   this.captchaResolved = !!captchaResponse;
   //   this.captchaResponse = captchaResponse;
   // }
+
   // ####################################### INGRESADO
   // Importamos la interfaz de usuario e inicializamos vacío
   usuarioIngresado: Usuario = {
@@ -39,7 +41,6 @@ export class InicioSesionComponent {
 
   // Función para el inicio de sesión
   async iniciarSesion() {
-
     // if (!this.captchaResolved) {
     //   Swal.fire({
     //     text: "Por favor, completa el captcha.",
@@ -53,60 +54,51 @@ export class InicioSesionComponent {
       password: this.usuarioIngresado.password
     }
 
-
     try {
+      // Obtenemos el usuario de la base de datos
       const usuarioBD = await this.servicioAuth.obtenerUsuario(credenciales.email);
-      //! -> si es diferente
-      //.empty-> metodo
+
+      // Verificamos si el usuario existe
       if (!usuarioBD || usuarioBD.empty) {
-        alert('el correo electronico no esta registrado.');
+        alert('El correo electrónico no está registrado.');
         this.limpiarInputs();
         return;
       }
-      /**
-       * primer documento (registro) en la coleccion de usuarios que se obt6iene desde la consulta.
-       */
+
+      // Primer documento en la colección de usuarios desde la consulta
       const usuarioDoc = usuarioBD.docs[0];
 
-      /**
-       * extrae los datos del documento en formas de objeto y especifica como un tipo
-       * 'usuario'-> haciendo eferencia a nuestra interfas de usuario
-       */
-
+      // Extrae los datos del documento en forma de objeto y especifica como tipo 'Usuario'
       const usuarioData = usuarioDoc.data() as Usuario;
 
+      // Hash de la contraseña ingresada
       const hashedPassword = CryptoJS.SHA256(credenciales.password).toString();
 
+      // Verificamos si la contraseña es correcta
       if (hashedPassword !== usuarioData.password) {
-        alert("contraseña incorrecta");
+        alert("Contraseña incorrecta");
         this.usuarioIngresado.password = '';
         return;
       }
 
+      // Iniciamos sesión con las credenciales proporcionadas
       const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
         .then(res => {
           alert('¡Se ha logueado con éxito! :D');
-          //almacena el rol del usuario en el servicio de autentificacion
+          // Almacena el rol del usuario en el servicio de autenticación
           this.servicioAuth.enviarRolUsuario(usuarioData.rol);
-
           if (usuarioData.rol === "admin") {
-            console.log("inicio de sesion de usuario administrador")
-
+            console.log("Inicio de sesión de usuario administrador");
             this.servicioRutas.navigate(['/admin']);
           } else {
-            console.log("inicio de sesion de usuario visitante")
-
-          this.servicioRutas.navigate(['/inicio']);
-
+            console.log("Inicio de sesión de usuario visitante");
+            this.servicioRutas.navigate(['/inicio']);
           }
-
         })
-
         .catch(err => {
           alert('Hubo un problema al iniciar sesión :( ' + err);
-
           this.limpiarInputs();
-        })
+        });
 
     } catch (error) {
       this.limpiarInputs();
@@ -121,6 +113,7 @@ export class InicioSesionComponent {
     }
   }
 
+  // Función para recuperar la contraseña
   async recuperarContrasena() {
     const { value: email } = await Swal.fire({
       title: 'Recuperar contraseña',
@@ -131,7 +124,7 @@ export class InicioSesionComponent {
       confirmButtonText: 'Enviar',
       cancelButtonText: 'Cancelar'
     });
-  
+
     if (email) {
       this.servicioAuth.recuperarContrasena(email)
         .then(() => {
@@ -151,6 +144,7 @@ export class InicioSesionComponent {
     }
   }
 
+  // Función para iniciar sesión con Google
   async iniciarSesionConGoogle() {
     try {
       const res = await this.servicioAuth.iniciarSesionConGoogle();
@@ -159,12 +153,11 @@ export class InicioSesionComponent {
         icon: "success"
       });
       this.servicioRutas.navigate(['/inicio']);
-    } catch (error: any) {  // Definimos el tipo de error como 'any'
+    } catch (error: any) { // Definimos el tipo de error como 'any'
       Swal.fire({
         text: "Hubo un problema al iniciar sesión con Google: " + error.message,
         icon: "error"
       });
     }
   }
-  
 }

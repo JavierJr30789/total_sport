@@ -132,61 +132,64 @@ this.enviarCorreoDeAgradecimiento(this.usuarios);
    
 
   }
-
-  // función para agregar NUEVO USUARIO
-  async guardarUsuario(){
-    if (!this.usuarios.uid) {
+// Función para agregar un nuevo usuario
+async guardarUsuario() {
+  // Verifica si el UID está vacío
+  if (!this.usuarios.uid) {
       console.error('El UID está vacío. No se puede guardar el usuario.');
       return;
-    }
-  
-    this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
-    .then(res => {
-      console.log(this.usuarios);
-    })
-    .catch(err => {
-      console.log('Error =>', err);
-    });
   }
-  // Función para vaciar el formulario
-  limpiarInputs(){
-    const inputs = {
+
+  // Llama al servicio de Firestore para agregar un usuario
+  this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
+      .then(res => {
+          console.log(this.usuarios);
+      })
+      .catch(err => {
+          console.log('Error =>', err);
+      });
+}
+
+// Función para vaciar el formulario
+limpiarInputs() {
+  // Inicializa las propiedades del objeto usuarios a valores vacíos
+  const inputs = {
       uid: this.usuarios.uid = '',
       nombre: this.usuarios.nombre = '',
       apellido: this.usuarios.apellido = '',
       email: this.usuarios.email = '',
-      
       password: this.usuarios.password = ''
-    }
   }
-  
-  isValidEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
+}
 
-  enviarCorreoDeAgradecimiento(usuario: Usuario) {
-    if (!this.isValidEmail(usuario.email)) {
+// Valida si el email tiene el formato correcto
+isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Envía un correo de agradecimiento al usuario
+enviarCorreoDeAgradecimiento(usuario: Usuario) {
+  // Verifica si el email es válido
+  if (!this.isValidEmail(usuario.email)) {
       console.error("El correo del usuario está vacío o mal formateado.");
       return;
-    }
-  
-    console.log('Datos de usuario para correo:', {
+  }
+
+  console.log('Datos de usuario para correo:', {
       nombre: usuario.nombre,
       email: usuario.email,
-    });
-  
-    emailjs.send('service_48xvchx', 'template_xm4elup', {
+  });
+
+  // Llama al servicio de emailJS para enviar un correo
+  emailjs.send('service_48xvchx', 'template_xm4elup', {
       to_name: usuario.nombre,
       to_email: usuario.email,
-    }, 'mBPxyJ78tUymGlB3a')
-    .then((response: EmailJSResponseStatus) => {
-      console.log('Correo enviado con éxito!', response.status, response.text);
-    }, (error: any) => {
-      console.error('Error al enviar el correo:', error);
-    });
-  }
-  
-  
-  
+  }, 'mBPxyJ78tUymGlB3a')
+      .then((response: EmailJSResponseStatus) => {
+          console.log('Correo enviado con éxito!', response.status, response.text);
+      }, (error: any) => {
+          console.error('Error al enviar el correo:', error);
+      });
+}
 }

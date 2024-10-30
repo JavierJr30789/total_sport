@@ -1,16 +1,25 @@
+<!-- Fila para los productos -->
 <div class="row">
+  <!-- Iteración sobre la colección de productos -->
   <mat-card class="col" *ngFor="let producto of coleccionProducto" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title class="titulo">{{producto.nombre}}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" class="card-image">
-      <mat-card-content>
-        <p class="descripcion">{{producto.descripcion}}</p>
-        <mat-card-subtitle class="precio">${{producto.precio}}</mat-card-subtitle>
-      </mat-card-content>
-      <mat-card-actions>
-        
-        <button type="button" class="btn btn-outline-light" (click)="agregarProducto(producto)">Agregar al carrito</button>
-      </mat-card-actions>
+    <!-- Encabezado de la tarjeta -->
+    <mat-card-header>
+      <!-- Título de la tarjeta con el nombre del producto -->
+      <mat-card-title class="titulo">{{producto.nombre}}</mat-card-title>
+    </mat-card-header>
+    <!-- Imagen del producto -->
+    <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" class="card-image">
+    <!-- Contenido de la tarjeta -->
+    <mat-card-content>
+      <!-- Descripción del producto -->
+      <p class="descripcion">{{producto.descripcion}}</p>
+      <!-- Subtítulo con el precio del producto -->
+      <mat-card-subtitle class="precio">${{producto.precio}}</mat-card-subtitle>
+    </mat-card-content>
+    <!-- Acciones de la tarjeta -->
+    <mat-card-actions>
+      <!-- Botón para agregar el producto al carrito -->
+      <button type="button" class="btn btn-outline-light" (click)="agregarProducto(producto)">Agregar al carrito</button>
+    </mat-card-actions>
   </mat-card>
 </div>

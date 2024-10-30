@@ -15,21 +15,19 @@ import { AuthService } from 'src/app/modules/autentificacion/services/auth.servi
 export class CardComponent {
   coleccionProducto: Producto[] = [];
   productoSeleccionado!: Producto;
-
   usuarioRegistrado: Usuario = {
     uid: '',
     nombre: '',
     apellido: '',
     email: '',
-    rol:'',
+    rol: '',
     password: ''
   };
-
   modalVisible: boolean = false;
   compraVisible: boolean = false;
 
-  @Input() productoReciente: string = '';
-  @Output() productoAgregado = new EventEmitter<Producto>();
+  @Input() productoReciente: string = ''; // Entrada para producto reciente
+  @Output() productoAgregado = new EventEmitter<Producto>(); // Salida para producto agregado
 
   constructor(
     public servicioCrud: CrudService,
@@ -57,6 +55,7 @@ export class CardComponent {
     });
   }
 
+  // Método para agregar un producto al carrito
   agregarProducto(producto: Producto) {
     const productoItemCart = { Producto: producto, Cantidad: 1 };
     const swalWithBootstrapButtons = Swal.mixin({
@@ -68,6 +67,7 @@ export class CardComponent {
     });
 
     if (this.usuarioRegistrado.uid) {
+      // Si el usuario está autenticado, agregar el producto al carrito
       this.carritoService.agregarProducto(productoItemCart);
       Swal.fire({
         title: "Producto agregado",
@@ -75,6 +75,7 @@ export class CardComponent {
         icon: "success",
       });
     } else {
+      // Si el usuario no está autenticado, mostrar un mensaje para que inicie sesión
       swalWithBootstrapButtons.fire({
         title: "Operación fallida",
         text: "No puedes realizar compras sin registrarte previamente.",
@@ -85,8 +86,10 @@ export class CardComponent {
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
+          // Redirigir a la página de inicio de sesión si el usuario confirma
           this.servicioRutas.navigate(['/inicio-sesion']);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Mostrar mensaje de operación cancelada
           swalWithBootstrapButtons.fire({
             title: "Cancelado",
           });
