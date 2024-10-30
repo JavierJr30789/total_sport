@@ -24,6 +24,8 @@
               <div class="col-md-8">
                 <h4>Producto: {{ item.Producto.nombre }}</h4>
                 <h4>Cantidad: {{ item.Cantidad }}</h4>
+                <!-- Cálculo y despliegue del subtotal del producto -->
+                <h4>Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</h4>
               </div>
             </div>
           </li>
