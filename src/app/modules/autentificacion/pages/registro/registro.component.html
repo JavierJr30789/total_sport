@@ -37,12 +37,12 @@
             <mat-hint text-align="start">Mínimo: 6/{{input.value.length}}</mat-hint>
           </mat-form-field>
           
- <!-- Checkbox para aceptar términos -->
- <div class="form-check">
-    <input class="form-check-input" type="checkbox" [(ngModel)]="aceptaTerminos" id="aceptaTerminos" required>
-    <label class="form-check-label" for="aceptaTerminos">
-        Acepto los&nbsp;<a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a>
-    </label>
+<!-- Checkbox para aceptar términos -->
+<div class="form-check">
+  <label class="form-check-label" for="aceptaTerminos">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="aceptaTerminos" id="aceptaTerminos" required>
+      Acepto los&nbsp;<a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a>
+  </label>
 </div>
 <!-- Modal para Términos y Condiciones -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">

@@ -5,6 +5,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 import {MatCardModule} from '@angular/material/card';
@@ -33,7 +35,9 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
     MatCardModule,
     MatMenuModule,
     MatSlideToggleModule,
-    MatBadgeModule    
+    MatBadgeModule,
+    MatListModule,
+    MatSidenavModule
   ],
   exports:[
     NavbarComponent,
@@ -42,7 +46,8 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSidenavModule
 
   ]
 })

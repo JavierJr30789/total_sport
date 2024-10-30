@@ -21,6 +21,8 @@
   button {
     background-color: var(--primary-color);
     color: var(--input-color);
+    align-self: center;
+    width: 100%;
   }
   button:hover {
     background-color: var(--text-title-color); /* Cambia esto por el color que desees al pasar el cursor */

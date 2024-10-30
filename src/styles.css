@@ -72,3 +72,32 @@ button {
 .mat-slide-toggle-bar { 
   background-color: var(--accent-color); 
 }
+
+/* Estilos responsivos */
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .card, .footer-col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .navbar .menu-container, .navbar .custom-button {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Estilos para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card, .footer-col {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+}

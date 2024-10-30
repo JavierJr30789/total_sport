@@ -1,25 +1,32 @@
 <mat-toolbar>
-  <!-- Botón de menú con ícono -->
-  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <!-- Menú desplegable del producto -->
-  <mat-menu #producto="matMenu">
-    <button mat-menu-item routerLink="/inicio">Inicio</button>
-    <button mat-menu-item routerLink="/producto">Todos los productos</button>
-    <button mat-menu-item routerLink="/admin">Admin</button>
-    <button mat-menu-item routerLink="/carrito">Carrito</button>
-    <button mat-menu-item routerLink="/pedidos">Mis Pedidos</button>
-    <button mat-menu-item routerLink="/miscompras">Comprado</button>
-  </mat-menu>
-
-  <!-- Logo -->
-  <div class="col-lg-4">
+  <!-- Logo que abre el menú -->
+  <div class="col-lg-4" [matMenuTriggerFor]="producto" mat-button>
     <img src="assets/imagenes/logopestaña see.png" alt="Logo">
   </div>
+  <!-- Menú desplegable del producto -->
+<mat-menu #producto="matMenu">
+  <button mat-menu-item routerLink="/inicio">
+    <mat-icon>home</mat-icon> Inicio
+  </button>
+  <button mat-menu-item routerLink="/producto">
+    <mat-icon>list</mat-icon> Todos los productos
+  </button>
+  <button mat-menu-item routerLink="/admin">
+    <mat-icon>admin_panel_settings</mat-icon> Admin
+  </button>
+  <button mat-menu-item routerLink="/carrito">
+    <mat-icon>shopping_cart</mat-icon> Carrito
+  </button>
+  <button mat-menu-item routerLink="/pedidos">
+    <mat-icon>assignment</mat-icon> Mis Pedidos
+  </button>
+  <button mat-menu-item routerLink="/miscompras">
+    <mat-icon>shopping_bag</mat-icon> Comprado
+  </button>
+</mat-menu>
+  <!-- Título de la aplicación (se ocultará en móviles) -->
+  <h1 class="title hidden-on-mobile">Total Sport</h1> <!-- Añadido class hidden-on-mobile -->
 
-  <!-- Título de la aplicación -->
-  <h1 class="title">Total Sport</h1>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
   <style>
     .title {
@@ -32,14 +39,14 @@
   <span class="spacer"></span>
 
   <!-- Botón para carrito de compras -->
-  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-    <mat-icon>shopping_bag</mat-icon>
-  </button>
+<button class="btn btn-primary custom-button" type="button" routerLink="/miscompras">
+  <mat-icon>shopping_bag</mat-icon>
+</button>
 
-  <!-- Botón para local shipping -->
-  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-    <mat-icon>local_shipping</mat-icon>
-  </button>
+<!-- Botón para local shipping -->
+<button class="btn btn-primary custom-button" type="button" routerLink="/pedidos">
+  <mat-icon>local_shipping</mat-icon>
+</button>
 
   <!-- Contenedor del menú del usuario -->
   <div class="menu-container">
@@ -60,7 +67,7 @@
 
   <!-- Botón para cambiar el tema -->
   <button mat-button (click)="toggleTheme()">
-    <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny' }}</mat-icon> 
+    <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny' }}</mat-icon>
     <label for="toggle" id="label_toggle"></label>
     <mat-slide-toggle></mat-slide-toggle>
   </button>

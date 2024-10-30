@@ -19,7 +19,7 @@ const routes: Routes = [
     path: "", loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), 
     // Especificamos que la ruta de administrador va a ser protegida por un guardián
     // y espera un rol tipo "admin"
-    canActivate: [rutaProtegidaGuard], data: { role: 'admin' } 
+    //canActivate: [rutaProtegidaGuard], data: { role: 'admin' } 
   },
   // Ruta para el módulo de productos (carga diferida)
   { path: "", loadChildren: () => import('./modules/producto/producto.module').then(m => m.ProductoModule) },
