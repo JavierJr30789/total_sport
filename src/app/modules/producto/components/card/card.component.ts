@@ -21,6 +21,7 @@ export class CardComponent {
     nombre: '',
     apellido: '',
     email: '',
+    rol:'',
     password: ''
   };
 
