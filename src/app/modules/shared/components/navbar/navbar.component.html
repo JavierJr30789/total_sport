@@ -81,7 +81,7 @@
 <!-- Offcanvas del carrito de compras -->
 <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras</h5>
+    <h1 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito de Compras</h1>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -91,36 +91,45 @@
         <ng-container *ngFor="let item of productosEnCarrito">
           <li class="list-group-item">
             <div class="card producto-card">
-              <!-- Imagen del producto -->
-              <img [src]="item.Producto.imagen" class="card-img-top" [alt]="item.Producto.nombre">
-              <div class="card-body">
-                <!-- Información del producto -->
-                <p class="card-text">
-                  {{ item.Producto.nombre }} <br>
-                  {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }} <br>
-                  (cantidad: {{ item.Cantidad }}) <br>
-                  Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-                </p>
-                <!-- Botones para modificar la cantidad y eliminar el producto -->
-                <div class="d-flex justify-content-between align-items-center">
-                  <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
-                  <span>{{ item.Cantidad }}</span>
-                  <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
-                  <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">
-                    <mat-icon class="red-icon">delete</mat-icon>
-                  </button>
+              <div class="d-flex"> <!-- Agregar un contenedor flex -->
+                <!-- Imagen del producto -->
+                <img [src]="item.Producto.imagen" class="card-img-top" [alt]="item.Producto.nombre" style="max-width: 100px; margin-right: 10px;"> <!-- Ajusta el tamaño de la imagen -->
+                
+                <div class="card-body">
+                  <!-- Información del producto -->
+                  <p class="card-text">
+                    {{ item.Producto.nombre }} <br>
+                    {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }} <br>
+                    (cantidad: {{ item.Cantidad }}) <br>
+                    Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+                  </p>
+                  <!-- Botones para modificar la cantidad y eliminar el producto -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-outline-light" (click)="restarCantidad(item)">-</button>
+                    <span>{{ item.Cantidad }}</span>
+                    <button type="button" class="btn btn-outline-light" (click)="aumentarCantidad(item)">+</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">
+                      <mat-icon class="red-icon">delete</mat-icon>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </li>
         </ng-container>
       </ul>
+  
       <!-- Total de la compra -->
-      <p class="card-text total-compra">
-        Total de la compra: {{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-      </p>
+      <div class="card-container">
+        <p class="card-text total-compra">
+          Total de la compra: {{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
+        </p>
+      </div>
+  
+      <!-- Botón para ir al carrito -->
+      <div class="button-container">
+        <button type="button" class="btn btn-primary" (click)="irAlCarrito()">Ir al carrito</button>
+      </div>
     </div>
-    <!-- Botón para ir al carrito -->
-    <button mat-raised-button (click)="irAlCarrito()">Ir al carrito</button>
   </div>
-</div>
+  

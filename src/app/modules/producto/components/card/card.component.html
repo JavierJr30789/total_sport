@@ -1,24 +1,23 @@
+<!-- Barra de búsqueda para filtrar productos -->
+<div class="search-bar">
+  <mat-form-field class="custom-label"  appearance="outline">
+    <mat-label class="custom-label">Buscar producto</mat-label>
+    <input matInput [(ngModel)]="filtroNombre" placeholder="Nombre del producto" />
+  </mat-form-field>
+</div>
+
 <!-- Fila para los productos -->
 <div class="row">
-  <!-- Iteración sobre la colección de productos -->
-  <mat-card class="col" *ngFor="let producto of coleccionProducto" appearance="outlined">
-    <!-- Encabezado de la tarjeta -->
+  <mat-card class="col" *ngFor="let producto of coleccionProducto | filtroNombre: filtroNombre" appearance="outlined">
     <mat-card-header>
-      <!-- Título de la tarjeta con el nombre del producto -->
       <mat-card-title class="titulo">{{producto.nombre}}</mat-card-title>
     </mat-card-header>
-    <!-- Imagen del producto -->
     <img mat-card-image src="{{producto.imagen}}" alt="{{producto.alt}}" class="card-image">
-    <!-- Contenido de la tarjeta -->
     <mat-card-content>
-      <!-- Descripción del producto -->
       <p class="descripcion">{{producto.descripcion}}</p>
-      <!-- Subtítulo con el precio del producto -->
       <mat-card-subtitle class="precio">${{producto.precio}}</mat-card-subtitle>
     </mat-card-content>
-    <!-- Acciones de la tarjeta -->
     <mat-card-actions>
-      <!-- Botón para agregar el producto al carrito -->
       <button type="button" class="btn btn-outline-light" (click)="agregarProducto(producto)">Agregar al carrito</button>
     </mat-card-actions>
   </mat-card>

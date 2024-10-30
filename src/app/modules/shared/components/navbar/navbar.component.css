@@ -1,6 +1,7 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
 img {
   width: 70px;
   height: 70px;
@@ -21,10 +22,10 @@ img {
   .hidden-on-mobile { /* Clase para ocultar el título en móviles */
     display: none;
   }
-    /* Ocultar botones en dispositivos pequeños */
-    .btn.btn-primary.custom-button {
-      display: none; /* Ocultar los botones en móviles */
-    }
+  /* Ocultar botones en dispositivos pequeños */
+  .btn.btn-primary.custom-button {
+    display: none; /* Ocultar los botones en móviles */
+  }
 }
 
 /* Estilos para dispositivos más grandes (ej: computadora) */
@@ -96,24 +97,20 @@ img {
   border: 2px solid #fff; /* Opcional: un borde alrededor de la imagen */
 }
 
-.red-icon {
-  color: red;
+.card-container { /* Asegúrate de aplicar esto al contenedor del <p> */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente, si es necesario */
+  background-color: var(--primary-color); /* Mismo color que las tarjetas */
+  color:var(--text-color);
+  padding: 10px; /* Espaciado interno para el contenedor */
+  border-radius: 6px; /* Bordes redondeados */
 }
 
-.button {
-  border-radius: 11px;
-  padding: 10px;
-  float: right;
-}
-
-/* Cambia el color en estado hover del botón */
-.custom-button:hover .mat-icon {
-  color: var(--background-footer-color); /* Cambia el color del icono en hover */
-}
-
-/* Clase para ocultar elementos en móviles */
-.hidden {
-  display: none;
+.button-container {
+  display: flex;
+  justify-content: center; /* Centra el botón horizontalmente */
+  margin-top: 16px; /* Espacio superior para el botón */
 }
 
 .btn.btn-primary {
@@ -126,11 +123,34 @@ img {
   background-color: var(--input-color); /* Cambiar color al pasar el cursor */
 }
 
-.mat-icon {
-  color: var(--text-color); /* Cambia el color del icono */
+.producto-card{
+  background-color: var(--primary-color); /* Mismo color que las tarjetas */
+  color:var(--text-color);
+  text-align: center;
+  
 }
+.card-img-top{
+  align-self: center;
+  width: 200px;
+}
+.mat-icon {
+  color: white; /* Cambia el color del icono */
+}
+
+
+
 
 /* Cambia el color en estado hover del botón */
 .custom-button:hover .mat-icon {
   color: var(--background-footer-color); /* Cambia el color del icono en hover */
+}
+
+/* Estilo adicional para centrar el total de la compra */
+.total-compra {
+  text-align: center; /* Centra el texto */
+  margin: 16px 0; /* Espaciado superior e inferior */
+}
+
+.hidden {
+  display: none;
 }

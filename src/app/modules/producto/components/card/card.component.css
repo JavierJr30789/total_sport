@@ -59,6 +59,16 @@
   align-items: center; /* Centra horizontalmente */
 }
 
+/* Color del label para todos los modos */
+.custom-label {
+  color: var(--primary-color); /* Cambia 'aqua' por el color que desees */
+}
+#mat-input{
+color:black;
+}
+.search-bar{
+align-self: center;
+}
 
 /* Aumenta el tamaño de las tarjetas según sea necesario */
 @media (min-width: 768px) {

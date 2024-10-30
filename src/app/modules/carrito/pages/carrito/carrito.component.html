@@ -16,7 +16,7 @@
           <!-- Precio del producto con formato de moneda -->
           {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
           <!-- Botón para eliminar producto del carrito -->
-          <button (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+          
           <br>
           <!-- Cantidad del producto -->
           (cantidad: {{ item.Cantidad }}) <br>
@@ -27,6 +27,8 @@
         <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
         <span>{{ item.Cantidad }}</span>
         <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+
+        <button type="button" class="btn btn-primary"(click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
       </div>
     </div>
   </div>
