@@ -58,6 +58,19 @@
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
 }
+/* CSS para centrar el contenedor */
+.search-bar {
+  display: flex;
+  justify-content: center; /* Centramos el contenido horizontalmente */
+  margin-top: 20px; /* Puedes ajustar el margen según sea necesario */
+}
+
+/* Opcional: para ajustar el tamaño del campo de búsqueda */
+.centered-bar {
+  width: 100%; /* Puedes ajustar a un ancho fijo como 50% si prefieres */
+  max-width: 400px; /* Limita el ancho máximo si es necesario */
+}
+
 
 /* Color del label para todos los modos */
 .custom-label {
