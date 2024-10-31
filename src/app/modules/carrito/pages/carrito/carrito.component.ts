@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Producto, ProductoItemCart } from 'src/app/models/producto';
 import { CarritoService } from 'src/app/modules/shared/services/carrito.service';
 import { Router } from '@angular/router';
@@ -14,8 +14,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent {
+export class CarritoComponent implements OnInit {
   productosEnCarrito: ProductoItemCart[] = [];
+  usuarioActual: any;
+  private audio = new Audio(); // Define el audio aquí
 
   constructor(
     private database: AngularFirestore,
@@ -24,14 +26,15 @@ export class CarritoComponent {
     private carritoService: CarritoService,
     public servicioRutas: Router,
     private authService: AuthService
-  ){}
-
-  usuarioActual: any;
+  ) {
+    this.audio.src = 'assets/sounds/comprado.mp3'; // Ruta a tu archivo de sonido
+    this.audio.load(); // Cargar el archivo de sonido
+  }
 
   ngOnInit(): void {
     // Cargar el carrito desde el servicio
     this.carritoService.cargarCarrito();
-    
+
     // Suscribirse al carrito de compras para recibir actualizaciones
     this.carritoService.carrito$.subscribe(productos => {
       this.productosEnCarrito = productos;
@@ -52,7 +55,7 @@ export class CarritoComponent {
   // Agregar producto al carrito
   agregarProductoAlCarrito(producto: Producto) {
     const productoExistente = this.productosEnCarrito.find(item => item.Producto.idProducto === producto.idProducto);
-    
+
     if (productoExistente) {
       // Si ya existe el producto, aumentar la cantidad
       productoExistente.Cantidad++;
@@ -60,20 +63,20 @@ export class CarritoComponent {
       // Si no existe, agregar el producto con cantidad 1
       this.productosEnCarrito.push({ Producto: producto, Cantidad: 1 });
     }
-    
+
     // Actualizar el carrito
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
 
   // Aumentar cantidad de un producto en el carrito
-  aumentarCantidad(producto: ProductoItemCart){
+  aumentarCantidad(producto: ProductoItemCart) {
     producto.Cantidad++;
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
   }
 
   // Disminuir la cantidad de un producto (no menor a 1)
-  restarCantidad(producto: ProductoItemCart){
-    if (producto.Cantidad > 1){
+  restarCantidad(producto: ProductoItemCart) {
+    if (producto.Cantidad > 1) {
       producto.Cantidad--;
     }
     this.carritoService.actualizarCarrito(this.productosEnCarrito);
@@ -102,8 +105,11 @@ export class CarritoComponent {
 
   // Confirmar la compra
   confirmarCompra() {
+    // Reproducir sonido
+    this.audio.play();
+
     const uid = this.authService.obtenerUid();
-    
+
     if (!uid) {
       // Mostrar un mensaje o redirigir al usuario a iniciar sesión
       alert('Debes iniciar sesión para confirmar la compra.');
@@ -114,42 +120,38 @@ export class CarritoComponent {
         console.error("No hay productos en el carrito o no hay usuario autenticado");
         return;
       }
+
+      // Obtener el usuario por su uid desde Firestore
+      this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
+        // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
+        const usuarioSimplificado = {
+          uid: this.usuarioActual.uid,
+          nombre: usuarioFirestore?.nombre || 'Usuario',
+          apellido: usuarioFirestore?.apellido || 'Desconocido',
+          email: this.usuarioActual.email
+        };
+        const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
+        const pedidoId = this.firestoreService.generarId(); // Generar un ID único
+        const pedido: Pedido = {
+          id: pedidoId,
+          usuario: usuarioSimplificado, // Incluimos nombre y apellido
+          productos: this.productosEnCarrito,
+          fecha: new Date(),
+          totalprecio: totalPrecio, // Agrega el precio total aquí
+          fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
+        };
+        // Guardamos el pedido en Firestore
+        this.firestoreService.agregarPedido(pedido)
+          .then(() => {
+            console.log("Pedido guardado con éxito");
+            this.limpiarCarrito();
+            alert("Se realizó la compra con éxito");
+          })
+          .catch(err => {
+            console.error("Error al guardar el pedido:", err);
+            alert("Algo salió mal :(");
+          });
+      });
     }
-
-    // Obtener el usuario por su uid desde Firestore
-    this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
-      // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
-      const usuarioSimplificado = {
-        uid: this.usuarioActual.uid,
-        nombre: usuarioFirestore?.nombre || 'Usuario',
-        apellido: usuarioFirestore?.apellido || 'Desconocido',
-        email: this.usuarioActual.email
-      };
-
-      const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
-
-      const pedidoId = this.firestoreService.generarId(); // Generar un ID único
-
-      const pedido: Pedido = {
-        id: pedidoId,
-        usuario: usuarioSimplificado, // Incluimos nombre y apellido
-        productos: this.productosEnCarrito,
-        fecha: new Date(),
-        totalprecio: totalPrecio, // Agrega el precio total aquí
-        fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
-      };
-
-      // Guardamos el pedido en Firestore
-      this.firestoreService.agregarPedido(pedido)
-        .then(() => {
-          console.log("Pedido guardado con éxito");
-          this.limpiarCarrito();
-          alert("Se realizó la compra con éxito");
-        })
-        .catch(err => {
-          console.error("Error al guardar el pedido:", err);
-          alert("Algo salió mal :(");
-        });
-    });
   }
 }

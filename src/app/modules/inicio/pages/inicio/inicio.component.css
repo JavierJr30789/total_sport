@@ -6,7 +6,57 @@
     padding: 0;
     box-sizing: border-box;
 }
+.carousel-container,
+.content-all {
+  width: 100%;
+  margin-top: 10px; /* Ajusta este valor según el espacio que necesites */
+}
 
+.slide,
+.content-carrousel {
+  max-width: 700px;
+  width: 100%;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajusta el margen según sea necesario */
+    background-color: rgba(255, 255, 255, 0); /* Fondo blanco con 50% de opacidad, ajústalo según tus necesidades */
+    padding: 10px; /* Ajusta el padding según sea necesario */
+    border-radius: 10px; /* Opcional, para bordes redondeados */
+  }
+  
+  .text-above-button {
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px; /* Ajusta el margen según sea necesario */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #007bff;
+  }
+  
+  
 .slide {
     position: relative;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
@@ -125,7 +175,12 @@
 #slide-1:checked ~ .control-1,
 #slide-2:checked ~ .control-2,
 #slide-3:checked ~ .control-3,
-#slide-4:checked ~ .control-4 {
+#slide-4:checked ~ .control-4,
+#slide-4:checked ~ .control-5,
+#slide-4:checked ~ .control-6,
+#slide-4:checked ~ .control-7,
+#slide-4:checked ~ .control-8,
+#slide-4:checked ~ .control-9 {
     display: block; /* Mostrar flechas cuando el slide correspondiente está seleccionado */
 }
 
@@ -356,3 +411,9 @@ h1 {
         transform: rotateY(360deg);
     }
 }
+@media (min-width: 700px) {
+    .slide {
+      display: none;
+    }
+  }
+  
