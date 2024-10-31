@@ -1,12 +1,148 @@
 
 
+/* Reseteo de márgenes y padding para todos los elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*titulo del carrucel*/
+.slide {
+    position: relative;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+    margin-top: 26px;
+}
+
+.slide-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: calc(300px + 3em); /* Mantén la altura deseada */
+}
+
+.slide-open:checked + .slide-item {
+    position: static;
+    opacity: 1; /* Cambia a 1 para asegurar que la imagen sea visible */
+}
+
+.slide-item {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    width: 100%; /* Asegúrate de que cada slide ocupe todo el ancho */
+    height: 100%; /* Asegúrate de que cada slide ocupe toda la altura */
+}
+
+.slide-item img {
+    display: block;
+    width: 100%; /* Cambia a 100% para que la imagen ocupe todo el ancho */
+    height: 100%; /* Cambia a 100% para que la imagen ocupe toda la altura */
+    object-fit: cover; /* Mantiene la proporción y cubre el área */
+}
+
+.slide-control {
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: none; /* Oculto por defecto, se muestra solo cuando corresponde */
+    font-size: 40px;
+    height: 40px;
+    line-height: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 40px;
+    z-index: 10;
+}
+
+
+.slide-control.prev {
+    left: 2%;
+}
+
+.slide-control.next {
+    right: 2%;
+}
+
+.slide-control:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #aaaaaa;
+}
+
+#slide-1:checked ~ .control-1,
+#slide-2:checked ~ .control-2,
+#slide-3:checked ~ .control-3 {
+    display: block;
+}
+
+.slide-indicador {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 2%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.slide-indicador li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.slide-circulo {
+    color: #828282;
+    cursor: pointer;
+    display: block;
+    font-size: 35px;
+}
+
+.slide-circulo:hover {
+    color: #aaaaaa;
+}
+
+.slide-control {
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: none; /* Oculto por defecto, se muestra solo cuando corresponde */
+    font-size: 40px;
+    height: 40px;
+    line-height: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 40px;
+    z-index: 10;
+}
+
+#slide-1:checked ~ .control-1,
+#slide-2:checked ~ .control-2,
+#slide-3:checked ~ .control-3,
+#slide-4:checked ~ .control-4 {
+    display: block; /* Mostrar flechas cuando el slide correspondiente está seleccionado */
+}
+
+#titulo {
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 27px;
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Open Sans', sans-serif;
+    z-index: 9999;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), -1px 0px 2px rgba(255, 255, 255, 0);
+}
+
+/* Estilo del título del carrusel */
 h1 {
     text-align: center;
     padding-top: 70px;
@@ -15,8 +151,6 @@ h1 {
     text-shadow: 10px 15px 7px var(--text-title-color);
     color: var(--text-title-color);
 }
-
-
 
 /*les da un margen a las imagenes, las posiciona, ajusta el tamaño y les da perspectiva*/
 .content-all {
@@ -152,6 +286,8 @@ h1 {
 
     /* Tu CSS aquí (incluye el CSS proporcionado anteriormente) */
 
+
+    
     /* Estilo del botón */
     .btn {
         position: absolute; /* Posiciona el botón de manera absoluta */
