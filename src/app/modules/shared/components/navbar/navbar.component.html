@@ -1,7 +1,7 @@
 <mat-toolbar>
 
 
- <!-- Botón para abrir el offcanvas -->
+<!-- Botón para abrir el offcanvas -->
 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
   <mat-icon>menu</mat-icon>
 </button>
@@ -17,38 +17,39 @@
     <!-- Opciones de menú -->
     <ul class="list-group">
       <li class="list-group-item">
-        <button mat-button routerLink="/inicio"  data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/inicio" data-bs-dismiss="offcanvas">
           <mat-icon>home</mat-icon> Inicio
         </button>
       </li>
       <li class="list-group-item">
-        <button mat-button routerLink="/producto" data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/producto" data-bs-dismiss="offcanvas">
           <mat-icon>list</mat-icon> Todos los productos
         </button>
       </li>
       <li class="list-group-item">
-        <button mat-button routerLink="/admin" data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/admin" data-bs-dismiss="offcanvas">
           <mat-icon>admin_panel_settings</mat-icon> Admin
         </button>
       </li>
       <li class="list-group-item">
-        <button mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
           <mat-icon>shopping_cart</mat-icon> Carrito
         </button>
       </li>
       <li class="list-group-item">
-        <button mat-button routerLink="/pedidos" data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/pedidos" data-bs-dismiss="offcanvas">
           <mat-icon>assignment</mat-icon> Mis Pedidos
         </button>
       </li>
       <li class="list-group-item">
-        <button mat-button routerLink="/miscompras" data-bs-dismiss="offcanvas">
+        <button class="offcanvas-button" mat-button routerLink="/miscompras" data-bs-dismiss="offcanvas">
           <mat-icon>shopping_bag</mat-icon> Comprado
         </button>
       </li>
     </ul>
   </div>
 </div>
+
 
 
 
@@ -66,15 +67,7 @@
   <!-- Espaciador -->
   <span class="spacer"></span>
 
-  <!-- Botón para carrito de compras -->
-<button class="btn btn-primary custom-button" type="button" routerLink="/miscompras">
-  <mat-icon>shopping_bag</mat-icon>
-</button>
-
-<!-- Botón para local shipping -->
-<button class="btn btn-primary custom-button" type="button" routerLink="/pedidos">
-  <mat-icon>local_shipping</mat-icon>
-</button>
+  
 
   <!-- Contenedor del menú del usuario -->
   <div class="menu-container">
