@@ -14,9 +14,8 @@
           {{ item.Producto.nombre }} <br>
           <!-- Precio del producto con formato de moneda -->
           {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
-          <!-- Botón para eliminar producto del carrito -->
           
-          <br>
+          
           <!-- Cantidad del producto -->
           (cantidad: {{ item.Cantidad }}) <br>
           <!-- Subtotal para la cantidad del producto -->

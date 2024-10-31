@@ -5,8 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
 
-// Importa ProductoModule
-import { ProductoModule } from './modules/producto/producto.module'; // Ajusta la ruta según la ubicación real
+
 
 //firebase
 import { environment } from 'src/environments/environment';
@@ -33,7 +32,6 @@ import { MiscomprasComponent } from './modules/miscompras/miscompras.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    ProductoModule, // Asegúrate de que este módulo esté incluido
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,

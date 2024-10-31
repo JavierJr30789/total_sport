@@ -6,7 +6,45 @@
 </head>
 
 <body>
- 
+  <h1><p>Lo más vendido</p></h1>
+
+
+
+  <div class="slide">
+    <div class="slide-inner">
+      <ng-container *ngFor="let producto of productosPorCategoria; let i = index">
+        <input
+          class="slide-open"
+          type="radio"
+          id="slide-{{ i + 1 }}"
+          name="slide"
+          aria-hidden="true"
+          hidden=""
+          [checked]="i === 0" 
+        />
+        <div class="slide-item">
+          <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+        </div>
+  
+        <!-- Control anterior -->
+        <label for="slide-{{ i === 0 ? productosPorCategoria.length : i }}" class="slide-control prev control-{{ i + 1 }}">‹</label>
+        <!-- Control siguiente -->
+        <label for="slide-{{ (i + 1) % productosPorCategoria.length + 1 }}" class="slide-control next control-{{ i + 1 }}">›</label>
+      </ng-container>
+  
+      <ol class="slide-indicador">
+        <li *ngFor="let producto of productosPorCategoria; let j = index">
+          <label for="slide-{{ j + 1 }}" class="slide-circulo">•</label>
+        </li>
+      </ol>
+    </div>
+  </div>
+  
+
+
+
+<!-- Carrusel 3D que se muestra solo en pantallas de computadora -->
+<div class="d-none d-md-block"> <!-- Solo visible en computadoras -->
   <div class="content-all">
     <div class="content-carrousel">
       <figure>
@@ -17,7 +55,7 @@
         <div class="capa">
           <h3>Raqueta de tennis</h3>
           <p>
-            <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie de red o caucho que lo cubre. Raquetas y pelotas de tenis. Colectivamente, en los juegos que la utilizan se conocen como deportes de raqueta, entre otros: bádminton, raquetbol, squash, tenis, tenis de mesa.</b>
+            <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie de red o caucho que lo cubre.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -27,7 +65,7 @@
         <div class="capa">
           <h3>Zapatillas nike lebron basket</h3>
           <p>
-            <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado para verse veloz. La pieza rígida en el talón y el sistema de bloqueo del antepié brindan soporte. La amortiguación eficaz y la tracción multidireccional se combinan para que mantengas el control mientras corres hacia la canasta.</b>
+            <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado para verse veloz.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -37,7 +75,7 @@
         <div class="capa">
           <h3>Guantes de box negros</h3>
           <p>
-            <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el fin de suavizar el impacto de los golpes durante los combates de boxeo.</b>
+            <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el fin de suavizar el impacto de los golpes.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -47,7 +85,7 @@
         <div class="capa">
           <h3>Zapatillas kyrie negras</h3>
           <p>
-            <b>Cuanto más rápido eres dentro y fuera de los cortes, más rápido puedes romper la defensa. Confeccionado para el estilo rápido e inigualable de Kyrie Irving, el Kyrie Flytrap 3 combina soporte y contención para todo el pie, amortiguación eficaz y una suela resistente moldeada para movimientos sin costuras a través de líneas extremadamente ceñidas.</b>
+            <b>Cuanto más rápido eres dentro y fuera de los cortes, más rápido puedes romper la defensa.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -67,7 +105,7 @@
         <div class="capa">
           <h3>Zapatillas nike mercurial </h3>
           <p>
-            <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul cloro. Diseñados tanto para terrenos firmes como para superficies de terrenos múltiples, estos botines son perfectos para cualquier tipo de jugador de fútbol. Con una talla 13 de EE. UU., ofrecen un ajuste cómodo para quienes tienen pies más grandes.</b>
+            <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul cloro.</b>
             <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
@@ -95,6 +133,9 @@
       </figure>
     </div>
   </div>
-  
+</div>
+
+
+
 </body>
 </html>

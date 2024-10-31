@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Producto } from './models/producto'; // Ajusta la ruta según tu estructura de carpetas
-
 @Pipe({
   name: 'filtroNombre'
 })
