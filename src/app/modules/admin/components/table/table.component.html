@@ -1,49 +1,41 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of coleccionProductos; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    <img src="{{producto.imagen}}" alt="{{producto.alt}}" width="100px">
+                </td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.precio}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.categoria}}</td>
+                <td>
+                    <button id="btn-edit" title="Editar" type="button" class="btn btn-outline-warning"
+                        data-bs-toggle="modal" data-bs-target="#editarProducto" (click)="mostrarEditar(producto)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button id="btn-delete" title="Eliminar" type="button" class="btn btn-outline-danger"
+                        data-bs-toggle="modal" data-bs-target="#eliminarProducto" (click)="mostrarBorrar(producto)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <tbody>
-        <tr *ngFor="let producto of coleccionProductos">
-            <th scope="row">1</th>
-
-            <td>
-                <img src="{{producto.imagen}}" alt="{{producto.alt}}" width="100px">
-            </td>
-            <td>{{producto.nombre}}</td>
-            <td>{{producto.precio}}</td>
-            <td>{{producto.descripcion}}</td>
-            <td>{{producto.categoria}}</td>
-
-            <!-- ACCIONES -->
-            <!-- EDITAR-->
-            <td>
-                <!-- mostrarEditar() recibe como parametro el producto seleccionado o iterado en esa fila -->
-                <button id="btn-edit" title="Editar" type="button" class="btn btn-outline-warning"
-                    data-bs-toggle="modal" data-bs-target="#editarProducto" (click)="mostrarEditar(producto)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </td>
-
-            <!-- ELIMINAR -->
-            <td>
-                <!-- mostrarBorrar() recibe como parametro el producto seleccionado o iterado en esa fila -->
-                <button id="btn-delete" title="Eliminar" type="button" class="btn btn-outline-danger"
-                    data-bs-toggle="modal" data-bs-target="#eliminarProducto" (click)="mostrarBorrar(producto)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
 
 <!-- BOTÓN PARA AGREGAR PRODUCTOS -->
 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarProducto">
