@@ -6,14 +6,19 @@ import { ProductoRoutingModule } from './producto-routing.module';
 import { CardComponent } from './components/card/card.component';
 
 import {  MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductoComponent } from './pages/producto/producto.component';
+import { FiltroNombrePipe } from 'src/app/filtro-nombre.pipe';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import { MatInputModule } from '@angular/material/input';
 
 
 
 @NgModule({
   declarations: [
     CardComponent,
-    ProductoComponent
+    ProductoComponent,
+    FiltroNombrePipe
     
     
   ],
@@ -21,6 +26,10 @@ import { ProductoComponent } from './pages/producto/producto.component';
     CommonModule,
     ProductoRoutingModule,
     MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    
     
   
   ],

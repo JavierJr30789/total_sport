@@ -7,6 +7,55 @@
 
 <body>
   <h1><p>Lo más vendido</p></h1>
+ <!-- Carrusel de Bootstrap que se muestra solo en dispositivos móviles -->
+<div class="d-block d-md-none"> <!-- Solo visible en dispositivos móviles -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <!-- Indicadores del carrusel -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Contenido de las imágenes del carrusel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/logitos/champions.jpeg" class="d-block w-100" alt="Primera imagen">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Etiqueta de la primera imagen</h5>
+          <p>Contenido representativo para la primera imagen.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/logitos/libertadores.jpg" class="d-block w-100" alt="Segunda imagen">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Etiqueta de la segunda imagen</h5>
+          <p>Contenido representativo para la segunda imagen.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/logitos/mundial.jpg" class="d-block w-100" alt="Tercera imagen">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>mundial</h5>
+          <p>Contenido representativo para la tercera imagen.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles de navegación -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- Carrusel 3D que se muestra solo en pantallas de computadora -->
+<div class="d-none d-md-block"> <!-- Solo visible en computadoras -->
   <div class="content-all">
     <div class="content-carrousel">
       <figure>
@@ -17,7 +66,7 @@
         <div class="capa">
           <h3>Raqueta de tennis</h3>
           <p>
-            <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie de red o caucho que lo cubre. Raquetas y pelotas de tenis. Colectivamente, en los juegos que la utilizan se conocen como deportes de raqueta, entre otros: bádminton, raquetbol, squash, tenis, tenis de mesa.</b>
+            <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie de red o caucho que lo cubre.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -27,7 +76,7 @@
         <div class="capa">
           <h3>Zapatillas nike lebron basket</h3>
           <p>
-            <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado para verse veloz. La pieza rígida en el talón y el sistema de bloqueo del antepié brindan soporte. La amortiguación eficaz y la tracción multidireccional se combinan para que mantengas el control mientras corres hacia la canasta.</b>
+            <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado para verse veloz.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -37,7 +86,7 @@
         <div class="capa">
           <h3>Guantes de box negros</h3>
           <p>
-            <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el fin de suavizar el impacto de los golpes durante los combates de boxeo.</b>
+            <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el fin de suavizar el impacto de los golpes.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -47,7 +96,7 @@
         <div class="capa">
           <h3>Zapatillas kyrie negras</h3>
           <p>
-            <b>Cuanto más rápido eres dentro y fuera de los cortes, más rápido puedes romper la defensa. Confeccionado para el estilo rápido e inigualable de Kyrie Irving, el Kyrie Flytrap 3 combina soporte y contención para todo el pie, amortiguación eficaz y una suela resistente moldeada para movimientos sin costuras a través de líneas extremadamente ceñidas.</b>
+            <b>Cuanto más rápido eres dentro y fuera de los cortes, más rápido puedes romper la defensa.</b>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
         </div>
@@ -67,7 +116,7 @@
         <div class="capa">
           <h3>Zapatillas nike mercurial </h3>
           <p>
-            <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul cloro. Diseñados tanto para terrenos firmes como para superficies de terrenos múltiples, estos botines son perfectos para cualquier tipo de jugador de fútbol. Con una talla 13 de EE. UU., ofrecen un ajuste cómodo para quienes tienen pies más grandes.</b>
+            <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul cloro.</b>
             <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
           </p>
           <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
@@ -95,6 +144,7 @@
       </figure>
     </div>
   </div>
-  
+</div>
+
 </body>
 </html>

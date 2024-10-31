@@ -58,7 +58,46 @@
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
 }
+/* CSS para centrar el contenedor */
+.search-bar {
+  display: flex;
+  justify-content: center; /* Centramos el contenido horizontalmente */
+  margin-top: 20px; /* Puedes ajustar el margen según sea necesario */
+}
 
+/* Opcional: para ajustar el tamaño del campo de búsqueda */
+.centered-bar {
+  width: 100%; /* Puedes ajustar a un ancho fijo como 50% si prefieres */
+  max-width: 400px; /* Limita el ancho máximo si es necesario */
+}
+
+.search-bar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group-text {
+  background-color: #f8f9fa; /* Color de fondo del texto */
+  color: #6c757d; /* Color del texto */
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+  color: #343a40; /* Color del texto ingresado */
+}
+
+
+/* Color del label para todos los modos */
+.custom-label {
+  color: var(--primary-color); /* Cambia 'aqua' por el color que desees */
+}
+#mat-input{
+color:black;
+}
+.search-bar{
+align-self: center;
+}
 
 /* Aumenta el tamaño de las tarjetas según sea necesario */
 @media (min-width: 768px) {

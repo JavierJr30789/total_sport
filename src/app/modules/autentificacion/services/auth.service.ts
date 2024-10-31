@@ -63,10 +63,22 @@ export class AuthService {
 
   }
 
+  
+    // Método para iniciar sesión con Google
   iniciarSesionConGoogle() {
+    // Configura el proveedor de Google para el inicio de sesión
     const provider = new GoogleAuthProvider();
+    
+    // Agrega el parámetro 'prompt' para mostrar el selector de cuentas
+    provider.setCustomParameters({
+      prompt: 'select_account' // Fuerza a Google a mostrar el selector de cuentas
+    });
+    
+    // Inicia sesión con el proveedor de Google mostrando el selector de cuentas
     return this.auth.signInWithPopup(provider);
   }
+
+  
 
   // Función que busca un usuario en la colección de 'usuarios' cuyo correo electrónico coincida con el valor proporcionado
   obtenerUsuario(email: string) {

@@ -15,6 +15,8 @@ import { AuthService } from 'src/app/modules/autentificacion/services/auth.servi
 export class CardComponent {
   coleccionProducto: Producto[] = [];
   productoSeleccionado!: Producto;
+filtroNombre: string = ''; // Variable de búsqueda
+
   usuarioRegistrado: Usuario = {
     uid: '',
     nombre: '',
@@ -25,6 +27,7 @@ export class CardComponent {
   };
   modalVisible: boolean = false;
   compraVisible: boolean = false;
+  
 
   @Input() productoReciente: string = ''; // Entrada para producto reciente
   @Output() productoAgregado = new EventEmitter<Producto>(); // Salida para producto agregado

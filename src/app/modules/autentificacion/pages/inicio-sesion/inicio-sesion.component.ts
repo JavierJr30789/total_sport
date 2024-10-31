@@ -146,6 +146,7 @@ export class InicioSesionComponent {
 
   // Función para iniciar sesión con Google
   async iniciarSesionConGoogle() {
+    
     try {
       const res = await this.servicioAuth.iniciarSesionConGoogle();
       Swal.fire({
