@@ -33,6 +33,10 @@ img {
   .btn.btn-primary.custom-button {
     display: none; /* Ocultar los botones en móviles */
   }
+  #menuProducto {
+    display: block; /* Asegúrate de que sea visible en pantallas móviles */
+  }
+  
 }
 
 /* Estilos para dispositivos más grandes (ej: computadora) */
@@ -167,3 +171,56 @@ img {
 .hidden {
   display: none;
 }
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column; /* Colocar los elementos en columna */
+  height: 100%; /* Asegúrate de que el cuerpo ocupa todo el espacio */
+  padding: 0; /* Elimina el padding para que no haya espacio extra */
+}
+
+.list-group {
+  flex: 1; /* Asegúrate de que la lista ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column; /* Coloca los items en columna */
+}
+
+.list-group-item {
+  flex: 1; /* Hace que cada item ocupe el mismo espacio */
+}
+
+.offcanvas-button {
+  width: 100%; /* Asegura que cada botón ocupa todo el ancho */
+  height: 100%; /* Asegura que cada botón ocupa todo el alto disponible */
+  display: flex;
+  align-items: center; /* Centra el icono y el texto verticalmente */
+  justify-content: flex-start; /* Alinea el texto a la izquierda */
+}
+
+
+
+.offcanvas-body mat-icon {
+  font-size: 30px; /* Ajusta el tamaño del ícono */
+  margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
+  color: #004a4c; /* Asegúrate de que el color no esté en blanco o transparente */
+}
+
+.offcanvas .offcanvas-body .list-group-item button.mat-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  min-height: 50px; /* Altura mínima para el botón */
+}
+
+.offcanvas .offcanvas-body mat-icon {
+  font-size: 24px; /* Tamaño del icono */
+  width: 32px;     /* Asegura espacio suficiente para el icono */
+  height: 32px;
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
