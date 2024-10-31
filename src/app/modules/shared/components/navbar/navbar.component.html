@@ -27,13 +27,6 @@
   <!-- Título de la aplicación (se ocultará en móviles) -->
   <h1 class="title hidden-on-mobile">Total Sport</h1> <!-- Añadido class hidden-on-mobile -->
 
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-  <style>
-    .title {
-      font-family: "Zen Dots", sans-serif;
-      font-size: xx-large;
-    }
-  </style>
 
   <!-- Espaciador -->
   <span class="spacer"></span>
@@ -48,22 +41,15 @@
   <mat-icon>local_shipping</mat-icon>
 </button>
 
-  <!-- Contenedor del menú del usuario -->
-  <div class="menu-container">
-    <!-- Mostrar la imagen si el usuario está logueado -->
-    <img [hidden]="!isLoggedIn" src="assets/imagenes/icono.png" alt="X" class="profile-image" [matMenuTriggerFor]="usuarioMenu">
-    <!-- Mostrar el ícono si no está logueado -->
-    <button mat-icon-button [hidden]="isLoggedIn" [matMenuTriggerFor]="usuarioMenu">
-      <mat-icon>person</mat-icon>
-    </button>
-  </div>
 
-  <!-- Menú del usuario -->
-  <mat-menu #usuarioMenu="matMenu">
-    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</button>
-    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/inicio-sesion">Iniciar sesión</button>
-    <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar Sesión</button>
-  </mat-menu>
+  
+
+ 
+
+  <!-- Botón para abrir el offcanvas del carrito -->
+  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+    <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon>
+  </button>
 
   <!-- Botón para cambiar el tema -->
   <button mat-button (click)="toggleTheme()">
@@ -72,11 +58,28 @@
     <mat-slide-toggle></mat-slide-toggle>
   </button>
 
-  <!-- Botón para abrir el offcanvas del carrito -->
-  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-    <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon>
-  </button>
+   <!-- Contenedor del menú del usuario -->
+   <div class="menu-container">
+    <!-- Mostrar la imagen si el usuario está logueado -->
+    <img [hidden]="!isLoggedIn" src="assets/imagenes/icono.png" alt="X" class="profile-image" [matMenuTriggerFor]="usuarioMenu">
+    <!-- Mostrar el ícono si no está logueado -->
+    <button mat-icon-button [hidden]="isLoggedIn" [matMenuTriggerFor]="usuarioMenu">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+
+ 
+
+  <!-- Menú del usuario -->
+  <mat-menu #usuarioMenu="matMenu">
+    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</button>
+    <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/inicio-sesion">Iniciar sesión</button>
+    <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar Sesión</button>
+  </mat-menu>
+
+   
 </mat-toolbar>
+  
 
 <!-- Offcanvas del carrito de compras -->
 <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
@@ -132,4 +135,3 @@
       </div>
     </div>
   </div>
-  

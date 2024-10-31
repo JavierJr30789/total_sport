@@ -1,5 +1,4 @@
 <!-- Indica que el componente del carrito está funcionando -->
-<p>carrito works!</p>
 
 <!-- Fila para los productos en el carrito -->
 <div class="row">
@@ -24,11 +23,11 @@
           Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
         </p>
         <!-- Botones para restar y aumentar cantidad del producto -->
-        <button type="button" class="btn btn-primary" (click)="restarCantidad(item)">-</button>
+        <button type="button" class="btn btn-light" (click)="restarCantidad(item)">-</button>
         <span>{{ item.Cantidad }}</span>
-        <button type="button" class="btn btn-primary" (click)="aumentarCantidad(item)">+</button>
+        <button type="button" class="btn btn-light" (click)="aumentarCantidad(item)">+</button>
 
-        <button type="button" class="btn btn-primary"(click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
+        <button type="button" class="btn btn-light"(click)="eliminarProductoDelCarrito(item.Producto.idProducto)">Eliminar</button>
       </div>
     </div>
   </div>

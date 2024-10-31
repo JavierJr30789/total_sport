@@ -4,7 +4,7 @@
   }
   button {
     background-color: var(--primary-color);
-    color: var(--input-color);
+    color: white;
   }
   
   button:hover {
@@ -96,6 +96,11 @@
   flex-direction: column; /* Alinea los elementos en columna */
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
+}
+.card{
+  
+  color: white;
+  background-color: var(--background-image);
 }
 
 /* Aumenta el tamaño de las tarjetas según sea necesario */
