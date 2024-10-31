@@ -202,13 +202,9 @@ img {
 .offcanvas-body mat-icon {
   font-size: 30px; /* Ajusta el tamaño del ícono */
   margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
-  color: red; /* Asegúrate de que el color no esté en blanco o transparente */
+  color: #fff; /* Asegúrate de que el color no esté en blanco o transparente */
 }
-.offcanvas-body mat-icon:hover {
-  font-size: 30px; /* Ajusta el tamaño del ícono */
-  margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
-  color: white; /* Asegúrate de que el color no esté en blanco o transparente */
-}
+
 .offcanvas .offcanvas-body .list-group-item button.mat-menu-item {
   display: flex;
   align-items: center;

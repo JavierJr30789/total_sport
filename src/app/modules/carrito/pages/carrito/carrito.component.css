@@ -6,10 +6,12 @@
     background-color: var(--primary-color);
     color: white;
   }
+
   
+ 
   button:hover {
-    background-color: var(--accent-color); /* Cambia al color de acento cuando el cursor está encima */
-    color: var(--text-color);             /* Puedes modificar el color del texto al pasar el cursor */
+    background-color: white; /* Cambia al color de acento cuando el cursor está encima */
+    color: black;             /* Puedes modificar el color del texto al pasar el cursor */
   }
   .mat-warn {
     background-color: var(--warn-color);
