@@ -1,29 +1,57 @@
 <mat-toolbar>
-  <!-- Logo que abre el menú -->
-  <div class="col-lg-4" [matMenuTriggerFor]="producto" mat-button>
-    <img src="assets/imagenes/logopestaña see.png" alt="Logo">
+
+
+ <!-- Botón para abrir el offcanvas -->
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<!-- Offcanvas estático en el lado izquierdo de la pantalla -->
+<div class="offcanvas offcanvas-start static-offcanvas" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú</h5>
+    <!-- Botón de cierre -->
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <!-- Menú desplegable del producto -->
-<mat-menu #producto="matMenu">
-  <button mat-menu-item routerLink="/inicio">
-    <mat-icon>home</mat-icon> Inicio
-  </button>
-  <button mat-menu-item routerLink="/producto">
-    <mat-icon>list</mat-icon> Todos los productos
-  </button>
-  <button mat-menu-item routerLink="/admin">
-    <mat-icon>admin_panel_settings</mat-icon> Admin
-  </button>
-  <button mat-menu-item routerLink="/carrito">
-    <mat-icon>shopping_cart</mat-icon> Carrito
-  </button>
-  <button mat-menu-item routerLink="/pedidos">
-    <mat-icon>assignment</mat-icon> Mis Pedidos
-  </button>
-  <button mat-menu-item routerLink="/miscompras">
-    <mat-icon>shopping_bag</mat-icon> Comprado
-  </button>
-</mat-menu>
+  <div class="offcanvas-body">
+    <!-- Opciones de menú -->
+    <ul class="list-group">
+      <li class="list-group-item">
+        <button mat-button routerLink="/inicio"  data-bs-dismiss="offcanvas">
+          <mat-icon>home</mat-icon> Inicio
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button mat-button routerLink="/producto" data-bs-dismiss="offcanvas">
+          <mat-icon>list</mat-icon> Todos los productos
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button mat-button routerLink="/admin" data-bs-dismiss="offcanvas">
+          <mat-icon>admin_panel_settings</mat-icon> Admin
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
+          <mat-icon>shopping_cart</mat-icon> Carrito
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button mat-button routerLink="/pedidos" data-bs-dismiss="offcanvas">
+          <mat-icon>assignment</mat-icon> Mis Pedidos
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button mat-button routerLink="/miscompras" data-bs-dismiss="offcanvas">
+          <mat-icon>shopping_bag</mat-icon> Comprado
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
   <!-- Título de la aplicación (se ocultará en móviles) -->
   <h1 class="title hidden-on-mobile">Total Sport</h1> <!-- Añadido class hidden-on-mobile -->
 
