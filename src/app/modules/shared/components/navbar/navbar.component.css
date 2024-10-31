@@ -202,9 +202,13 @@ img {
 .offcanvas-body mat-icon {
   font-size: 30px; /* Ajusta el tamaño del ícono */
   margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
-  color: #004a4c; /* Asegúrate de que el color no esté en blanco o transparente */
+  color: red; /* Asegúrate de que el color no esté en blanco o transparente */
 }
-
+.offcanvas-body mat-icon:hover {
+  font-size: 30px; /* Ajusta el tamaño del ícono */
+  margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
+  color: white; /* Asegúrate de que el color no esté en blanco o transparente */
+}
 .offcanvas .offcanvas-body .list-group-item button.mat-menu-item {
   display: flex;
   align-items: center;
@@ -222,5 +226,53 @@ img {
   justify-content: center;
 }
 
+.offcanvas-header {
+  background-color: var(--offcanvas-bg-color);
+  background-image: var(--offcanvas-gradient);
+  background-repeat: no-repeat;
+}
+.offcanvas-body {
+  background-color: var(--offcanvas-bg-color);
+  background-image: var(--offcanvas-gradient);
+  background-repeat: no-repeat;
+}
+.button-container .btn-primary {
+  background-color: var(--offcanvas-bg-color);
+  background-image: var(--offcanvas-gradient);
+  background-repeat: no-repeat;
+}
 
+.offcanvas-title{
+  color:white
+}
+.offcanvas-body {
+  border: none; /* Quitar cualquier borde del cuerpo del offcanvas */
+  padding: 0; /* Eliminar el padding para evitar espacios no deseados */
+  margin: 0; /* Eliminar margen si es necesario */
+}
 
+.list-group-item {
+  padding: 0; /* Eliminar el padding del li para que el botón ocupe todo el espacio */
+  margin: 0; /* Eliminar el margen del li */
+  background-color: var(--offcanvas-bg-color); /* Color de fondo */
+  color: white; /* Asegurar que el texto sea blanco */
+  border: none; /* Asegurarte de que no haya borde en el li */
+}
+
+.offcanvas-button {
+  width: 100%; /* Hacer que el botón ocupe todo el ancho del li */
+  background-color: var(--offcanvas-bg-color); /* Color de fondo */
+  
+  background-repeat: no-repeat; /* No repetir el fondo */
+  color: white; /* Color del texto del botón */
+  border: none; /* Quitar borde por defecto */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+/* Efecto hover para el botón */
+.offcanvas-button:hover {
+  background-color: rgba(2, 1, 3, 0.8); /* Color al pasar el mouse */
+  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}

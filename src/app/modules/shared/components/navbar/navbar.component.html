@@ -1,71 +1,55 @@
 <mat-toolbar>
 
+  <!-- Botón para abrir el offcanvas -->
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-<!-- Botón para abrir el offcanvas -->
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
-  <mat-icon>menu</mat-icon>
-</button>
-
-<!-- Offcanvas estático en el lado izquierdo de la pantalla -->
-<div class="offcanvas offcanvas-start static-offcanvas" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú</h5>
-    <!-- Botón de cierre -->
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <!-- Offcanvas estático en el lado izquierdo de la pantalla -->
+  <div class="offcanvas offcanvas-start static-offcanvas" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/inicio" data-bs-dismiss="offcanvas">
+            <mat-icon>home</mat-icon> Inicio
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/producto" data-bs-dismiss="offcanvas">
+            <mat-icon>list</mat-icon> Todos los productos
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/admin" data-bs-dismiss="offcanvas">
+            <mat-icon>admin_panel_settings</mat-icon> Admin
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
+            <mat-icon>shopping_cart</mat-icon> Carrito
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/pedidos" data-bs-dismiss="offcanvas">
+            <mat-icon>assignment</mat-icon> Mis Pedidos
+          </button>
+        </li>
+        <li class="list-group-item">
+          <button class="offcanvas-button" mat-button routerLink="/miscompras" data-bs-dismiss="offcanvas">
+            <mat-icon>shopping_bag</mat-icon> Comprado
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="offcanvas-body">
-    <!-- Opciones de menú -->
-    <ul class="list-group">
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/inicio" data-bs-dismiss="offcanvas">
-          <mat-icon>home</mat-icon> Inicio
-        </button>
-      </li>
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/producto" data-bs-dismiss="offcanvas">
-          <mat-icon>list</mat-icon> Todos los productos
-        </button>
-      </li>
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/admin" data-bs-dismiss="offcanvas">
-          <mat-icon>admin_panel_settings</mat-icon> Admin
-        </button>
-      </li>
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
-          <mat-icon>shopping_cart</mat-icon> Carrito
-        </button>
-      </li>
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/pedidos" data-bs-dismiss="offcanvas">
-          <mat-icon>assignment</mat-icon> Mis Pedidos
-        </button>
-      </li>
-      <li class="list-group-item">
-        <button class="offcanvas-button" mat-button routerLink="/miscompras" data-bs-dismiss="offcanvas">
-          <mat-icon>shopping_bag</mat-icon> Comprado
-        </button>
-      </li>
-    </ul>
-  </div>
-</div>
 
+  <h1 class="title hidden-on-mobile">Total Sport</h1>
 
-
-
-  <!-- Título de la aplicación (se ocultará en móviles) -->
-  <h1 class="title hidden-on-mobile">Total Sport</h1> <!-- Añadido class hidden-on-mobile -->
-
-
-  <!-- Espaciador -->
   <span class="spacer"></span>
-
-  
-
-
-  
-
- 
 
   <!-- Botón para abrir el offcanvas del carrito -->
   <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
@@ -79,28 +63,21 @@
     <mat-slide-toggle></mat-slide-toggle>
   </button>
 
-   <!-- Contenedor del menú del usuario -->
-   <div class="menu-container">
-    <!-- Mostrar la imagen si el usuario está logueado -->
+  <!-- Contenedor del menú del usuario -->
+  <div class="menu-container">
     <img [hidden]="!isLoggedIn" src="assets/imagenes/icono.png" alt="X" class="profile-image" [matMenuTriggerFor]="usuarioMenu">
-    <!-- Mostrar el ícono si no está logueado -->
     <button mat-icon-button [hidden]="isLoggedIn" [matMenuTriggerFor]="usuarioMenu">
       <mat-icon>person</mat-icon>
     </button>
   </div>
 
- 
-
-  <!-- Menú del usuario -->
   <mat-menu #usuarioMenu="matMenu">
     <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/registro">Registrarse</button>
     <button mat-menu-item (click)="iniciar()" *ngIf="!isLoggedIn" routerLink="/inicio-sesion">Iniciar sesión</button>
     <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar Sesión</button>
   </mat-menu>
 
-   
 </mat-toolbar>
-  
 
 <!-- Offcanvas del carrito de compras -->
 <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
@@ -111,28 +88,23 @@
   <div class="offcanvas-body">
     <div class="contenedor-productos">
       <ul class="list-group">
-        <!-- Iteración sobre los productos en el carrito -->
         <ng-container *ngFor="let item of productosEnCarrito">
           <li class="list-group-item">
             <div class="card producto-card">
-              <div class="d-flex"> <!-- Agregar un contenedor flex -->
-                <!-- Imagen del producto -->
-                <img [src]="item.Producto.imagen" class="card-img-top" [alt]="item.Producto.nombre" style="max-width: 100px; margin-right: 10px;"> <!-- Ajusta el tamaño de la imagen -->
-                
+              <div class="d-flex">
+                <img [src]="item.Producto.imagen" class="card-img-top" [alt]="item.Producto.nombre" style="max-width: 100px; margin-right: 10px;">
                 <div class="card-body">
-                  <!-- Información del producto -->
                   <p class="card-text">
                     {{ item.Producto.nombre }} <br>
                     {{ item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }} <br>
                     (cantidad: {{ item.Cantidad }}) <br>
                     Subtotal: {{ item.Cantidad * item.Producto.precio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
                   </p>
-                  <!-- Botones para modificar la cantidad y eliminar el producto -->
                   <div class="d-flex justify-content-between align-items-center">
                     <button type="button" class="btn btn-outline-light" (click)="restarCantidad(item)">-</button>
                     <span>{{ item.Cantidad }}</span>
                     <button type="button" class="btn btn-outline-light" (click)="aumentarCantidad(item)">+</button>
-                    <button type="button" class="btn btn-danger" (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">
+                    <button type="button" class="btn btn-outline-danger" (click)="eliminarProductoDelCarrito(item.Producto.idProducto)">
                       <mat-icon class="red-icon">delete</mat-icon>
                     </button>
                   </div>
@@ -141,18 +113,20 @@
             </div>
           </li>
         </ng-container>
-      </ul>
-  
-      <!-- Total de la compra -->
+          <!-- Total de la compra -->
       <div class="card-container">
         <p class="card-text total-compra">
           Total de la compra: {{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}
         </p>
       </div>
-  
+
+      </ul>
+
+    
       <!-- Botón para ir al carrito -->
       <div class="button-container">
-        <button type="button" class="btn btn-primary" (click)="irAlCarrito()">Ir al carrito</button>
+        <button type="button" class="btn btn-outline-light" (click)="irAlCarrito()">Ir al carrito</button>
       </div>
     </div>
   </div>
+</div>
