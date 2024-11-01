@@ -66,49 +66,62 @@ export class CardComponent {
     });
   }
 
-  // Método para agregar un producto al carrito
-  agregarProducto(producto: Producto) {
-    const productoItemCart = { Producto: producto, Cantidad: 1 };
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
-      },
-      buttonsStyling: false
+ // Método para agregar un producto al carrito
+agregarProducto(producto: Producto) {
+  const productoItemCart = { Producto: producto, Cantidad: 1 };
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+
+  if (this.usuarioRegistrado.uid) {
+    // Si el usuario está autenticado, agregar el producto al carrito
+    this.carritoService.agregarProducto(productoItemCart);
+    this.audio.play(); // Reproducir sonido al agregar el producto
+
+    Swal.fire({
+      title: "Producto agregado",
+      text: "El producto ha sido añadido al carrito.",
+      imageUrl: "assets/alertaImagen/agregandoCarrito.jpg", // Imagen personalizada para éxito
+      imageWidth: 300,
+      imageHeight: 300,
+      imageAlt: "Producto agregado",
+      confirmButtonText: "Aceptar"
     });
-
-    if (this.usuarioRegistrado.uid) {
-      // Si el usuario está autenticado, agregar el producto al carrito
-      this.carritoService.agregarProducto(productoItemCart);
-      this.audio.play(); // Reproducir sonido al agregar el producto
-
-      Swal.fire({
-        title: "Producto agregado",
-        text: "El producto ha sido añadido al carrito.",
-        icon: "success",
-      });
-    } else {
-      this.audio2.play(); // Reproducir sonido al agregar el producto
-      // Si el usuario no está autenticado, mostrar un mensaje para que inicie sesión
-      swalWithBootstrapButtons.fire({
-        title: "Operación fallida",
-        text: "No puedes realizar compras sin registrarte previamente.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Iniciar Sesión",
-        cancelButtonText: "Cancelar Operación",
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirigir a la página de inicio de sesión si el usuario confirma
-          this.servicioRutas.navigate(['/inicio-sesion']);
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Mostrar mensaje de operación cancelada
-          swalWithBootstrapButtons.fire({
-            title: "Cancelado",
-          });
-        }
-      });
-    }
+  } else {
+    this.audio2.play(); // Reproducir sonido al intentar agregar sin estar registrado
+    // Si el usuario no está autenticado, mostrar un mensaje para que inicie sesión
+    swalWithBootstrapButtons.fire({
+      title: "Operación fallida",
+      text: "No puedes realizar compras sin registrarte previamente. Asi que Logueate capo",
+      imageUrl: "assets/alertaImagen/logeate.jpg", // Imagen personalizada para advertencia
+      imageWidth: 300,
+      imageHeight: 300,
+      imageAlt: "Registro requerido",
+      showCancelButton: true,
+      confirmButtonText: "Iniciar Sesión",
+      cancelButtonText: "Cancelar Operación",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirigir a la página de inicio de sesión si el usuario confirma
+        this.servicioRutas.navigate(['/inicio-sesion']);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Mostrar mensaje de operación cancelada
+        swalWithBootstrapButtons.fire({
+          title: "Operación cancelada",
+          imageUrl: "assets/alertaImagen/error.jpg", // Imagen para operación cancelada
+          imageWidth: 300,
+          imageHeight: 300,
+          imageAlt: "Operación cancelada",
+          confirmButtonText: "Aceptar"
+        });
+      }
+    });
   }
+}
+
 }
