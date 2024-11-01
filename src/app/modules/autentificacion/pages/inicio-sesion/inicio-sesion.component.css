@@ -9,6 +9,7 @@
     justify-content: center;
 }
 
+
 .boton{
     width: 120px;
     margin: auto;
@@ -20,13 +21,13 @@
   }
   button {
     background-color: var(--primary-color);
-    color: var(--input-color);
+    color: white;
     align-self: center;
     width: 100%;
   }
   button:hover {
-    background-color: var(--text-title-color); /* Cambia esto por el color que desees al pasar el cursor */
-    color: var(--primary-color);       /* Puedes también modificar el color del texto si lo necesitas */
+    background-color: white; /* Cambia esto por el color que desees al pasar el cursor */
+    color: blue;       /* Puedes también modificar el color del texto si lo necesitas */
     cursor: pointer;                      /* Para mostrar el cursor como una mano */
   }
 
