@@ -1,27 +1,77 @@
-img {
-  height: 100px;
-  width: 100px;
+/* Animación para la fila */
+.container {
+  animation-duration: 2.7s;
+  animation-name: animCart;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Cambiar a center para centrar el contenido */
+  align-items: center; /* Alinea verticalmente */
 }
 
-h1 {
-  color: var(--input-color);
-  text-align: center;
-  justify-content: center;
-}
-button {
-  background-color: var(--accent-color);
-  color: var(--text-color);
+/* Clave de animación para el cart */
+@keyframes animCart {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
-.card-header {
-  background-color: var(--background-footer-color);
-  color: var(--input-color);
+/* Estilo de las tarjetas */
+.card {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--primary-color);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  cursor: default;
+  transition: all 400ms ease;
+  display: flex; /* Asegura que el contenido se alinee correctamente */
+  flex-direction: column; /* Permite que los elementos hijos se apilen verticalmente */
 }
-.card-body,
-.row,
+
+/* Animación de las tarjetas sobre el cursor */
+.card:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
+}
+
+/* Define tamaños de las imágenes */
+.card img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: 200px; /* Altura fija para todas las imágenes */
+  object-fit: contain; /* Ajusta la imagen manteniendo su proporción y centrada */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/* Asegura que la imagen esté centrada verticalmente */
+.card-body {
+  display: flex; /* Alinea el contenido de las tarjetas */
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+}
+
+.mt-4.mb-4 {
+  color: white;
+}
+
+.card-title {
+  color: white;
+}
+
+.card-subtitle {
+  color: white;
+}
+
 .list-group-item {
-  background-color: var(--background-color);
-}
-h4 {
-  color: var(--input-color);
+  padding: 0; /* Eliminar el padding del li para que el botón ocupe todo el espacio */
+  margin: 0; /* Eliminar el margen del li */
+  background-color: var(--offcanvas-bg-color); /* Color de fondo */
+  color: white; /* Asegurar que el texto sea blanco */
+  border: none; /* Asegurarte de que no haya borde en el li */
 }

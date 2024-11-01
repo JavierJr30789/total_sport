@@ -49,6 +49,23 @@
   justify-content: flex-start; /* Alinea las tarjetas al inicio */
 }
 
+/* Centra la fila */
+.custom-row {
+  display: flex;
+  justify-content: center; /* Esto centrará los elementos en el eje horizontal */
+}
+
+.custom-card-text{
+  color:green
+}
+
+/* Asegúrate de que la columna tenga el ancho deseado */
+.col-lg-3 {
+  display: flex;
+  justify-content: center; /* Esto asegura que el contenido dentro de la columna se centre */
+  align-items: center; /* Alinea verticalmente el contenido en el medio de la columna */
+}
+
 /* Clave de animación para el cart */
 @keyframes animCart {
   from {

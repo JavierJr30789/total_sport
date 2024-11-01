@@ -1,13 +1,16 @@
 /* Estilo general para la tabla */
 .table {
-    background-color:var(--primary-color); /* Color de fondo */
+    background-color: var(--primary-color); /* Color de fondo */
+    border-collapse: collapse; /* Asegura que los bordes se fusionen */
 }
 
 /* Encabezados de la tabla */
 .table th {
-    background-color:var(--primary-color); /* Color de fondo para encabezados */
+    background-color: var(--primary-color); /* Color de fondo para encabezados */
     color: white; /* Color del texto */
+    border: 1px solid white; /* Bordes blancos para los encabezados */
 }
+
 
 /* Filas de la tabla */
 .table tbody tr {
@@ -18,13 +21,21 @@
     background-color: var(--primary-color); /* Color al pasar el mouse */
 }
 
+/* Celdas de la tabla */
+.table td {
+    border: 1px solid white; /* Bordes blancos para las celdas */
+    padding: 8px; /* Espaciado interno para las celdas */
+    text-align: left; /* Alinear texto a la izquierda */
+}
+
 /* Botones */
 .btn-outline-warning {
     border-color: #ffc107; /* Color del borde */
     color: #ffc107; /* Color del texto */
 }
-.modal-body{
-    background-color:var(--primary-color); /* Color de fondo para encabezados */
+
+.modal-body {
+    background-color: var(--primary-color); /* Color de fondo para encabezados */
     color: white; /* Color del texto */
 }
 
@@ -44,16 +55,14 @@
 }
 
 .btn-outline-primary {
-    border-color: #007bff;
-    color: var(--input-color);
+    border-color: white;
+    color: white;
 }
 
 .btn-outline-primary:hover {
     background-color: #007bff;
-    color: var(--text-color);
+    color: white;
 }
-
-
 
 /* Modal header */
 .modal-header {
@@ -66,12 +75,12 @@
     background-color: var(--primary-color); /* Color de fondo del footer del modal */
 }
 
-.modal-footer{
+.modal-footer {
     text-align: center;
     justify-content: center;
-    }
+}
 
-    /* Estilo para el contenedor del input */
+/* Estilo para el contenedor del input */
 .input-file-container {
     background-color: var(--accent-color); /* Color de fondo */
     padding: 10px;
@@ -126,52 +135,52 @@
     color: rgba(0, 0, 0, 0.87);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  }
-  
-  /* Efecto al hacer focus */
-  .material-style-select:focus {
+}
+
+/* Efecto al hacer focus */
+.material-style-select:focus {
     border-color: #3f51b5; /* Azul Material */
     box-shadow: 0 0 4px #3f51b5;
     outline: none;
-  }
-  
-  /* Placeholder estilo como el label flotante de Material */
-  .material-style-select option[disabled] {
+}
+
+/* Placeholder estilo como el label flotante de Material */
+.material-style-select option[disabled] {
     color: rgba(0, 0, 0, 0.54); /* Color gris similar a Material */
-  }
-  
-  /* Cambiar el tamaño de las opciones */
-  .material-style-select option {
+}
+
+/* Cambiar el tamaño de las opciones */
+.material-style-select option {
     padding: 8px;
-  }
-  
-  /* Estilo de la etiqueta */
-  .form-label {
+}
+
+/* Estilo de la etiqueta */
+.form-label {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
     margin-bottom: 4px;
     display: block;
-  }
-  
-  /* Hacer que el select sea más grande, estilo Material */
-  .material-style-select {
+}
+
+/* Hacer que el select sea más grande, estilo Material */
+.material-style-select {
     height: 40px;
-  }
-  
-  /* Estilo de las esquinas redondeadas */
-  .material-style-select {
+}
+
+/* Estilo de las esquinas redondeadas */
+.material-style-select {
     border-radius: 4px;
-  }
+}
 
-
-
-  
 /* Estilos para dispositivos pequeños (ej: celular) */
 @media (min-width: 300px) and (max-width: 700px) {
     .table thead {
         display: none; /* Oculta los encabezados en dispositivos móviles */
     }
-    .table, .table tbody, .table tr, .table td {
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
         display: block; /* Cambia a bloque para que se apilen */
         width: 100%; /* Asegura que ocupen el ancho completo */
     }
@@ -192,11 +201,25 @@
         font-weight: bold; /* Hace las etiquetas en negrita */
     }
 
-    .table td:nth-child(1)::before { content: "#"; }
-    .table td:nth-child(2)::before { content: "Imagen:"; }
-    .table td:nth-child(3)::before { content: "Nombre:"; }
-    .table td:nth-child(4)::before { content: "Precio:"; }
-    .table td:nth-child(5)::before { content: "Descripción:"; }
-    .table td:nth-child(6)::before { content: "Categoría:"; }
-    .table td:nth-child(7)::before { content: "Acciones:"; }
+    .table td:nth-child(1)::before {
+        content: "#";
+    }
+    .table td:nth-child(2)::before {
+        content: "Imagen:";
+    }
+    .table td:nth-child(3)::before {
+        content: "Nombre:";
+    }
+    .table td:nth-child(4)::before {
+        content: "Precio:";
+    }
+    .table td:nth-child(5)::before {
+        content: "Descripción:";
+    }
+    .table td:nth-child(6)::before {
+        content: "Categoría:";
+    }
+    .table td:nth-child(7)::before {
+        content: "Acciones:";
+    }
 }

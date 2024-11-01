@@ -156,10 +156,12 @@ img {
 
 
 
-
+.custom-button .mat-icon {
+  color: white; /* Cambia el color del icono en hover */
+}
 /* Cambia el color en estado hover del botón */
 .custom-button:hover .mat-icon {
-  color: var(--background-footer-color); /* Cambia el color del icono en hover */
+  color: cyan; /* Cambia el color del icono en hover */
 }
 
 /* Estilo adicional para centrar el total de la compra */

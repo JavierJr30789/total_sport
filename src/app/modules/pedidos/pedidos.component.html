@@ -1,11 +1,11 @@
 <!-- Título de la sección de pedidos realizados -->
-<h1 class="mt-4 mb-4">Pedidos Realizados <span class="text-danger">&hearts;</span></h1>
+<h1 class="mt-4 mb-4 text-center">Pedidos Realizados <span class="text-danger">&hearts;</span></h1>
 
-<div class="container">
+<div class="container text-center">
   <!-- Mostrar pedidos si existen, de lo contrario mostrar mensaje de no hay pedidos -->
   <div *ngIf="pedidos.length > 0; else noPedidos">
     <!-- Iteración sobre la lista de pedidos -->
-    <div *ngFor="let pedido of pedidos" class="card mb-4">
+    <div *ngFor="let pedido of pedidos" class="card mb-4 mx-auto" style="max-width: 600px;">
       <!-- Encabezado de la tarjeta de pedido -->
       <div class="card-header">
         <h3 class="card-title">Pedido realizado por: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}</h3>
@@ -35,15 +35,16 @@
           <h3 class="text-success">Precio Total: {{ pedido.totalprecio | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</h3>
         </div>
         <!-- Botón para despachar producto -->
-        <button (click)="despacharPedido(pedido.id)" class="btn btn-warning mt-3">Despachar Producto</button>
+        <button (click)="despacharPedido(pedido.id)" class="btn btn-outline-light mt-3">Despachar Producto</button>
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- Plantilla para mostrar mensaje cuando no hay pedidos -->
 <ng-template #noPedidos>
   <div class="alert alert-warning text-center mt-4">
-    <p>No hay pedidos realizados.</p>
+    <p><b>No hay pedidos realizados.</b></p>
   </div>
 </ng-template>

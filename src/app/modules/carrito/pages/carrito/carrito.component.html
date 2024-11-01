@@ -36,19 +36,17 @@
 <br>
 <br>
 <!-- Contenedor para el subtotal y el botón de confirmación -->
-<div class="row">
-  <div class="col-lg-12">
-    <div class="col-lg-3">
-      <div class="card"style="border: 1px solid white;">
-        <!-- Encabezado de la tarjeta de resumen de compra -->
-        <h5 class="card-header"> Total de la compra</h5>
-        <div class="card-body">
-          <h5 class="card-title">Subtotal</h5>
-          <!-- Texto del subtotal con formato de moneda -->
-          <p class="card-text">{{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
-          <!-- Botón para confirmar la compra -->
-          <button (click)="confirmarCompra()" class="btn btn-light">Confirmar Compra</button>
-        </div>
+<div class="custom-row justify-content-center"> <!-- Asegúrate de que el contenedor de fila esté centrado -->
+  <div class="col-lg-3">
+    <div class="card" style="border: 1px solid white;">
+      <!-- Encabezado de la tarjeta de resumen de compra -->
+      <h5 class="card-header"> Total de la compra</h5>
+      <div class="card-body">
+        <h5 class="card-title">Subtotal</h5>
+        <!-- Texto del subtotal con formato de moneda -->
+        <p class="custom-card-text">{{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
+        <!-- Botón para confirmar la compra -->
+        <button (click)="confirmarCompra()" class="btn btn-light">Confirmar Compra</button>
       </div>
     </div>
   </div>
