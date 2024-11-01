@@ -53,8 +53,16 @@ button {
 }
 
 .main-content {
-  flex: 1;
-  margin-top: 450px; /* Espacio superior */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+app-footer {
+  margin-top: 0; /* Quitar márgenes superiores */
+  padding-top: 0; /* Quitar paddings superiores */
 }
 
 

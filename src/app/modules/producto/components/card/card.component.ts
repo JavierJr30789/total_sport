@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/modules/autentificacion/services/auth.servi
 export class CardComponent {
   coleccionProducto: Producto[] = [];
   productoSeleccionado!: Producto;
-filtroNombre: string = ''; // Variable de búsqueda
+  filtroNombre: string = ''; // Variable de búsqueda
 
   usuarioRegistrado: Usuario = {
     uid: '',
@@ -27,7 +27,10 @@ filtroNombre: string = ''; // Variable de búsqueda
   };
   modalVisible: boolean = false;
   compraVisible: boolean = false;
+
+  private audio = new Audio(); // Define el audio aquí
   
+  private audio2 = new Audio(); // Define el audio aquí
 
   @Input() productoReciente: string = ''; // Entrada para producto reciente
   @Output() productoAgregado = new EventEmitter<Producto>(); // Salida para producto agregado
@@ -37,7 +40,12 @@ filtroNombre: string = ''; // Variable de búsqueda
     private carritoService: CarritoService,
     public servicioRutas: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    this.audio.src = 'assets/sounds/agregarCarrito.mp3'; // Ruta a tu archivo de sonido
+    this.audio.load(); // Cargar el archivo de sonido
+    this.audio2.src = 'assets/sounds/logeate.mp3';
+    this.audio2.load()
+  }
 
   ngOnInit(): void {
     // Cargamos los productos desde el servicio al iniciar el componente.
@@ -72,12 +80,15 @@ filtroNombre: string = ''; // Variable de búsqueda
     if (this.usuarioRegistrado.uid) {
       // Si el usuario está autenticado, agregar el producto al carrito
       this.carritoService.agregarProducto(productoItemCart);
+      this.audio.play(); // Reproducir sonido al agregar el producto
+
       Swal.fire({
         title: "Producto agregado",
         text: "El producto ha sido añadido al carrito.",
         icon: "success",
       });
     } else {
+      this.audio2.play(); // Reproducir sonido al agregar el producto
       // Si el usuario no está autenticado, mostrar un mensaje para que inicie sesión
       swalWithBootstrapButtons.fire({
         title: "Operación fallida",
