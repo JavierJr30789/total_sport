@@ -29,10 +29,7 @@ img {
   .hidden-on-mobile { /* Clase para ocultar el título en móviles */
     display: none;
   }
-  /* Ocultar botones en dispositivos pequeños */
-  .btn.btn-primary.custom-button {
-    display: none; /* Ocultar los botones en móviles */
-  }
+  
   #menuProducto {
     display: block; /* Asegúrate de que sea visible en pantallas móviles */
   }
