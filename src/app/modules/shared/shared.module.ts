@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
 import { PedidosComponent } from '../pedidos/pedidos.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -37,7 +38,8 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
     MatSlideToggleModule,
     MatBadgeModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTooltipModule
   ],
   exports:[
     NavbarComponent,
@@ -47,7 +49,8 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
     MatToolbarModule,
     MatIconModule,
     MatSlideToggleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTooltipModule
 
   ]
 })

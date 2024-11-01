@@ -162,6 +162,12 @@ img {
 .mat-icon {
   color: white; /* Cambia el color del icono */
 }
+.btn-close {
+  padding: 0.5em;
+  background-color: red;
+  color: white;
+}
+
 
 
 

@@ -69,12 +69,22 @@
     background-color: var(--primary-color); /* Color de fondo del header del modal */
     color: var(--text-color); /* Color del texto */
 }
-
-/* Modal footer */
-.modal-footer {
-    background-color: var(--primary-color); /* Color de fondo del footer del modal */
+/* Estilo para el fondo del modal */
+.modal-content {
+    background: var(--offcanvas-gradient); /* Aplica el degradado */
+    color: white; /* Color de texto en blanco */
+    border: none; /* Elimina el borde del modal */
 }
 
+/* Opcional: Ajusta el fondo del pie de página si deseas que coincida */
+.modal-footer {
+    background-color: var(--background-footer-color);
+}
+
+/* Estilos para las etiquetas y el texto fuera de los inputs */
+.modal-body .form-label {
+    color: white;
+}
 .modal-footer {
     text-align: center;
     justify-content: center;
@@ -82,7 +92,7 @@
 
 /* Estilo para el contenedor del input */
 .input-file-container {
-    background-color: var(--accent-color); /* Color de fondo */
+    background-color: var(--offcanvas-gradient); /* Color de fondo */
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -101,24 +111,22 @@
 .input-file-container input[type="file"] {
     display: none; /* Oculta el input nativo */
 }
-
-/* Estilo para el botón personalizado que reemplaza el input nativo */
-.custom-file-upload {
-    border: 2px solid var(--input-color); /* Borde personalizado */
-    background-color: transparent;
-    color: var(--accent-color); /* Color del texto */
+/* Estilo del botón personalizado como outlined white */
+.input-file-container .custom-file-upload {
+    border: 2px solid white; /* Borde blanco */
+    background-color: transparent; /* Fondo transparente */
+    color: white; /* Texto en blanco */
     padding: 5px 15px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover para el botón personalizado */
-.custom-file-upload:hover {
-    background-color: var(--text-title-color); /* Color de fondo al hacer hover */
-    color: white; /* Color del texto al hacer hover */
+/* Hover para el botón outlined white */
+.input-file-container .custom-file-upload:hover {
+    background-color: white; /* Fondo blanco al hacer hover */
+    color: #0d055c; /* Color de texto oscuro para contraste en hover */
 }
-
 /* Estilo para el texto de la imagen cargada */
 .file-name {
     margin-left: 10px;

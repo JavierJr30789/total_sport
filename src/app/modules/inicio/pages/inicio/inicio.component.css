@@ -13,6 +13,35 @@
 }
 
 
+.section{
+    background-color: var(--primary-color); /* color de fondo del section */
+    display: flex; /* hacemos los elementos flexibles */
+    justify-content: space-between; /* alineamos los elementos */
+    width: 50%; /* siempre va a ocupar el 50 porciento */
+    margin: 15px auto; /* 15 pixeles desde arriba hacia abajo y automatico a los lados */
+    border-radius: 20px; /* redondeamos las puntas */
+    box-shadow: 10px 10px 10px rgba (0,0,0, .5); /* sombra del section */
+    position: relative;
+    border: 2px solid #007bff; /* Ajusta el color y el grosor */
+    padding: 20px 20px 20px 60px; /* Espacio para que el contenido no se superponga a la imagen */
+}
+
+.section img{
+    width: 280px;
+    left: -52px;
+    border-radius: 20px; /* redondeamos los bordes de la imagen */
+}
+
+.section h1{
+margin: 0;
+font-size: 2.5em;
+padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
+}
+
+.section p{
+    margin-right: 15px;
+    margin-top: 50px; /* Ajusta el valor para crear espacio suficiente debajo del h1 */
+}
 .slide,
 .content-carrousel {
   max-width: 700px;

@@ -108,8 +108,7 @@ export class CarritoComponent implements OnInit {
 
 // Confirmar la compra
 confirmarCompra() {
-  // Reproducir sonido
-  this.audio.play();
+
 
   const uid = this.authService.obtenerUid();
 
@@ -128,6 +127,8 @@ confirmarCompra() {
     });
   } else {
     // Lógica para confirmar la compra
+      // Reproducir sonido
+  this.audio.play();
     if (this.productosEnCarrito.length === 0 || !this.usuarioActual) {
       console.error("No hay productos en el carrito o no hay usuario autenticado");
       return;

@@ -6,6 +6,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatMenuTrigger } from '@angular/material/menu';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
