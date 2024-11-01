@@ -14,37 +14,49 @@ img {
   }
 
 
-/* Estilos para dispositivos pequeños (ej: celular) */
-@media (min-width: 300px) and (max-width: 700px) {
-  mat-toolbar {
-    background-color: aqua; /* Color de fondo en móviles */
-  }
-  #menuInicio {
-    display: none; /* Ocultar botón en móviles */
-  }
-  #menuProducto {
-    display: none; /* Ocultar botón en móviles */
-  }
+/* Estilos generales */
+.hidden-on-mobile {
+  display: block; /* Mostrar en pantallas grandes */
+}
+.hidden-on-desktop {
+  display: none; /* Ocultar en pantallas grandes */
+}
 
-  .hidden-on-mobile { /* Clase para ocultar el título en móviles */
-    display: none;
+/* Estilos para dispositivos pequeños (ej: celular) */
+@media (max-width: 700px) {
+  /* Oculta el título y muestra la imagen en dispositivos móviles */
+  .hidden-on-mobile {
+      display: none; /* Ocultar título en móviles */
   }
-  
+  .logo-on-mobile {
+      display: block; /* Mostrar imagen en móviles */
+      width: 60px; /* Ajusta el tamaño de la imagen según sea necesario */
+      height: auto;
+      margin: auto;
+  }
+  .custom-button {
+    display: none; /* Oculta el botón en pantallas pequeñas */
+  }
+  #menuInicio,
   #menuProducto {
-    display: block; /* Asegúrate de que sea visible en pantallas móviles */
+      display: none; /* Ocultar botones específicos en móviles */
   }
-  
 }
 
 /* Estilos para dispositivos más grandes (ej: computadora) */
 @media (min-width: 700px) {
+  /* Muestra el título y oculta la imagen en dispositivos grandes */
+  .hidden-on-desktop {
+      display: none; /* Ocultar imagen en pantallas grandes */
+  }
   mat-toolbar {
-    background-color: blueviolet; /* Color de fondo en pantallas grandes */
+      background-color: blueviolet; /* Color de fondo en pantallas grandes */
   }
   #menuSecciones {
-    display: none; /* Ocultar botón en pantallas grandes */
+      display: none; /* Ocultar botón en pantallas grandes */
   }
 }
+
 
 .spacer {
   flex: 1 1 auto;
@@ -222,9 +234,7 @@ img {
 }
 
 .offcanvas-header {
-  background-color: var(--offcanvas-bg-color);
-  background-image: var(--offcanvas-gradient);
-  background-repeat: no-repeat;
+  background-color: rgb(32, 38, 133);
 }
 .offcanvas-body {
   background-color: var(--offcanvas-bg-color);

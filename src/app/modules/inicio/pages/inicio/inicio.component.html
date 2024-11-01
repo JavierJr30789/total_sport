@@ -6,10 +6,6 @@
 </head>
 
 <body>
-  
-
-
-
   <div class="slide">
     <div class="slide-inner">
       <ng-container *ngFor="let producto of productosPorCategoria; let i = index">
@@ -41,13 +37,16 @@
     <div class="button-container">
       <p class="text-above-button">Explora más de nuestros productos:</p>
       <button mat-button [routerLink]="['/producto']">Ver más productos</button>
+      
     </div>
     
   </div>
+
+<!-- inicio.component.html -->
+<div class="inicio">
   
-
-
-
+  <div class="carrusel-container">
+      
 <!-- Carrusel 3D que se muestra solo en pantallas de computadora -->
 <div class="d-none d-md-block"> <!-- Solo visible en computadoras -->
   <div class="content-all">
@@ -140,7 +139,10 @@
   </div>
 </div>
 
-
-
+  </div>
+  <div class="contenido">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+</div>
 </body>
 </html>
