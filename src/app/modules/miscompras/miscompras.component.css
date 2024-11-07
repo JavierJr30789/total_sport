@@ -1,5 +1,5 @@
 .mis-compras-container {
-  background-color: var(--background-color); /* Fondo claro */
+  background-color: var( --offcanvas-gradient); /* Fondo claro */
   padding: 20px;
   border-radius: 10px;
 }
@@ -14,6 +14,8 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
+ background-color:  var( --offcanvas-gradient);
+ 
 }
 
 .producto-imagen {
@@ -33,10 +35,10 @@
   color: var(--input-color);
 }
 .pedido-header{
-  color: var(--text-color);
-  background-color: var(--background-footer-color);
+  color: white;
+  background-color: var( --offcanvas-gradient);
 }
 .card-body{
-  background-color: var(--background-color);
-  color: var(--input-color);
+  background-color: var( --offcanvas-gradient);
+  color: white;
 }
