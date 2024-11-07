@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -35,7 +36,8 @@ import { MiscomprasComponent } from './modules/miscompras/miscompras.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    MatTooltipModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-AR' }

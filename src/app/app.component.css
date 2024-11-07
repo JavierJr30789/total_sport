@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
 h1 {
-    font-family: "Zen Dots", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: "Zen Dots", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
-  /* Variables para el tema claro */
-
+/* Variables para el tema claro */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -46,35 +45,36 @@ button {
   background-color: var(--accent-color);
 }
 
+/* Estructura principal */
 :host {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Asegura que la altura mínima sea 100vh */
+}
+
+.app-container {
+  display: flex; /* Habilita Flexbox */
+  flex-direction: column; /* Organiza los elementos en una columna */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+app-navbar {
+  flex: 0 0 60px; /* Fija la altura del navbar a 60px */
+}
+
+router-outlet {
+  flex: 1; /* Ocupa el espacio restante */
+  padding: 20px; /* Espaciado interno */
+  overflow: auto; /* Agrega scroll si es necesario */
 }
 
 .main-content {
-  flex: 1;
-  margin-top: 450px; /* Espacio superior */
+  display: flex;
+  flex-direction: column; /* Para permitir que el footer se coloque al final */
 }
 
-
-
-/* Aplica las variables a otros componentes según sea necesario */
-
-/* Variables para el tema claro */
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --primary-color: #27ea00; /* Color frío */
-  --accent-color: #ff9800;  /* Color cálido */
-  --warn-color: #3f0c09;    /* Color cálido */
-}
-
-/* Variables para el tema oscuro */
-:root.dark-theme {
-  --background-color: #121212;
-  --text-color: #ffffff;
-  --primary-color: #6700e6; /* Color frío */
-  --accent-color: #ff5722;  /* Color cálido */
-  --warn-color: #46071c;    /* Color cálido */
+app-footer {
+  flex: 0 0 40px; /* Fija la altura del footer a 40px, puedes ajustar este valor */
+  margin-top: auto; /* Asegura que el footer esté al final */
+  padding-top: 0; /* Quitar paddings superiores */
 }

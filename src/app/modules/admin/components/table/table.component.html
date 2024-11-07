@@ -57,27 +57,30 @@
                 <div class="mb-3">
                     <label class="form-label" style="color: var(--text-color);">Ingrese el nombre del producto:</label>
                     <input class="form-control" type="text" formControlName="nombre"
-                        placeholder="Ej.: Medias de chanchitos">
+                        placeholder="Ej.: Pelota de futbol">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" style="color: var(--text-color);">Ingrese descripción del producto:</label>
                     <input class="form-control" type="text" formControlName="descripcion"
-                        placeholder="Ej.: Medias hechas de  algodón">
+                        placeholder="Ej.: esferico, caprichosa, la redonda">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" style="color: var(--text-color);">Ingrese el precio:</label>
-                    <input class="form-control" type="number" formControlName="precio" placeholder="...">
+                    <input class="form-control" type="number" formControlName="precio" placeholder="...$$">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" style="color: var(--text-color);">Seleccione una categoría:</label>
                     <select class="form-control form-select" formControlName="categoria" aria-label="Default select example">
-                        <option disabled selected>Elija una opción</option>
-                        <option value="alimentacion">Alimentación</option>
+                        <option disabled selected>Elija una categoria</option>
+                        <option value="futbol">Futbol</option>
+                        <option value="voley">Voley</option>
+                        <option value="basquet">Basquet</option>
                         <option value="indumentaria">Indumentaria</option>
-                        <option value="juguetes">Juguete</option>
+                        <option value="boxeo">Boxeo</option>
+                        <option value="ciclismo">Ciclismo</option>
                     </select>
                 </div>
 
@@ -138,11 +141,13 @@
                 <div class="mb-3">
                     <label class="form-label">Seleccione una categoría:</label>
                     <select class="form-control form-select styled-select" formControlName="categoria" aria-label="Default select example">
-                      <option disabled selected>Elija una opción</option>
+                      <option disabled selected>Elija una categoria</option>
                       <option value="futbol">Futbol</option>
                       <option value="voley">Voley</option>
                       <option value="basquet">Basquet</option>
-                      <option value="indumentaria">indumentaria</option>
+                      <option value="indumentaria">Indumentaria</option>
+                      <option value="boxeo">Boxeo</option>
+                      <option value="ciclismo">Ciclismo</option>
                     </select>
                   </div>
 

@@ -44,7 +44,7 @@
       <div class="card-body">
         <h5 class="card-title">Subtotal</h5>
         <!-- Texto del subtotal con formato de moneda -->
-        <p class="custom-card-text">{{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</p>
+        <p class="custom-card-text"><b>{{ calcularTotal() | currency:'ARS':'symbol':'1.0-0':'es-AR' }}</b></p>
         <!-- Botón para confirmar la compra -->
         <button (click)="confirmarCompra()" class="btn btn-light">Confirmar Compra</button>
       </div>

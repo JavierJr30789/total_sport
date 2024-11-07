@@ -16,13 +16,13 @@
   }
   button {
     background-color: var(--primary-color);
-    color: var(--input-color);
+    color: rgb(0, 21, 255);
     align-self: center;
     width: 100%;
   }
   button:hover {
-    background-color: var(--text-title-color); /* Cambia esto por el color que desees al pasar el cursor */
-    color: var(--primary-color);       /* Puedes también modificar el color del texto si lo necesitas */
+    background-color: white; /* Cambia esto por el color que desees al pasar el cursor */
+    color: blue;       /* Puedes también modificar el color del texto si lo necesitas */
     cursor: pointer;                      /* Para mostrar el cursor como una mano */
   }
 
@@ -93,10 +93,11 @@ button.toggle-password-btn:hover {
     height: 18px;
     border: 2px solid #007bff; /* Cambia el color del borde */
     border-radius: 3px; /* Esquinas redondeadas */
-    
-   
-    
+      
 }
-  /* Aplica las variables a otros componentes según sea necesario */
-  /* Variables para el tema claro */
- 
+p{
+  color: black;
+}
+#termsModalLabel{
+  color: black;
+}

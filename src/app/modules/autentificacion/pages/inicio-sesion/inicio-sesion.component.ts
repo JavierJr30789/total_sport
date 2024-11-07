@@ -16,11 +16,20 @@ export class InicioSesionComponent {
   // captchaResolved = false;
   // captchaResponse: string | null = null;
 
+  private audioRegistroExitoso = new Audio(); // Ruta al audio de registro exitoso
+  private audioRegistroFallido = new Audio(); // Ruta al audio de registro fallido
+
   constructor(
     public servicioAuth: AuthService,
     public servicioFirestore: FirestoreService,
     public servicioRutas: Router
-  ) { }
+  ) {
+    
+    this.audioRegistroExitoso.src = 'assets/sounds/loginExitoso.mp3'; // Ruta a tu archivo de sonido
+    this.audioRegistroExitoso.load(); // Cargar el archivo de sonido
+    this.audioRegistroFallido.src = 'assets/sounds/fallo2.mp3'; // Ruta a tu archivo de sonido
+    this.audioRegistroFallido.load(); // Cargar el archivo de sonido
+  }
 
   // Resuelto del Captcha (comentado)
   // resolvedCaptcha(captchaResponse: string) {
@@ -84,7 +93,12 @@ export class InicioSesionComponent {
       // Iniciamos sesión con las credenciales proporcionadas
       const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
         .then(res => {
-          alert('¡Se ha logueado con éxito! :D');
+          this.audioRegistroExitoso.play(); // Reproducir sonido de registro fallido
+          Swal.fire({
+            title: "¡Buen trabajo!",
+            text: "¡Inicio sesion con exito! :)",
+            icon: "success"
+          });
           // Almacena el rol del usuario en el servicio de autenticación
           this.servicioAuth.enviarRolUsuario(usuarioData.rol);
           if (usuarioData.rol === "admin") {
@@ -96,6 +110,7 @@ export class InicioSesionComponent {
           }
         })
         .catch(err => {
+          this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
           alert('Hubo un problema al iniciar sesión :( ' + err);
           this.limpiarInputs();
         });
@@ -148,15 +163,18 @@ export class InicioSesionComponent {
   async iniciarSesionConGoogle() {
     
     try {
+      
       const res = await this.servicioAuth.iniciarSesionConGoogle();
       Swal.fire({
         text: "¡Se ha logueado con Google exitosamente! :D",
         icon: "success"
       });
+      this.audioRegistroExitoso.play(); // Reproducir sonido de registro fallido
       this.servicioRutas.navigate(['/inicio']);
     } catch (error: any) { // Definimos el tipo de error como 'any'
+      this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
       Swal.fire({
-        text: "Hubo un problema al iniciar sesión con Google: " + error.message,
+        text: "Hubo un problema al iniciar sesión con Google: ",
         icon: "error"
       });
     }

@@ -1,20 +1,30 @@
 <mat-toolbar>
 
-  <!-- Botón para abrir el offcanvas -->
-  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+  <!-- Botón para abrir el offcanvas (MENu)-->
+  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+  matTooltip="Menu"
+  aria-label="Button that displays a tooltip when focused or hovered over">
     <mat-icon>menu</mat-icon>
   </button>
+  <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+    <img src="assets/imagenes/logopestaña see.png" alt="Total Sport Logo" class="logo-on-mobile hidden-on-desktop"
+    matTooltip="Menu"
+    aria-label="Button that displays a tooltip when focused or hovered over"/>
+  </button>
+  
 
   <!-- Offcanvas estático en el lado izquierdo de la pantalla -->
   <div class="offcanvas offcanvas-start static-offcanvas" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+        
+      </button>
     </div>
     <div class="offcanvas-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <button class="offcanvas-button" mat-button routerLink="/inicio" data-bs-dismiss="offcanvas">
+          <button class="offcanvas-button" mat-button routerLink="/inicio" data-bs-dismiss="offcanvas" >
             <mat-icon>home</mat-icon> Inicio
           </button>
         </li>
@@ -30,7 +40,7 @@
         </li>
         <li class="list-group-item">
           <button class="offcanvas-button" mat-button routerLink="/carrito" data-bs-dismiss="offcanvas">
-            <mat-icon>shopping_cart</mat-icon> Carrito
+            <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon> Carrito de Compras
           </button>
         </li>
         <li class="list-group-item">
@@ -49,15 +59,19 @@
 
   <h1 class="title hidden-on-mobile">Total Sport</h1>
 
+
   <span class="spacer"></span>
 
   <!-- Botón para abrir el offcanvas del carrito -->
-  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+  <button class="btn btn-primary custom-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito"
+  matTooltip="Carrito"
+  aria-label="Button that displays a tooltip when focused or hovered over">
     <mat-icon matBadge="{{ cantidadTotalProductos }}">add_shopping_cart</mat-icon>
   </button>
 
   <!-- Botón para cambiar el tema -->
-  <button mat-button (click)="toggleTheme()">
+  <button mat-button (click)="toggleTheme()" matTooltip="modo noche"
+  aria-label="Button that displays a tooltip when focused or hovered over">
     <mat-icon>{{ isDarkTheme ? 'brightness_3' : 'wb_sunny' }}</mat-icon>
     <label for="toggle" id="label_toggle"></label>
     <mat-slide-toggle></mat-slide-toggle>
@@ -65,8 +79,11 @@
 
   <!-- Contenedor del menú del usuario -->
   <div class="menu-container">
-    <img [hidden]="!isLoggedIn" src="assets/imagenes/icono.png" alt="X" class="profile-image" [matMenuTriggerFor]="usuarioMenu">
-    <button mat-icon-button [hidden]="isLoggedIn" [matMenuTriggerFor]="usuarioMenu">
+    <img [hidden]="!isLoggedIn" src="assets/imagenes/icono.png" alt="X" class="profile-image" [matMenuTriggerFor]="usuarioMenu"
+    matTooltip="Usuario"
+    aria-label="Button that displays a tooltip when focused or hovered over">
+    <button mat-icon-button [hidden]="isLoggedIn" [matMenuTriggerFor]="usuarioMenu" matTooltip="Usuario"
+    aria-label="Button that displays a tooltip when focused or hovered over">
       <mat-icon>person</mat-icon>
     </button>
   </div>
@@ -125,7 +142,7 @@
     
       <!-- Botón para ir al carrito -->
       <div class="button-container">
-        <button type="button" class="btn btn-outline-light" (click)="irAlCarrito()">Ir al carrito</button>
+        <button type="button" class="btn btn-outline-light" (click)="irAlCarrito()"  data-bs-dismiss="offcanvas">Ir al carrito</button>
       </div>
     </div>
   </div>

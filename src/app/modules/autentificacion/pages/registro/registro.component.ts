@@ -29,19 +29,29 @@ export class RegistroComponent {
     nombre: '',
     apellido: '',
     email: '',
-     rol: 'vis',
+    rol: 'vis',
     password: ''
   }
 
   // CREAR UNA COLECCIÓN QUE SOLO RECIBE OBJETOS DEL TIPO USUARIOS
   coleccionUsuarios: Usuario[] = [];
 
+  // Define los objetos de audio
+  private audioRegistroExitoso = new Audio(); // Ruta al audio de registro exitoso
+  private audioRegistroFallido = new Audio(); // Ruta al audio de registro fallido
+
   // Referenciamos a nuestros servicios
   constructor(
     public servicioAuth: AuthService, // métodos de autentificación
     public servicioFirestore: FirestoreService, // vincula UID con la colección
     public servicioRutas: Router // método de navegación
-  ){}
+  ){
+
+    this.audioRegistroExitoso.src = 'assets/sounds/registrado.mp3'; // Ruta a tu archivo de sonido
+    this.audioRegistroExitoso.load(); // Cargar el archivo de sonido
+    this.audioRegistroFallido.src = 'assets/sounds/error1.mp3'; // Ruta a tu archivo de sonido
+    this.audioRegistroFallido.load(); // Cargar el archivo de sonido
+  }
 
   // Método para abrir el modal
   openModal() {
@@ -51,18 +61,18 @@ export class RegistroComponent {
 
   closeModal() {
     // Lógica para cerrar el modal
-    
   }
 
   aceptarTerminos() {
     this.aceptaTerminos = true;
-}
+  }
 
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar() {
     const usuarioExistente = await this.servicioAuth.obtenerUsuario(this.usuarios.email);
   
     if (usuarioExistente && !usuarioExistente.empty) {
+      this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
       Swal.fire({
         title: "Error",
         text: "Este correo ya está registrado.",
@@ -80,6 +90,7 @@ export class RegistroComponent {
     const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
     // El método THEN nos devuelve la respuesta esperada por la promesa
     .then(res => {
+      this.audioRegistroExitoso.play(); // Reproducir sonido de registro exitoso
       Swal.fire({
         title: "¡Buen trabajo!",
         text: "¡Se pudo registrar con éxito! :)",
@@ -92,104 +103,88 @@ export class RegistroComponent {
     })
     // El método CATCH toma una falla y la vuelve un ERROR
     .catch(error => {
+      this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
       Swal.fire({
         title: "¡Oh no!",
         text: "Hubo un problema al registrar el nuevo usuario :(",
         icon: "error"
       });
-    })
+    });
 
     const uid = await this.servicioAuth.obtenerUid();
-
     this.usuarios.uid = uid;
 
     // ENCRIPTACIÓN DE LA CONTRASEÑA DE USUARIO
-    /**
-     * SHA-256: Es un algoritmo de hashing seguro que toma una entrada (en este caso la
-     * contraseña) y produce una cadena de caracteres HEXADECIMAL que representa su HASH
-     * 
-     * toString(): Convierte el resultado del hash en una cadena de caracteres legible
-     */
     this.usuarios.password = CryptoJS.SHA256(this.usuarios.password).toString();
 
     // this.guardarUsuario() guardaba la información del usuario en la colección
     this.guardarUsuario();
 
-    
-
-console.log(this.usuarios); // Verifica si los datos están completos
-this.enviarCorreoDeAgradecimiento(this.usuarios);
-
-    
-     // Si el registro es exitoso, llama a la función para enviar el correo
-  this.enviarCorreoDeAgradecimiento(this.usuarios);
-
+    console.log(this.usuarios); // Verifica si los datos están completos
+    this.enviarCorreoDeAgradecimiento(this.usuarios);
 
     // Llamamos a la función limpiarInputs() para que se ejecute
     this.limpiarInputs();
-
-
-   
-
   }
-// Función para agregar un nuevo usuario
-async guardarUsuario() {
-  // Verifica si el UID está vacío
-  if (!this.usuarios.uid) {
+
+  // Función para agregar un nuevo usuario
+  async guardarUsuario() {
+    // Verifica si el UID está vacío
+    if (!this.usuarios.uid) {
       console.error('El UID está vacío. No se puede guardar el usuario.');
       return;
-  }
+    }
 
-  // Llama al servicio de Firestore para agregar un usuario
-  this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
+    // Llama al servicio de Firestore para agregar un usuario
+    this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
       .then(res => {
-          console.log(this.usuarios);
+        console.log(this.usuarios);
       })
       .catch(err => {
-          console.log('Error =>', err);
+        console.log('Error =>', err);
       });
-}
+  }
 
-// Función para vaciar el formulario
-limpiarInputs() {
-  // Inicializa las propiedades del objeto usuarios a valores vacíos
-  const inputs = {
+  // Función para vaciar el formulario
+  limpiarInputs() {
+    // Inicializa las propiedades del objeto usuarios a valores vacíos
+    const inputs = {
       uid: this.usuarios.uid = '',
       nombre: this.usuarios.nombre = '',
       apellido: this.usuarios.apellido = '',
       email: this.usuarios.email = '',
       password: this.usuarios.password = ''
+    }
   }
-}
 
-// Valida si el email tiene el formato correcto
-isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
+  // Valida si el email tiene el formato correcto
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
-// Envía un correo de agradecimiento al usuario
-enviarCorreoDeAgradecimiento(usuario: Usuario) {
-  // Verifica si el email es válido
-  if (!this.isValidEmail(usuario.email)) {
+  // Envía un correo de agradecimiento al usuario
+  enviarCorreoDeAgradecimiento(usuario: Usuario) {
+    // Verifica si el email es válido
+    if (!this.isValidEmail(usuario.email)) {
       console.error("El correo del usuario está vacío o mal formateado.");
       return;
-  }
+    }
 
-  console.log('Datos de usuario para correo:', {
+    console.log('Datos de usuario para correo:', {
       nombre: usuario.nombre,
       email: usuario.email,
-  });
+    });
 
-  // Llama al servicio de emailJS para enviar un correo
-  emailjs.send('service_48xvchx', 'template_xm4elup', {
+    // Llama al servicio de emailJS para enviar un correo
+    emailjs.send('service_48xvchx', 'template_xm4elup', {
       to_name: usuario.nombre,
       to_email: usuario.email,
-  }, 'mBPxyJ78tUymGlB3a')
+    }, 'mBPxyJ78tUymGlB3a')
       .then((response: EmailJSResponseStatus) => {
-          console.log('Correo enviado con éxito!', response.status, response.text);
+        console.log('Correo enviado con éxito!', response.status, response.text);
       }, (error: any) => {
-          console.error('Error al enviar el correo:', error);
+        console.error('Error al enviar el correo:', error);
       });
-}
+  }
 }

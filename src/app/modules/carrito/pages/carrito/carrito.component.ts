@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore.serv
 import { AuthService } from 'src/app/modules/autentificacion/services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carrito',
@@ -103,55 +104,84 @@ export class CarritoComponent implements OnInit {
     this.carritoService.eliminarProducto(idProducto);
   }
 
-  // Confirmar la compra
-  confirmarCompra() {
-    // Reproducir sonido
-    this.audio.play();
+  
 
-    const uid = this.authService.obtenerUid();
+// Confirmar la compra
+confirmarCompra() {
 
-    if (!uid) {
-      // Mostrar un mensaje o redirigir al usuario a iniciar sesión
-      alert('Debes iniciar sesión para confirmar la compra.');
+
+  const uid = this.authService.obtenerUid();
+
+  if (!uid) {
+    // Mostrar una alerta con imagen personalizada cuando no se ha iniciado sesión
+    Swal.fire({
+      title: 'Inicia sesión',
+      text: 'Debes iniciar sesión para confirmar la compra.',
+      imageUrl: 'assets/alertaImagen/noLogeado.jpg', // Cambia a la ruta de tu imagen personalizada
+      imageWidth: 100,
+      imageHeight: 100,
+      imageAlt: 'Inicio de sesión requerido',
+      confirmButtonText: 'Ir a Login'
+    }).then(() => {
       this.servicioRutas.navigate(['/login']); // Redirigir a la página de inicio de sesión
-    } else {
-      // Lógica para confirmar la compra
-      if (this.productosEnCarrito.length === 0 || !this.usuarioActual) {
-        console.error("No hay productos en el carrito o no hay usuario autenticado");
-        return;
-      }
-
-      // Obtener el usuario por su uid desde Firestore
-      this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
-        // Verificamos si el usuario existe en Firestore y si tiene nombre y apellido
-        const usuarioSimplificado = {
-          uid: this.usuarioActual.uid,
-          nombre: usuarioFirestore?.nombre || 'Usuario',
-          apellido: usuarioFirestore?.apellido || 'Desconocido',
-          email: this.usuarioActual.email
-        };
-        const totalPrecio = this.calcularSubtotal(); // Calcula el total aquí
-        const pedidoId = this.firestoreService.generarId(); // Generar un ID único
-        const pedido: Pedido = {
-          id: pedidoId,
-          usuario: usuarioSimplificado, // Incluimos nombre y apellido
-          productos: this.productosEnCarrito,
-          fecha: new Date(),
-          totalprecio: totalPrecio, // Agrega el precio total aquí
-          fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)), // Fecha de entrega sumando 7 días
-        };
-        // Guardamos el pedido en Firestore
-        this.firestoreService.agregarPedido(pedido)
-          .then(() => {
-            console.log("Pedido guardado con éxito");
-            this.limpiarCarrito();
-            alert("Se realizó la compra con éxito");
-          })
-          .catch(err => {
-            console.error("Error al guardar el pedido:", err);
-            alert("Algo salió mal :(");
-          });
-      });
+    });
+  } else {
+    // Lógica para confirmar la compra
+      // Reproducir sonido
+  this.audio.play();
+    if (this.productosEnCarrito.length === 0 || !this.usuarioActual) {
+      console.error("No hay productos en el carrito o no hay usuario autenticado");
+      return;
     }
+
+    // Obtener el usuario por su UID desde Firestore
+    this.firestoreService.obtenerUsuarioPorUID(this.usuarioActual.uid).then(usuarioFirestore => {
+      const usuarioSimplificado = {
+        uid: this.usuarioActual.uid,
+        nombre: usuarioFirestore?.nombre || 'Usuario',
+        apellido: usuarioFirestore?.apellido || 'Desconocido',
+        email: this.usuarioActual.email
+      };
+      const totalPrecio = this.calcularSubtotal();
+      const pedidoId = this.firestoreService.generarId();
+      const pedido: Pedido = {
+        id: pedidoId,
+        usuario: usuarioSimplificado,
+        productos: this.productosEnCarrito,
+        fecha: new Date(),
+        totalprecio: totalPrecio,
+        fechaEntrega: new Date(new Date().setDate(new Date().getDate() + 7)),
+      };
+
+      // Guardamos el pedido en Firestore
+      this.firestoreService.agregarPedido(pedido)
+        .then(() => {
+          console.log("Pedido guardado con éxito");
+          this.limpiarCarrito();
+          Swal.fire({
+            title: 'Compra realizada',
+            text: 'Se realizó la compra con éxito',
+            imageUrl: 'assets/alertaImagen/comprado.jpg', // Imagen personalizada para éxito
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: 'Compra exitosa',
+            confirmButtonText: 'Aceptar'
+          });
+        })
+        .catch(err => {
+          console.error("Error al guardar el pedido:", err);
+          Swal.fire({
+            title: 'Error',
+            text: 'Algo salió mal :(',
+            imageUrl: 'assets/alertaImagen/coprafallida.webp', // Imagen personalizada para error
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: 'Error al realizar la compra',
+            confirmButtonText: 'Aceptar'
+          });
+        });
+    });
   }
+}
+
 }
