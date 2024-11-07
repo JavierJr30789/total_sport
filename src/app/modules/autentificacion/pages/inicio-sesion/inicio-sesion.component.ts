@@ -94,7 +94,11 @@ export class InicioSesionComponent {
       const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
         .then(res => {
           this.audioRegistroExitoso.play(); // Reproducir sonido de registro fallido
-          alert('¡Se ha logueado con éxito! :D');
+          Swal.fire({
+            title: "¡Buen trabajo!",
+            text: "¡Inicio sesion con exito! :)",
+            icon: "success"
+          });
           // Almacena el rol del usuario en el servicio de autenticación
           this.servicioAuth.enviarRolUsuario(usuarioData.rol);
           if (usuarioData.rol === "admin") {
