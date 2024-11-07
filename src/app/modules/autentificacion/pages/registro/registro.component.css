@@ -16,7 +16,7 @@
   }
   button {
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(0, 21, 255);
     align-self: center;
     width: 100%;
   }
@@ -93,10 +93,11 @@ button.toggle-password-btn:hover {
     height: 18px;
     border: 2px solid #007bff; /* Cambia el color del borde */
     border-radius: 3px; /* Esquinas redondeadas */
-    
-   
-    
+      
 }
-  /* Aplica las variables a otros componentes según sea necesario */
-  /* Variables para el tema claro */
- 
+p{
+  color: black;
+}
+#termsModalLabel{
+  color: black;
+}
