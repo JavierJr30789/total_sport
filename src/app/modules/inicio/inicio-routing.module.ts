@@ -4,10 +4,10 @@ import { InicioComponent } from 'src/app/modules/inicio/pages/inicio/inicio.comp
 
 const routes: Routes = [
   {
-    path:"",component:InicioComponent
+    path: "", component: InicioComponent
   },
   {
-    path:"inicio",component:InicioComponent
+    path: "inicio", component: InicioComponent
   }
 ];
 

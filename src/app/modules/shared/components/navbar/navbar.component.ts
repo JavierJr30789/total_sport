@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     public servicioRutas: Router,
     private carritoService: CarritoService,
     private auth: AngularFireAuth,
-  ) {}
+  ) { }
 
   // Permite alternar entre un tema claro y un tema oscuro
   toggleTheme() {

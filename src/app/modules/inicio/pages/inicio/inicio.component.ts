@@ -9,8 +9,8 @@ import { Producto } from 'src/app/models/producto';
 })
 export class InicioComponent implements OnInit {
   productosPorCategoria: Producto[] = [];
- 
-  constructor(private crudService: CrudService) {}
+
+  constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
     this.crudService.obtenerProducto().subscribe((productos) => {

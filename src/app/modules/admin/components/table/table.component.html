@@ -61,7 +61,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" style="color: var(--text-color);">Ingrese descripción del producto:</label>
+                    <label class="form-label" style="color: var(--text-color);">Ingrese descripción del
+                        producto:</label>
                     <input class="form-control" type="text" formControlName="descripcion"
                         placeholder="Ej.: esferico, caprichosa, la redonda">
                 </div>
@@ -73,7 +74,8 @@
 
                 <div class="mb-3">
                     <label class="form-label" style="color: var(--text-color);">Seleccione una categoría:</label>
-                    <select class="form-control form-select" formControlName="categoria" aria-label="Default select example">
+                    <select class="form-control form-select" formControlName="categoria"
+                        aria-label="Default select example">
                         <option disabled selected>Elija una categoria</option>
                         <option value="futbol">Futbol</option>
                         <option value="voley">Voley</option>
@@ -110,7 +112,8 @@
 
 <!-- MODAL PARA EDITAR PRODUCTOS -->
 <!-- Cambiamos nombre de variable que itera la colección -->
-<div class="modal fade" *ngFor="let productoEdit of coleccionProductos" id="editarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" *ngFor="let productoEdit of coleccionProductos" id="editarProducto" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- ENCABEZADO DEL MODAL -->
@@ -135,21 +138,23 @@
 
                 <div class="mb-3">
                     <label class="form-label">Ingrese el precio:</label>
-                    <input class="form-control" type="number" formControlName="precio" placeholder="{{productoEdit.precio}}">
+                    <input class="form-control" type="number" formControlName="precio"
+                        placeholder="{{productoEdit.precio}}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Seleccione una categoría:</label>
-                    <select class="form-control form-select styled-select" formControlName="categoria" aria-label="Default select example">
-                      <option disabled selected>Elija una categoria</option>
-                      <option value="futbol">Futbol</option>
-                      <option value="voley">Voley</option>
-                      <option value="basquet">Basquet</option>
-                      <option value="indumentaria">Indumentaria</option>
-                      <option value="boxeo">Boxeo</option>
-                      <option value="ciclismo">Ciclismo</option>
+                    <select class="form-control form-select styled-select" formControlName="categoria"
+                        aria-label="Default select example">
+                        <option disabled selected>Elija una categoria</option>
+                        <option value="futbol">Futbol</option>
+                        <option value="voley">Voley</option>
+                        <option value="basquet">Basquet</option>
+                        <option value="indumentaria">Indumentaria</option>
+                        <option value="boxeo">Boxeo</option>
+                        <option value="ciclismo">Ciclismo</option>
                     </select>
-                  </div>
+                </div>
 
                 <div class="mb-3 input-file-container">
                     <label class="form-label">Ingrese una imagen:</label>
@@ -160,14 +165,14 @@
 
                 <div class="mb-3">
                     <label class="form-label">Ingrese texto alternativo:</label>
-                    <input class="form-control" type="text" formControlName="alt"
-                        placeholder="{{productoEdit.alt}}">
+                    <input class="form-control" type="text" formControlName="alt" placeholder="{{productoEdit.alt}}">
                 </div>
             </div>
 
             <!-- ACCIONES DEL MODAL -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="editarProducto()">Guardar cambios</button>
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
+                    (click)="editarProducto()">Guardar cambios</button>
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -175,7 +180,8 @@
 </div>
 
 <!-- MODAL PARA ELIMINAR PRODUCTO -->
-<div class="modal fade" *ngIf="modalVisibleProducto" id="eliminarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" *ngIf="modalVisibleProducto" id="eliminarProducto" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- ENCABEZADO -->
@@ -187,15 +193,16 @@
             <!-- CUERPO DEL MODAL -->
             <div class="modal-body">
                 <!-- Mostramos al usuario información del producto que quiere eliminar -->
-                 
+
                 {{productoSeleccionado.nombre}}
 
                 <img src="{{productoSeleccionado.imagen}}" alt="{{productoSeleccionado.alt}}" width="100px">
             </div>
-            
+
             <!-- ACCIONES DEL MODAL -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="borrarProducto()">Eliminar</button>
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"
+                    (click)="borrarProducto()">Eliminar</button>
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>

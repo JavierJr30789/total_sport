@@ -1,47 +1,63 @@
 /* Estilo general para la tabla */
 .table {
-    background-color: var(--primary-color); /* Color de fondo */
-    border-collapse: collapse; /* Asegura que los bordes se fusionen */
+    background-color: var(--primary-color);
+    /* Color de fondo */
+    border-collapse: collapse;
+    /* Asegura que los bordes se fusionen */
 }
 
 /* Encabezados de la tabla */
 .table th {
-    background-color: var(--primary-color); /* Color de fondo para encabezados */
-    color: white; /* Color del texto */
-    border: 1px solid white; /* Bordes blancos para los encabezados */
+    background-color: var(--primary-color);
+    /* Color de fondo para encabezados */
+    color: white;
+    /* Color del texto */
+    border: 1px solid white;
+    /* Bordes blancos para los encabezados */
 }
 
 
 /* Filas de la tabla */
 .table tbody tr {
-    transition: background-color 0.3s; /* Transición suave para el hover */
+    transition: background-color 0.3s;
+    /* Transición suave para el hover */
 }
 
 .table tbody tr:hover {
-    background-color: var(--primary-color); /* Color al pasar el mouse */
+    background-color: var(--primary-color);
+    /* Color al pasar el mouse */
 }
 
 /* Celdas de la tabla */
 .table td {
-    border: 1px solid white; /* Bordes blancos para las celdas */
-    padding: 8px; /* Espaciado interno para las celdas */
-    text-align: left; /* Alinear texto a la izquierda */
+    border: 1px solid white;
+    /* Bordes blancos para las celdas */
+    padding: 8px;
+    /* Espaciado interno para las celdas */
+    text-align: left;
+    /* Alinear texto a la izquierda */
 }
 
 /* Botones */
 .btn-outline-warning {
-    border-color: #ffc107; /* Color del borde */
-    color: #ffc107; /* Color del texto */
+    border-color: #ffc107;
+    /* Color del borde */
+    color: #ffc107;
+    /* Color del texto */
 }
 
 .modal-body {
-    background-color: var(--primary-color); /* Color de fondo para encabezados */
-    color: white; /* Color del texto */
+    background-color: var(--primary-color);
+    /* Color de fondo para encabezados */
+    color: white;
+    /* Color del texto */
 }
 
 .btn-outline-warning:hover {
-    background-color: #ffc107; /* Color de fondo al pasar el mouse */
-    color: var(--text-color); /* Color del texto al pasar el mouse */
+    background-color: #ffc107;
+    /* Color de fondo al pasar el mouse */
+    color: var(--text-color);
+    /* Color del texto al pasar el mouse */
 }
 
 .btn-outline-danger {
@@ -66,14 +82,20 @@
 
 /* Modal header */
 .modal-header {
-    background-color: var(--primary-color); /* Color de fondo del header del modal */
-    color: var(--text-color); /* Color del texto */
+    background-color: var(--primary-color);
+    /* Color de fondo del header del modal */
+    color: var(--text-color);
+    /* Color del texto */
 }
+
 /* Estilo para el fondo del modal */
 .modal-content {
-    background: var(--offcanvas-gradient); /* Aplica el degradado */
-    color: white; /* Color de texto en blanco */
-    border: none; /* Elimina el borde del modal */
+    background: var(--offcanvas-gradient);
+    /* Aplica el degradado */
+    color: white;
+    /* Color de texto en blanco */
+    border: none;
+    /* Elimina el borde del modal */
 }
 
 /* Opcional: Ajusta el fondo del pie de página si deseas que coincida */
@@ -85,6 +107,7 @@
 .modal-body .form-label {
     color: white;
 }
+
 .modal-footer {
     text-align: center;
     justify-content: center;
@@ -92,13 +115,15 @@
 
 /* Estilo para el contenedor del input */
 .input-file-container {
-    background-color: var(--offcanvas-gradient); /* Color de fondo */
+    background-color: var(--offcanvas-gradient);
+    /* Color de fondo */
     padding: 10px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--text-color); /* Color del texto */
+    color: var(--text-color);
+    /* Color del texto */
 }
 
 /* Estilo para la etiqueta del input */
@@ -109,13 +134,18 @@
 
 /* Estilo para el input de archivo */
 .input-file-container input[type="file"] {
-    display: none; /* Oculta el input nativo */
+    display: none;
+    /* Oculta el input nativo */
 }
+
 /* Estilo del botón personalizado como outlined white */
 .input-file-container .custom-file-upload {
-    border: 2px solid white; /* Borde blanco */
-    background-color: transparent; /* Fondo transparente */
-    color: white; /* Texto en blanco */
+    border: 2px solid white;
+    /* Borde blanco */
+    background-color: transparent;
+    /* Fondo transparente */
+    color: white;
+    /* Texto en blanco */
     padding: 5px 15px;
     cursor: pointer;
     border-radius: 4px;
@@ -124,9 +154,12 @@
 
 /* Hover para el botón outlined white */
 .input-file-container .custom-file-upload:hover {
-    background-color: white; /* Fondo blanco al hacer hover */
-    color: #0d055c; /* Color de texto oscuro para contraste en hover */
+    background-color: white;
+    /* Fondo blanco al hacer hover */
+    color: #0d055c;
+    /* Color de texto oscuro para contraste en hover */
 }
+
 /* Estilo para el texto de la imagen cargada */
 .file-name {
     margin-left: 10px;
@@ -147,14 +180,16 @@
 
 /* Efecto al hacer focus */
 .material-style-select:focus {
-    border-color: #3f51b5; /* Azul Material */
+    border-color: #3f51b5;
+    /* Azul Material */
     box-shadow: 0 0 4px #3f51b5;
     outline: none;
 }
 
 /* Placeholder estilo como el label flotante de Material */
 .material-style-select option[disabled] {
-    color: rgba(0, 0, 0, 0.54); /* Color gris similar a Material */
+    color: rgba(0, 0, 0, 0.54);
+    /* Color gris similar a Material */
 }
 
 /* Cambiar el tamaño de las opciones */
@@ -183,50 +218,73 @@
 /* Estilos para dispositivos pequeños (ej: celular) */
 @media (min-width: 300px) and (max-width: 700px) {
     .table thead {
-        display: none; /* Oculta los encabezados en dispositivos móviles */
+        display: none;
+        /* Oculta los encabezados en dispositivos móviles */
     }
+
     .table,
     .table tbody,
     .table tr,
     .table td {
-        display: block; /* Cambia a bloque para que se apilen */
-        width: 100%; /* Asegura que ocupen el ancho completo */
+        display: block;
+        /* Cambia a bloque para que se apilen */
+        width: 100%;
+        /* Asegura que ocupen el ancho completo */
     }
+
     .table tr {
-        margin-bottom: 1rem; /* Espaciado entre filas */
+        margin-bottom: 1rem;
+        /* Espaciado entre filas */
     }
+
     .table td {
-        text-align: left; /* Alinea el texto a la izquierda */
-        position: relative; /* Para posicionar el contenido */
-        padding-left: 50%; /* Espacio para el contenido */
-        padding-top: 10px; /* Espacio superior */
+        text-align: left;
+        /* Alinea el texto a la izquierda */
+        position: relative;
+        /* Para posicionar el contenido */
+        padding-left: 50%;
+        /* Espacio para el contenido */
+        padding-top: 10px;
+        /* Espacio superior */
     }
+
     .table td::before {
-        position: absolute; /* Posiciona antes del contenido */
-        left: 10px; /* Espacio izquierdo */
-        width: 45%; /* Espacio para la etiqueta */
-        white-space: nowrap; /* Evita que se rompa */
-        font-weight: bold; /* Hace las etiquetas en negrita */
+        position: absolute;
+        /* Posiciona antes del contenido */
+        left: 10px;
+        /* Espacio izquierdo */
+        width: 45%;
+        /* Espacio para la etiqueta */
+        white-space: nowrap;
+        /* Evita que se rompa */
+        font-weight: bold;
+        /* Hace las etiquetas en negrita */
     }
 
     .table td:nth-child(1)::before {
         content: "#";
     }
+
     .table td:nth-child(2)::before {
         content: "Imagen:";
     }
+
     .table td:nth-child(3)::before {
         content: "Nombre:";
     }
+
     .table td:nth-child(4)::before {
         content: "Precio:";
     }
+
     .table td:nth-child(5)::before {
         content: "Descripción:";
     }
+
     .table td:nth-child(6)::before {
         content: "Categoría:";
     }
+
     .table td:nth-child(7)::before {
         content: "Acciones:";
     }

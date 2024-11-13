@@ -7,10 +7,10 @@ import { InicioSesionComponent } from './pages/inicio-sesion/inicio-sesion.compo
 
 const routes: Routes = [
   {
-    path:"registro",component:RegistroComponent
+    path: "registro", component: RegistroComponent
   },
   {
-    path:"inicio-sesion",component:InicioSesionComponent
+    path: "inicio-sesion", component: InicioSesionComponent
   }
 ];
 

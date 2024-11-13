@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Usuario } from 'src/app/models/usuario';
 import { Pedido } from 'src/app/models/pedido';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs'; 
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

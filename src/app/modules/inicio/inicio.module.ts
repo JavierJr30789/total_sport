@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
     InicioRoutingModule,
     MatButtonModule
   ],
-  exports:[
+  exports: [
     InicioComponent,
   ]
 })

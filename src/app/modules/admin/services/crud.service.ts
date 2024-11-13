@@ -52,16 +52,16 @@ export class CrudService {
       }
     });
   }
-// OBTENER productos
-obtenerProducto(): Observable<Producto[]> {
-  return this.productosCollection.snapshotChanges().pipe(
-    map(actions => actions.map(a => {
-      const data = a.payload.doc.data() as Producto;
-      const id = a.payload.doc.id;
-      return { id, ...data };
-    }))
-  );
-}
+  // OBTENER productos
+  obtenerProducto(): Observable<Producto[]> {
+    return this.productosCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Producto;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
 
 
   // EDITAR productos

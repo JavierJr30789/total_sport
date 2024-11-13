@@ -1,51 +1,64 @@
-
-
 /* Reseteo de márgenes y padding para todos los elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 .carousel-container,
 .content-all {
-  width: 100%;
-  margin-top: 10px; /* Ajusta este valor según el espacio que necesites */
+    width: 100%;
+    margin-top: 10px;
+    /* Ajusta este valor según el espacio que necesites */
 }
 
 
-.section{
-    background-color: var(--primary-color); /* color de fondo del section */
-    display: flex; /* hacemos los elementos flexibles */
-    justify-content: space-between; /* alineamos los elementos */
-    width: 50%; /* siempre va a ocupar el 50 porciento */
-    margin: 15px auto; /* 15 pixeles desde arriba hacia abajo y automatico a los lados */
-    border-radius: 20px; /* redondeamos las puntas */
-    box-shadow: 10px 10px 10px rgba (0,0,0, .5); /* sombra del section */
+.section {
+    background-color: var(--primary-color);
+    /* color de fondo del section */
+    display: flex;
+    /* hacemos los elementos flexibles */
+    justify-content: space-between;
+    /* alineamos los elementos */
+    width: 50%;
+    /* siempre va a ocupar el 50 porciento */
+    margin: 15px auto;
+    /* 15 pixeles desde arriba hacia abajo y automatico a los lados */
+    border-radius: 20px;
+    /* redondeamos las puntas */
+    box-shadow: 10px 10px 10px rgba (0, 0, 0, .5);
+    /* sombra del section */
     position: relative;
-    border: 2px solid #007bff; /* Ajusta el color y el grosor */
-    padding: 20px 20px 20px 60px; /* Espacio para que el contenido no se superponga a la imagen */
+    border: 2px solid #007bff;
+    /* Ajusta el color y el grosor */
+    padding: 20px 20px 20px 60px;
+    /* Espacio para que el contenido no se superponga a la imagen */
 }
 
-.section img{
+.section img {
     width: 280px;
     left: -52px;
-    border-radius: 20px; /* redondeamos los bordes de la imagen */
+    border-radius: 20px;
+    /* redondeamos los bordes de la imagen */
 }
 
-.section h1{
-margin: 0;
-font-size: 2.5em;
-padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
+.section h1 {
+    margin: 0;
+    font-size: 2.5em;
+    padding-bottom: 10px;
+    /* Añade un pequeño espacio debajo del título */
 }
 
-.section p{
+.section p {
     margin-right: 15px;
-    margin-top: 50px; /* Ajusta el valor para crear espacio suficiente debajo del h1 */
+    margin-top: 50px;
+    /* Ajusta el valor para crear espacio suficiente debajo del h1 */
 }
+
 .slide,
 .content-carrousel {
-  max-width: 700px;
-  width: 100%;
+    max-width: 700px;
+    width: 100%;
 }
 
 .button-container {
@@ -53,20 +66,25 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Ajusta el margen según sea necesario */
-    background-color: rgba(255, 255, 255, 0); /* Fondo blanco con 50% de opacidad, ajústalo según tus necesidades */
-    padding: 10px; /* Ajusta el padding según sea necesario */
-    border-radius: 10px; /* Opcional, para bordes redondeados */
-  }
-  
-  .text-above-button {
+    margin-top: 20px;
+    /* Ajusta el margen según sea necesario */
+    background-color: rgba(255, 255, 255, 0);
+    /* Fondo blanco con 50% de opacidad, ajústalo según tus necesidades */
+    padding: 10px;
+    /* Ajusta el padding según sea necesario */
+    border-radius: 10px;
+    /* Opcional, para bordes redondeados */
+}
+
+.text-above-button {
     text-align: center;
     font-size: 18px;
     color: white;
-    margin-bottom: 10px; /* Ajusta el margen según sea necesario */
-  }
-  
-  button {
+    margin-bottom: 10px;
+    /* Ajusta el margen según sea necesario */
+}
+
+button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -78,15 +96,15 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: white;
     color: black;
     border: 2px solid #007bff;
-  }
-  
-  
+}
+
+
 .slide {
     position: relative;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
@@ -97,27 +115,34 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: calc(300px + 3em); /* Mantén la altura deseada */
+    height: calc(300px + 3em);
+    /* Mantén la altura deseada */
 }
 
-.slide-open:checked + .slide-item {
+.slide-open:checked+.slide-item {
     position: static;
-    opacity: 1; /* Cambia a 1 para asegurar que la imagen sea visible */
+    opacity: 1;
+    /* Cambia a 1 para asegurar que la imagen sea visible */
 }
 
 .slide-item {
     position: absolute;
     opacity: 0;
     transition: opacity 0.6s ease-out;
-    width: 100%; /* Asegúrate de que cada slide ocupe todo el ancho */
-    height: 100%; /* Asegúrate de que cada slide ocupe toda la altura */
+    width: 100%;
+    /* Asegúrate de que cada slide ocupe todo el ancho */
+    height: 100%;
+    /* Asegúrate de que cada slide ocupe toda la altura */
 }
 
 .slide-item img {
     display: block;
-    width: 100%; /* Cambia a 100% para que la imagen ocupe todo el ancho */
-    height: 100%; /* Cambia a 100% para que la imagen ocupe toda la altura */
-    object-fit: cover; /* Mantiene la proporción y cubre el área */
+    width: 100%;
+    /* Cambia a 100% para que la imagen ocupe todo el ancho */
+    height: 100%;
+    /* Cambia a 100% para que la imagen ocupe toda la altura */
+    object-fit: cover;
+    /* Mantiene la proporción y cubre el área */
 }
 
 .slide-control {
@@ -125,7 +150,8 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
-    display: none; /* Oculto por defecto, se muestra solo cuando corresponde */
+    display: none;
+    /* Oculto por defecto, se muestra solo cuando corresponde */
     font-size: 40px;
     height: 40px;
     line-height: 35px;
@@ -151,9 +177,9 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     color: #aaaaaa;
 }
 
-#slide-1:checked ~ .control-1,
-#slide-2:checked ~ .control-2,
-#slide-3:checked ~ .control-3 {
+#slide-1:checked~.control-1,
+#slide-2:checked~.control-2,
+#slide-3:checked~.control-3 {
     display: block;
 }
 
@@ -173,6 +199,7 @@ padding-bottom: 10px; /* Añade un pequeño espacio debajo del título */
     display: inline-block;
     margin: 0 5px;
 }
+
 img.banner {
     width: 100%;
     height: auto;
@@ -194,7 +221,8 @@ img.banner {
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
-    display: none; /* Oculto por defecto, se muestra solo cuando corresponde */
+    display: none;
+    /* Oculto por defecto, se muestra solo cuando corresponde */
     font-size: 40px;
     height: 40px;
     line-height: 35px;
@@ -206,16 +234,17 @@ img.banner {
     z-index: 10;
 }
 
-#slide-1:checked ~ .control-1,
-#slide-2:checked ~ .control-2,
-#slide-3:checked ~ .control-3,
-#slide-4:checked ~ .control-4,
-#slide-4:checked ~ .control-5,
-#slide-4:checked ~ .control-6,
-#slide-4:checked ~ .control-7,
-#slide-4:checked ~ .control-8,
-#slide-4:checked ~ .control-9 {
-    display: block; /* Mostrar flechas cuando el slide correspondiente está seleccionado */
+#slide-1:checked~.control-1,
+#slide-2:checked~.control-2,
+#slide-3:checked~.control-3,
+#slide-4:checked~.control-4,
+#slide-4:checked~.control-5,
+#slide-4:checked~.control-6,
+#slide-4:checked~.control-7,
+#slide-4:checked~.control-8,
+#slide-4:checked~.control-9 {
+    display: block;
+    /* Mostrar flechas cuando el slide correspondiente está seleccionado */
 }
 
 #titulo {
@@ -281,12 +310,12 @@ h1 {
 }
 
 /*posicionaremos las capas y le daremos un color y una transicion para que este cambio no sea ta repentino. especificamos que la capa sera invicible mientras el cursor no este por encima de la imagen.*/
-.content-carrousel figure .capa{
+.content-carrousel figure .capa {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(79, 93, 172,0.7);
+    background-color: rgba(79, 93, 172, 0.7);
     transition: all 500ms ease-out;
     opacity: 0;
     visibility: hidden;
@@ -294,39 +323,39 @@ h1 {
 }
 
 /*la capa sera vicible cuando pasemos el cursor sobre la imagen*/
-.content-carrousel figure:hover > .capa{
+.content-carrousel figure:hover>.capa {
     opacity: 1;
     visibility: visible;
 }
 
 /*estamos definiendo la separacion del titulo de la parte superior e inferior de la imagen*/
-.content-carrousel figure:hover > .capa h3{
+.content-carrousel figure:hover>.capa h3 {
     margin-top: 20px;
     margin-bottom: 15px;
 
 }
 
 /*le damos un color al titulo y definimos la velocidad de la transicion*/
-.content-carrousel figure .capa h3{
+.content-carrousel figure .capa h3 {
     color: aliceblue;
     font-weight: 400px;
-    margin-bottom:120px;
+    margin-bottom: 120px;
     transition: all 500ms ease-out;
     margin-top: 10px;
 }
 
 /*le damos el color del texto y le damos un margen*/
-.content-carrousel figure .capa p{
+.content-carrousel figure .capa p {
     color: aliceblue;
     font-size: 7px;
     line-height: 1.5;
     width: 100%;
-    max-width:220px;
+    max-width: 220px;
     margin: auto;
 }
 
 /*la imagen se agrandara al momento de posar el cursor encima*/
-.content-carrousel figure:hover > img{
+.content-carrousel figure:hover>img {
     transform: scale(1.3);
 }
 
@@ -373,67 +402,87 @@ h1 {
     transform: rotateY(360deg) translateZ(300px);
 }
 
-    /* Tu CSS aquí (incluye el CSS proporcionado anteriormente) */
+/* Tu CSS aquí (incluye el CSS proporcionado anteriormente) */
 
 
-    
-    /* Estilo del botón */
-    .btn {
-        position: absolute; /* Posiciona el botón de manera absoluta */
-        bottom: 10px; /* Ajusta la posición del botón */
-        left: 50%; /* Centra horizontalmente */
-        transform: translateX(-50%); /* Centra el botón */
-        background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
-        color: black; /* Color del texto */
-        border: none; /* Sin borde */
-        padding: 10px 20px; /* Espaciado interno */
-        border-radius: 5px; /* Bordes redondeados */
-        z-index: 10; /* Asegúrate de que el botón esté encima */
-        opacity: 0; /* Comienza invisible */
-        transition: opacity 0.3s; /* Suaviza la transición */
-        width: 100%;
-        height: 100%;
-    
-    }
-        .btn-text {
-        opacity: 0; /* Inicialmente oculto */
-        transition: opacity 0.3s ease; /* Transición suave */
-    }
-    
-    .btn:hover .btn-text {
-        opacity: 1; /* Mostrar texto al pasar el cursor */
-    }
-    
-    
-        .btn:hover {
-          background-color: var(--accent-color);
-          color: var(--text-color);
-        }
-    
-        /* Asegúrate de que el contenedor de la descripción tenga suficiente espacio */
-        .capa {
-          position: absolute;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(79, 93, 172, 0.7);
-          transition: all 500ms ease-out;
-          opacity: 0;
-          visibility: hidden;
-          text-align: center;
-          padding: 10px; /* Agrega padding para espacio alrededor del texto */
-        }
-    
-        .content-carrousel figure:hover > .capa {
-          opacity: 1;
-          visibility: visible;
-        }
-    
-        /* Asegúrate de que el texto no se corte */
-        .capa h3, .capa p {
-          margin: 10px 0; /* Margen entre elementos */
-          line-height: 1.5; /* Mejora la legibilidad */
-        }
+
+/* Estilo del botón */
+.btn {
+    position: absolute;
+    /* Posiciona el botón de manera absoluta */
+    bottom: 10px;
+    /* Ajusta la posición del botón */
+    left: 50%;
+    /* Centra horizontalmente */
+    transform: translateX(-50%);
+    /* Centra el botón */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fondo semi-transparente */
+    color: black;
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    z-index: 10;
+    /* Asegúrate de que el botón esté encima */
+    opacity: 0;
+    /* Comienza invisible */
+    transition: opacity 0.3s;
+    /* Suaviza la transición */
+    width: 100%;
+    height: 100%;
+
+}
+
+.btn-text {
+    opacity: 0;
+    /* Inicialmente oculto */
+    transition: opacity 0.3s ease;
+    /* Transición suave */
+}
+
+.btn:hover .btn-text {
+    opacity: 1;
+    /* Mostrar texto al pasar el cursor */
+}
+
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+/* Asegúrate de que el contenedor de la descripción tenga suficiente espacio */
+.capa {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(79, 93, 172, 0.7);
+    transition: all 500ms ease-out;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    padding: 10px;
+    /* Agrega padding para espacio alrededor del texto */
+}
+
+.content-carrousel figure:hover>.capa {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Asegúrate de que el texto no se corte */
+.capa h3,
+.capa p {
+    margin: 10px 0;
+    /* Margen entre elementos */
+    line-height: 1.5;
+    /* Mejora la legibilidad */
+}
 
 /*indicamos que el carrucel arrancara con un valor de 0 e ira rotando paralelamente en Y en unos 360 grados*/
 @keyframes rotar {
@@ -445,9 +494,9 @@ h1 {
         transform: rotateY(360deg);
     }
 }
+
 @media (min-width: 700px) {
     .slide {
-      display: none;
+        display: none;
     }
-  }
-  
+}

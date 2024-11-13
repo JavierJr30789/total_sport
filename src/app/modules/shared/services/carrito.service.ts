@@ -15,7 +15,7 @@ export class CarritoService {
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService
-  ) {}
+  ) { }
 
   // Método para agregar un producto al carrito
   async agregarProducto(productoItemCart: ProductoItemCart) {
@@ -52,7 +52,7 @@ export class CarritoService {
     const uid = await this.authService.obtenerUid(); // Obtiene el UID del usuario
     if (uid) {
       const cartRef = this.firestore.collection<ProductoItemCart>(`usuarios/${uid}/carrito`);
-      
+
       // Cargar el carrito de Firestore
       cartRef.valueChanges().subscribe(productos => {
         // Combinar productos de localStorage si existen

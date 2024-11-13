@@ -5,7 +5,7 @@ import { ProductoRoutingModule } from './producto-routing.module';
 
 import { CardComponent } from './components/card/card.component';
 
-import {  MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { FiltroNombrePipe } from 'src/app/filtro-nombre.pipe';
@@ -19,8 +19,8 @@ import { MatInputModule } from '@angular/material/input';
     CardComponent,
     ProductoComponent,
     FiltroNombrePipe
-    
-    
+
+
   ],
   imports: [
     CommonModule,
@@ -29,11 +29,11 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    
-    
-  
+
+
+
   ],
-  exports:[
+  exports: [
     CardComponent,
     MatCardModule,
     ProductoComponent

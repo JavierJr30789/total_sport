@@ -2,15 +2,9 @@
 <div class="search-bar d-flex justify-content-center mt-4">
   <div class="input-group" style="max-width: 400px;">
     <!-- Etiqueta de búsqueda -->
-   
+
     <!-- Campo de entrada con el modelo de Angular -->
-    <input 
-      type="text" 
-      class="form-control" 
-      [(ngModel)]="filtroNombre" 
-      placeholder="🔎Nombre del producto" 
-      
-    />
+    <input type="text" class="form-control" [(ngModel)]="filtroNombre" placeholder="🔎Nombre del producto" />
   </div>
 </div>
 
@@ -26,7 +20,8 @@
       <mat-card-subtitle class="precio">${{producto.precio}}</mat-card-subtitle>
     </mat-card-content>
     <mat-card-actions>
-      <button type="button" class="btn btn-outline-light" (click)="agregarProducto(producto)">Agregar al carrito</button>
+      <button type="button" class="btn btn-outline-light" (click)="agregarProducto(producto)">Agregar al
+        carrito</button>
     </mat-card-actions>
   </mat-card>
 </div>

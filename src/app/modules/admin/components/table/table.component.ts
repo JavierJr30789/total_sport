@@ -138,27 +138,27 @@ export class TableComponent {
     }
 
     // Verificamos que el usuario ingrese una nueva imagen o no
-    if(this.imagen){
+    if (this.imagen) {
       this.servicioCrud.subirImagen(this.nombreImagen, this.imagen, "productos")
-      .then(resp => {
-        this.servicioCrud.obtenerUrlImagen(resp)
-        .then(url => {
-          // Actualizamos URL de la imagen en los datos del formulario
-          datos.imagen = url;
+        .then(resp => {
+          this.servicioCrud.obtenerUrlImagen(resp)
+            .then(url => {
+              // Actualizamos URL de la imagen en los datos del formulario
+              datos.imagen = url;
 
-          // Actualizamos los datos desde el formulario de edición
-          this.actualizarProducto(datos);
+              // Actualizamos los datos desde el formulario de edición
+              this.actualizarProducto(datos);
 
-          // Vaciamos casillas del formulario
-          this.producto.reset();
+              // Vaciamos casillas del formulario
+              this.producto.reset();
+            })
+            .catch(error => {
+              alert("Hubo un problema al subir la imagen :( \n" + error);
+
+              this.producto.reset();
+            })
         })
-        .catch(error => {
-          alert ("Hubo un problema al subir la imagen :( \n"+error);
-
-          this.producto.reset();
-        })
-      })
-    }else{
+    } else {
       /*
         Actualizamos formulario con los datos recibidos del usuario, pero sin modificar la
         imagen ya existente en Firestore y Storage
@@ -168,7 +168,7 @@ export class TableComponent {
   }
 
   // ACTUALIZA la información ya existente de los productos
-  actualizarProducto(datos: Producto){
+  actualizarProducto(datos: Producto) {
     this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
       .then(producto => {
         alert("El producto fue modificado con éxito.");
@@ -179,14 +179,14 @@ export class TableComponent {
   }
 
   // Método para CARGAR IMÁGENES
-  cargarImagen(event: any){
+  cargarImagen(event: any) {
     // Variable para obtener el archivo subido desde el input del HTML
     let archivo = event.target.files[0];
 
     // Variable para crear un nuevo objeto de tipo "archivo" o "file" y poder leerlo
     let reader = new FileReader();
 
-    if (archivo != undefined){
+    if (archivo != undefined) {
       /*
         Llamamos a método readAsDataUrl para leer toda la información recibida.
         Enviamos como parámetro el archivo porque será el encargado de tener la info. 
@@ -199,7 +199,7 @@ export class TableComponent {
         let url = reader.result;
 
         // Verificamos que la URL sea existente y diferente a "nula"
-        if(url != null){
+        if (url != null) {
           // Definimos nombre de la imagen con atributo "name" del input
           this.nombreImagen = archivo.name;
 

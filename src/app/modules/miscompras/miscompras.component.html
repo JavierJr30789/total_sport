@@ -14,23 +14,16 @@
   <div class="card-body">
     <!-- Información del usuario que realizó el pedido -->
     <h4><b>
-      Usuario: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}
-    </b></h4>
+        Usuario: {{ pedido.usuario.nombre }} {{ pedido.usuario.apellido }}
+      </b></h4>
     <!-- Fecha de la compra -->
     <h4>Fecha de compra: {{ pedido.fecha | date : "short" }}</h4>
-    
+
     <div class="productos mt-3">
       <!-- Iteración sobre cada producto en el pedido -->
-      <div
-        *ngFor="let item of pedido.productos"
-        class="producto d-flex align-items-center mb-3"
-      >
+      <div *ngFor="let item of pedido.productos" class="producto d-flex align-items-center mb-3">
         <!-- Imagen del producto -->
-        <img
-          [src]="item.Producto.imagen"
-          alt="{{ item.Producto.nombre }}"
-          class="producto-imagen img-fluid rounded"
-        />
+        <img [src]="item.Producto.imagen" alt="{{ item.Producto.nombre }}" class="producto-imagen img-fluid rounded" />
         <div class="producto-info ms-3">
           <!-- Nombre del producto -->
           <p>Producto: {{ item.Producto.nombre }}</p>
@@ -43,7 +36,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="pedido-total mt-3">
       <!-- Total del pedido -->
       <p class="fw-bold text-success">

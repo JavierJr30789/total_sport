@@ -24,7 +24,7 @@ export class InicioSesionComponent {
     public servicioFirestore: FirestoreService,
     public servicioRutas: Router
   ) {
-    
+
     this.audioRegistroExitoso.src = 'assets/sounds/loginExitoso.mp3'; // Ruta a tu archivo de sonido
     this.audioRegistroExitoso.load(); // Cargar el archivo de sonido
     this.audioRegistroFallido.src = 'assets/sounds/fallo2.mp3'; // Ruta a tu archivo de sonido
@@ -161,9 +161,9 @@ export class InicioSesionComponent {
 
   // Función para iniciar sesión con Google
   async iniciarSesionConGoogle() {
-    
+
     try {
-      
+
       const res = await this.servicioAuth.iniciarSesionConGoogle();
       Swal.fire({
         text: "¡Se ha logueado con Google exitosamente! :D",

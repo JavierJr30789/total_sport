@@ -11,7 +11,7 @@ import { MatCard } from '@angular/material/card';
 export class PedidosComponent implements OnInit {
   pedidos: Pedido[] = [];
 
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
     // Suscribirse a los pedidos desde Firestore al inicializar el componente

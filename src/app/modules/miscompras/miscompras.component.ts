@@ -17,7 +17,7 @@ export class MiscomprasComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private firestoreService: FirestoreService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Obtener el usuario actual al inicializar el componente

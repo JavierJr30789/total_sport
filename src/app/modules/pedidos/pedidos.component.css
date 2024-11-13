@@ -5,8 +5,10 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Cambiar a center para centrar el contenido */
-  align-items: center; /* Alinea verticalmente */
+  justify-content: center;
+  /* Cambiar a center para centrar el contenido */
+  align-items: center;
+  /* Alinea verticalmente */
 }
 
 /* Clave de animación para el cart */
@@ -15,6 +17,7 @@
     margin-left: 100%;
     width: 100%;
   }
+
   to {
     margin-left: 0%;
     width: 100%;
@@ -29,8 +32,10 @@
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   cursor: default;
   transition: all 400ms ease;
-  display: flex; /* Asegura que el contenido se alinee correctamente */
-  flex-direction: column; /* Permite que los elementos hijos se apilen verticalmente */
+  display: flex;
+  /* Asegura que el contenido se alinee correctamente */
+  flex-direction: column;
+  /* Permite que los elementos hijos se apilen verticalmente */
 }
 
 /* Animación de las tarjetas sobre el cursor */
@@ -41,19 +46,28 @@
 
 /* Define tamaños de las imágenes */
 .card img {
-  width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-  height: 200px; /* Altura fija para todas las imágenes */
-  object-fit: contain; /* Ajusta la imagen manteniendo su proporción y centrada */
-  display: block; /* Asegura que la imagen se comporte como un bloque */
-  margin: 0 auto; /* Centra la imagen horizontalmente */
+  width: 100%;
+  /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: 200px;
+  /* Altura fija para todas las imágenes */
+  object-fit: contain;
+  /* Ajusta la imagen manteniendo su proporción y centrada */
+  display: block;
+  /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto;
+  /* Centra la imagen horizontalmente */
 }
 
 /* Asegura que la imagen esté centrada verticalmente */
 .card-body {
-  display: flex; /* Alinea el contenido de las tarjetas */
-  flex-direction: column; /* Alinea los elementos en columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  display: flex;
+  /* Alinea el contenido de las tarjetas */
+  flex-direction: column;
+  /* Alinea los elementos en columna */
+  justify-content: center;
+  /* Centra verticalmente */
+  align-items: center;
+  /* Centra horizontalmente */
 }
 
 .mt-4.mb-4 {
@@ -69,9 +83,14 @@
 }
 
 .list-group-item {
-  padding: 0; /* Eliminar el padding del li para que el botón ocupe todo el espacio */
-  margin: 0; /* Eliminar el margen del li */
-  background-color: var(--offcanvas-bg-color); /* Color de fondo */
-  color: white; /* Asegurar que el texto sea blanco */
-  border: none; /* Asegurarte de que no haya borde en el li */
+  padding: 0;
+  /* Eliminar el padding del li para que el botón ocupe todo el espacio */
+  margin: 0;
+  /* Eliminar el margen del li */
+  background-color: var(--offcanvas-bg-color);
+  /* Color de fondo */
+  color: white;
+  /* Asegurar que el texto sea blanco */
+  border: none;
+  /* Asegurarte de que no haya borde en el li */
 }

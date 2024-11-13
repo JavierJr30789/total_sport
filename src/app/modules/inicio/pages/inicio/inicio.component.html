@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>carrusel 3d</title>
@@ -8,25 +9,20 @@
   <div class="slide">
     <div class="slide-inner">
       <ng-container *ngFor="let producto of productosPorCategoria; let i = index">
-        <input
-          class="slide-open"
-          type="radio"
-          id="slide-{{ i + 1 }}"
-          name="slide"
-          aria-hidden="true"
-          hidden=""
-          [checked]="i === 0" 
-        />
+        <input class="slide-open" type="radio" id="slide-{{ i + 1 }}" name="slide" aria-hidden="true" hidden=""
+          [checked]="i === 0" />
         <div class="slide-item">
           <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
         </div>
-  
+
         <!-- Control anterior -->
-        <label for="slide-{{ i === 0 ? productosPorCategoria.length : i }}" class="slide-control prev control-{{ i + 1 }}">‹</label>
+        <label for="slide-{{ i === 0 ? productosPorCategoria.length : i }}"
+          class="slide-control prev control-{{ i + 1 }}">‹</label>
         <!-- Control siguiente -->
-        <label for="slide-{{ (i + 1) % productosPorCategoria.length + 1 }}" class="slide-control next control-{{ i + 1 }}">›</label>
+        <label for="slide-{{ (i + 1) % productosPorCategoria.length + 1 }}"
+          class="slide-control next control-{{ i + 1 }}">›</label>
       </ng-container>
-  
+
       <ol class="slide-indicador">
         <li *ngFor="let producto of productosPorCategoria; let j = index">
           <label for="slide-{{ j + 1 }}" class="slide-circulo">•</label>
@@ -47,40 +43,48 @@
         <div class="content-all">
           <div class="content-carrousel">
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/img9.jpg" alt="Imagen producto 1"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/img9.jpg"
+                  alt="Imagen producto 1"></a>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido1.avif" alt="Raqueta de tennis"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido1.avif"
+                  alt="Raqueta de tennis"></a>
               <div class="capa">
                 <h3>Raqueta de tennis</h3>
                 <p>
-                  <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie de red o caucho que lo cubre.</b>
+                  <b>La raqueta es un implemento deportivo que consiste en un marco con un aro abierto y con una especie
+                    de red o caucho que lo cubre.</b>
                 </p>
                 <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido2.png" alt="Zapatillas Nike LeBron"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido2.png"
+                  alt="Zapatillas Nike LeBron"></a>
               <div class="capa">
                 <h3>Zapatillas nike lebron basket</h3>
                 <p>
-                  <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado para verse veloz.</b>
+                  <b>Súbele un nivel a tu juego con el LeBron Witness 5, un calzado robusto y ligero que está diseñado
+                    para verse veloz.</b>
                 </p>
                 <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido3.jpg" alt="Guantes de box"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido3.jpg"
+                  alt="Guantes de box"></a>
               <div class="capa">
                 <h3>Guantes de box negros</h3>
                 <p>
-                  <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el fin de suavizar el impacto de los golpes.</b>
+                  <b>Los guantes de boxeo son los guantes acolchonados reglamentarios que los combatientes usan con el
+                    fin de suavizar el impacto de los golpes.</b>
                 </p>
                 <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido4.jpg" alt="Zapatillas Kyrie"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido4.jpg"
+                  alt="Zapatillas Kyrie"></a>
               <div class="capa">
                 <h3>Zapatillas kyrie negras</h3>
                 <p>
@@ -90,7 +94,8 @@
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido5.jpg" alt="Balón clásico de fútbol"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido5.jpg"
+                  alt="Balón clásico de fútbol"></a>
               <div class="capa">
                 <h3>Balón clásico de futbol</h3>
                 <p>
@@ -100,17 +105,20 @@
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido6.webp" alt="Zapatillas Nike Mercurial"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido6.webp"
+                  alt="Zapatillas Nike Mercurial"></a>
               <div class="capa">
                 <h3>Zapatillas nike mercurial </h3>
                 <p>
-                  <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul cloro.</b>
+                  <b>Mejora tu juego de fútbol con estos botines Nike Superfly 8 Academy en un vibrante color azul
+                    cloro.</b>
                 </p>
                 <a [routerLink]="'/producto'" class="btn"><span class="btn-text">Ver Producto</span></a>
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/casco - copia.jpg" alt="Indumentaria para correr"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/casco - copia.jpg"
+                  alt="Indumentaria para correr"></a>
               <div class="capa">
                 <h3>Indumentaria para correr</h3>
                 <p>
@@ -120,7 +128,8 @@
               </div>
             </figure>
             <figure>
-              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido8.jpg" alt="Bicicleta Trek"></a>
+              <a [routerLink]="'/producto'"><img src="../../../../../assets/imagenes/vendido8.jpg"
+                  alt="Bicicleta Trek"></a>
               <div class="capa">
                 <h3>Bicicleta Trek Rodado29</h3>
                 <p>
@@ -149,4 +158,5 @@
     </div>
   </div>
 </body>
+
 </html>

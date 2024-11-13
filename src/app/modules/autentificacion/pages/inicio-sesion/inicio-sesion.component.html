@@ -1,54 +1,57 @@
 <!-- Contenedor principal -->
 <div class="container">
-  <!-- Fila principal -->
-  <div class="row">
-      <!-- Título de la página de inicio de sesión -->
-      <h1>Inicia Sesión</h1>
-      <!-- Icono de cuenta de usuario -->
-      <i class="material-icons" style="font-size: 200px;">account_circle</i>
-      
-      <!-- Campo de formulario para el email -->
-      <mat-form-field appearance="fill">
-          <mat-label>Ingrese su email:</mat-label>
-          <input [(ngModel)]="usuarioIngresado.email" matInput placeholder="Ej: pepitoperez2022@gmail.com" required>
-      </mat-form-field>
+    <!-- Fila principal -->
+    <div class="row">
+        <!-- Título de la página de inicio de sesión -->
+        <h1>Inicia Sesión</h1>
+        <!-- Icono de cuenta de usuario -->
+        <i class="material-icons" style="font-size: 200px;">account_circle</i>
 
-      <!-- Campo de formulario para la contraseña -->
-      <mat-form-field>
-          <mat-label>Ingrese su contraseña:</mat-label>
-          <!-- Entrada de contraseña con opción de mostrar/ocultar -->
-          <input [(ngModel)]="usuarioIngresado.password" matInput [type]="hide ? 'password' : 'text'" #input minlength="6" required>
-          <!-- Botón para mostrar/ocultar la contraseña -->
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <!-- Sugerencia de longitud mínima -->
-          <mat-hint align="start">Mínimo: 6/{{input.value.length}}</mat-hint>
-      </mat-form-field>
+        <!-- Campo de formulario para el email -->
+        <mat-form-field appearance="fill">
+            <mat-label>Ingrese su email:</mat-label>
+            <input [(ngModel)]="usuarioIngresado.email" matInput placeholder="Ej: pepitoperez2022@gmail.com" required>
+        </mat-form-field>
 
-      <!-- Componente de reCAPTCHA (comentado) -->
-      <!-- <ngx-recaptcha2 (success)="resolvedCaptcha($event)" [siteKey]="'6LfjrVYqAAAAAAMY2gs1432dPj5sf-ahEsWZ0ZbS'"></ngx-recaptcha2> -->
+        <!-- Campo de formulario para la contraseña -->
+        <mat-form-field>
+            <mat-label>Ingrese su contraseña:</mat-label>
+            <!-- Entrada de contraseña con opción de mostrar/ocultar -->
+            <input [(ngModel)]="usuarioIngresado.password" matInput [type]="hide ? 'password' : 'text'" #input
+                minlength="6" required>
+            <!-- Botón para mostrar/ocultar la contraseña -->
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <!-- Sugerencia de longitud mínima -->
+            <mat-hint align="start">Mínimo: 6/{{input.value.length}}</mat-hint>
+        </mat-form-field>
 
-      <!-- Botón para iniciar sesión -->
-      <div>
-          <button (click)="iniciarSesion()" class="btn">Iniciar sesión</button>
-      </div>
+        <!-- Componente de reCAPTCHA (comentado) -->
+        <!-- <ngx-recaptcha2 (success)="resolvedCaptcha($event)" [siteKey]="'6LfjrVYqAAAAAAMY2gs1432dPj5sf-ahEsWZ0ZbS'"></ngx-recaptcha2> -->
 
-      <!-- Espaciador -->
-      <div class="spacer"></div>
+        <!-- Botón para iniciar sesión -->
+        <div>
+            <button (click)="iniciarSesion()" class="btn">Iniciar sesión</button>
+        </div>
 
-      <!-- Botón para iniciar sesión con Google -->
-      <div>
-          <button (click)="iniciarSesionConGoogle()" class="btn btn-google">
-            <img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/> Iniciar sesión con Google
-          </button>
-      </div>
+        <!-- Espaciador -->
+        <div class="spacer"></div>
 
-      <!-- Otro espaciador -->
-      <div class="spacer"></div>
+        <!-- Botón para iniciar sesión con Google -->
+        <div>
+            <button (click)="iniciarSesionConGoogle()" class="btn btn-google">
+                <img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" />
+                Iniciar sesión con Google
+            </button>
+        </div>
 
-      <!-- Botón para recuperar contraseña -->
-      <div>
-          <button color="primary" (click)="recuperarContrasena()" class="btn ">¿Olvidaste tu contraseña?</button>
-  </div>
-</div>
+        <!-- Otro espaciador -->
+        <div class="spacer"></div>
+
+        <!-- Botón para recuperar contraseña -->
+        <div>
+            <button color="primary" (click)="recuperarContrasena()" class="btn ">¿Olvidaste tu contraseña?</button>
+        </div>
+    </div>

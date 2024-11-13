@@ -11,7 +11,7 @@ import * as CryptoJS from 'crypto-js';
 // Importamos paquetería de SweetAlert para alertas personalizadas
 import Swal from 'sweetalert2';
 // Importamos emailjs para enviar correos de agradecimiento
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com'; 
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-registro',
@@ -45,7 +45,7 @@ export class RegistroComponent {
     public servicioAuth: AuthService, // métodos de autentificación
     public servicioFirestore: FirestoreService, // vincula UID con la colección
     public servicioRutas: Router // método de navegación
-  ){
+  ) {
 
     this.audioRegistroExitoso.src = 'assets/sounds/registrado.mp3'; // Ruta a tu archivo de sonido
     this.audioRegistroExitoso.load(); // Cargar el archivo de sonido
@@ -56,7 +56,7 @@ export class RegistroComponent {
   // Método para abrir el modal
   openModal() {
     // Lógica para abrir el modal
-    this.aceptaTerminos = true; 
+    this.aceptaTerminos = true;
   }
 
   closeModal() {
@@ -70,7 +70,7 @@ export class RegistroComponent {
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar() {
     const usuarioExistente = await this.servicioAuth.obtenerUsuario(this.usuarios.email);
-  
+
     if (usuarioExistente && !usuarioExistente.empty) {
       this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
       Swal.fire({
@@ -88,28 +88,28 @@ export class RegistroComponent {
 
     // constante "res" = resguarda una respuesta
     const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
-    // El método THEN nos devuelve la respuesta esperada por la promesa
-    .then(res => {
-      this.audioRegistroExitoso.play(); // Reproducir sonido de registro exitoso
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "¡Se pudo registrar con éxito! :)",
-        icon: "success"
-      });
+      // El método THEN nos devuelve la respuesta esperada por la promesa
+      .then(res => {
+        this.audioRegistroExitoso.play(); // Reproducir sonido de registro exitoso
+        Swal.fire({
+          title: "¡Buen trabajo!",
+          text: "¡Se pudo registrar con éxito! :)",
+          icon: "success"
+        });
 
-      // Accedemos al servicio de rutas -> método navigate
-      // método NAVIGATE = permite dirigirnos a diferentes vistas
-      this.servicioRutas.navigate(['/inicio']);
-    })
-    // El método CATCH toma una falla y la vuelve un ERROR
-    .catch(error => {
-      this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
-      Swal.fire({
-        title: "¡Oh no!",
-        text: "Hubo un problema al registrar el nuevo usuario :(",
-        icon: "error"
+        // Accedemos al servicio de rutas -> método navigate
+        // método NAVIGATE = permite dirigirnos a diferentes vistas
+        this.servicioRutas.navigate(['/inicio']);
+      })
+      // El método CATCH toma una falla y la vuelve un ERROR
+      .catch(error => {
+        this.audioRegistroFallido.play(); // Reproducir sonido de registro fallido
+        Swal.fire({
+          title: "¡Oh no!",
+          text: "Hubo un problema al registrar el nuevo usuario :(",
+          icon: "error"
+        });
       });
-    });
 
     const uid = await this.servicioAuth.obtenerUid();
     this.usuarios.uid = uid;

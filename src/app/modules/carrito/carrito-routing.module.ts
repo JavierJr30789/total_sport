@@ -5,7 +5,7 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 const routes: Routes = [
 
   {
-    path:"carrito",component:CarritoComponent
+    path: "carrito", component: CarritoComponent
   }
 
 ];

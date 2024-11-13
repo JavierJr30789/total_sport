@@ -1,85 +1,103 @@
-.container{
-    display: flex;
-    padding: 10px;
-    text-align: center;
-    justify-content: center;
+.container {
+  display: flex;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
 }
 
-.boton{
-    width: 120px;
-    margin: auto;
+.boton {
+  width: 120px;
+  margin: auto;
 }
 
 .mat-toolbar {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  button {
-    background-color: var(--primary-color);
-    color: rgb(0, 21, 255);
-    align-self: center;
-    width: 100%;
-  }
-  button:hover {
-    background-color: white; /* Cambia esto por el color que desees al pasar el cursor */
-    color: blue;       /* Puedes también modificar el color del texto si lo necesitas */
-    cursor: pointer;                      /* Para mostrar el cursor como una mano */
-  }
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
 
-  /* Cambiar colores del botón y el ícono */
+button {
+  background-color: var(--primary-color);
+  color: rgb(0, 21, 255);
+  align-self: center;
+  width: 100%;
+}
+
+button:hover {
+  background-color: white;
+  /* Cambia esto por el color que desees al pasar el cursor */
+  color: blue;
+  /* Puedes también modificar el color del texto si lo necesitas */
+  cursor: pointer;
+  /* Para mostrar el cursor como una mano */
+}
+
+/* Cambiar colores del botón y el ícono */
 button.toggle-password-btn {
-  background-color: var(--primary-color);  /* Fondo del botón del "ojito" */
-  color: var(--input-color);               /* Color del ícono */
+  background-color: var(--primary-color);
+  /* Fondo del botón del "ojito" */
+  color: var(--input-color);
+  /* Color del ícono */
 }
 
 button.toggle-password-btn:hover {
-  background-color: var(--accent-color);   /* Cambia fondo al pasar el cursor */
-  color: var(--text-color);                /* Cambia el color del ícono al pasar el cursor */
+  background-color: var(--accent-color);
+  /* Cambia fondo al pasar el cursor */
+  color: var(--text-color);
+  /* Cambia el color del ícono al pasar el cursor */
 }
 
 /* Cambiar colores del input cuando está en focus o tiene valor */
 .mat-form-field.mat-focused .mat-form-field-label {
-  color: var(--primary-color);             /* Cambia el color del label cuando el input está activo */
+  color: var(--primary-color);
+  /* Cambia el color del label cuando el input está activo */
 }
 
 .mat-form-field-underline {
-  background-color: var(--primary-color);  /* Cambia el color de la línea debajo del input */
+  background-color: var(--primary-color);
+  /* Cambia el color de la línea debajo del input */
 }
 
 .mat-input-element {
-  color: var(--input-color);               /* Color del texto dentro del input */
+  color: var(--input-color);
+  /* Color del texto dentro del input */
 }
 
 /* Cambiar el color del hint (el texto debajo del input) */
 .mat-hint {
-  color: var(--text-color);                /* Color del hint */
+  color: var(--text-color);
+  /* Color del hint */
 }
-  .mat-warn {
-    background-color: var(--warn-color);
-    color: var(--text-color);
-  }
-  .mat-card {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  .mat-menu {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  .mat-slide-toggle-thumb {
-    background-color: var(--primary-color);
-  }
-  .mat-slide-toggle-bar {
-    background-color: var(--accent-color);
-  }
 
-  .material-icons{
-    color:var(--text-title-color)
-  }
+.mat-warn {
+  background-color: var(--warn-color);
+  color: var(--text-color);
+}
 
-  .boton{
-    width: 120px;
-    margin: auto;
+.mat-card {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.mat-menu {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.mat-slide-toggle-thumb {
+  background-color: var(--primary-color);
+}
+
+.mat-slide-toggle-bar {
+  background-color: var(--accent-color);
+}
+
+.material-icons {
+  color: var(--text-title-color)
+}
+
+.boton {
+  width: 120px;
+  margin: auto;
 }
 
 
@@ -88,16 +106,22 @@ button.toggle-password-btn:hover {
   align-items: center;
   margin-bottom: 0;
 }
+
 .form-check-input {
-    width: 18px; /* Aumenta el tamaño del checkbox */
-    height: 18px;
-    border: 2px solid #007bff; /* Cambia el color del borde */
-    border-radius: 3px; /* Esquinas redondeadas */
-      
+  width: 18px;
+  /* Aumenta el tamaño del checkbox */
+  height: 18px;
+  border: 2px solid #007bff;
+  /* Cambia el color del borde */
+  border-radius: 3px;
+  /* Esquinas redondeadas */
+
 }
-p{
+
+p {
   color: black;
 }
-#termsModalLabel{
+
+#termsModalLabel {
   color: black;
 }

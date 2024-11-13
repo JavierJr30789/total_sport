@@ -2,10 +2,12 @@
 .row {
   animation-duration: 2.7s;
   animation-name: animCart;
-  margin: 0; /* Cambiado de 'center' a '0' */
+  margin: 0;
+  /* Cambiado de 'center' a '0' */
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Alinea las tarjetas al inicio */
+  justify-content: flex-start;
+  /* Alinea las tarjetas al inicio */
 }
 
 /* Clave de animación para el cart */
@@ -14,6 +16,7 @@
     margin-left: 100%;
     width: 100%;
   }
+
   to {
     margin-left: 0%;
     width: 100%;
@@ -22,16 +25,20 @@
 
 /* Estilo de las tarjetas */
 .col {
-  flex: 0 0 calc(33.333% - 20px); /* Tres tarjetas por fila con espacio */
-  margin: 10px; /* Espacio entre tarjetas */
+  flex: 0 0 calc(33.333% - 20px);
+  /* Tres tarjetas por fila con espacio */
+  margin: 10px;
+  /* Espacio entre tarjetas */
   border-radius: 6px;
   overflow: hidden;
   background: var(--primary-color);
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   cursor: default;
   transition: all 400ms ease;
-  display: flex; /* Asegura que el contenido se alinee correctamente */
-  flex-direction: column; /* Permite que los elementos hijos se apilen verticalmente */
+  display: flex;
+  /* Asegura que el contenido se alinee correctamente */
+  flex-direction: column;
+  /* Permite que los elementos hijos se apilen verticalmente */
 }
 
 /* Animación de las tarjetas sobre el cursor */
@@ -42,33 +49,49 @@
 
 /* Define tamaños de las imágenes */
 .card-image {
-  width: 100%;               /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-  height: 200px;            /* Altura fija para todas las imágenes */
-  object-fit: contain;      /* Ajusta la imagen manteniendo su proporción y centrada */
-  display: block;           /* Asegura que la imagen se comporte como un bloque */
-  margin: 0 auto;          /* Centra la imagen horizontalmente */
-  border: none;             /* Quita el borde si se muestra */
-  background-color: var(--background-color); /* Color de fondo opcional */
+  width: 100%;
+  /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: 200px;
+  /* Altura fija para todas las imágenes */
+  object-fit: contain;
+  /* Ajusta la imagen manteniendo su proporción y centrada */
+  display: block;
+  /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto;
+  /* Centra la imagen horizontalmente */
+  border: none;
+  /* Quita el borde si se muestra */
+  background-color: var(--background-color);
+  /* Color de fondo opcional */
 }
 
 /* Asegura que la imagen esté centrada verticalmente */
 .mat-card-content {
-  display: flex; /* Alinea el contenido de las tarjetas */
-  flex-direction: column; /* Alinea los elementos en columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  display: flex;
+  /* Alinea el contenido de las tarjetas */
+  flex-direction: column;
+  /* Alinea los elementos en columna */
+  justify-content: center;
+  /* Centra verticalmente */
+  align-items: center;
+  /* Centra horizontalmente */
 }
+
 /* CSS para centrar el contenedor */
 .search-bar {
   display: flex;
-  justify-content: center; /* Centramos el contenido horizontalmente */
-  margin-top: 20px; /* Puedes ajustar el margen según sea necesario */
+  justify-content: center;
+  /* Centramos el contenido horizontalmente */
+  margin-top: 20px;
+  /* Puedes ajustar el margen según sea necesario */
 }
 
 /* Opcional: para ajustar el tamaño del campo de búsqueda */
 .centered-bar {
-  width: 100%; /* Puedes ajustar a un ancho fijo como 50% si prefieres */
-  max-width: 400px; /* Limita el ancho máximo si es necesario */
+  width: 100%;
+  /* Puedes ajustar a un ancho fijo como 50% si prefieres */
+  max-width: 400px;
+  /* Limita el ancho máximo si es necesario */
 }
 
 .search-bar {
@@ -77,46 +100,57 @@
 }
 
 .input-group-text {
-  background-color: #f8f9fa; /* Color de fondo del texto */
-  color: #6c757d; /* Color del texto */
+  background-color: #f8f9fa;
+  /* Color de fondo del texto */
+  color: #6c757d;
+  /* Color del texto */
   border-right: none;
 }
 
 .form-control {
   border-left: none;
-  color: #343a40; /* Color del texto ingresado */
+  color: #343a40;
+  /* Color del texto ingresado */
 }
 
 
 /* Color del label para todos los modos */
 .custom-label {
-  color: var(--primary-color); /* Cambia 'aqua' por el color que desees */
+  color: var(--primary-color);
+  /* Cambia 'aqua' por el color que desees */
 }
-#mat-input{
-color:black;
+
+#mat-input {
+  color: black;
 }
-.search-bar{
-align-self: center;
+
+.search-bar {
+  align-self: center;
 }
 
 /* Aumenta el tamaño de las tarjetas según sea necesario */
 @media (min-width: 768px) {
   .mat-card {
-    height: 350px; /* Ajusta la altura como desees */
+    height: 350px;
+    /* Ajusta la altura como desees */
   }
 }
 
 /* Espacio entre las tarjetas */
 @media (max-width: 768px) {
   .col {
-    flex: 0 0 calc(50% - 20px); /* Dos tarjetas en pantallas medianas */
-    max-width: calc(50% - 20px); /* Ajusta el max-width */
+    flex: 0 0 calc(50% - 20px);
+    /* Dos tarjetas en pantallas medianas */
+    max-width: calc(50% - 20px);
+    /* Ajusta el max-width */
   }
 }
 
 @media (max-width: 576px) {
   .col {
-    flex: 0 0 calc(100% - 20px); /* Una tarjeta en pantallas pequeñas */
-    max-width: calc(100% - 20px); /* Ajusta el max-width */
+    flex: 0 0 calc(100% - 20px);
+    /* Una tarjeta en pantallas pequeñas */
+    max-width: calc(100% - 20px);
+    /* Ajusta el max-width */
   }
 }

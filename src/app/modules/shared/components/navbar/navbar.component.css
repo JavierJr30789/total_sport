@@ -8,52 +8,70 @@ img {
 }
 
 
-  .title {
-    font-family: "Zen Dots", sans-serif;
-    font-size: xx-large;
-  }
+.title {
+  font-family: "Zen Dots", sans-serif;
+  font-size: xx-large;
+}
 
 
 /* Estilos generales */
 .hidden-on-mobile {
-  display: block; /* Mostrar en pantallas grandes */
+  display: block;
+  /* Mostrar en pantallas grandes */
 }
+
 .hidden-on-desktop {
-  display: none; /* Ocultar en pantallas grandes */
+  display: none;
+  /* Ocultar en pantallas grandes */
 }
 
 /* Estilos para dispositivos pequeños (ej: celular) */
 @media (max-width: 700px) {
+
   /* Oculta el título y muestra la imagen en dispositivos móviles */
   .hidden-on-mobile {
-      display: none; /* Ocultar título en móviles */
+    display: none;
+    /* Ocultar título en móviles */
   }
+
   .logo-on-mobile {
-      display: block; /* Mostrar imagen en móviles */
-      width: 60px; /* Ajusta el tamaño de la imagen según sea necesario */
-      height: auto;
-      margin: auto;
+    display: block;
+    /* Mostrar imagen en móviles */
+    width: 60px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    margin: auto;
   }
+
   .custom-button {
-    display: none; /* Oculta el botón en pantallas pequeñas */
+    display: none;
+    /* Oculta el botón en pantallas pequeñas */
   }
+
   #menuInicio,
   #menuProducto {
-      display: none; /* Ocultar botones específicos en móviles */
+    display: none;
+    /* Ocultar botones específicos en móviles */
   }
 }
 
 /* Estilos para dispositivos más grandes (ej: computadora) */
 @media (min-width: 700px) {
+
   /* Muestra el título y oculta la imagen en dispositivos grandes */
   .hidden-on-desktop {
-      display: none; /* Ocultar imagen en pantallas grandes */
+    display: none;
+    /* Ocultar imagen en pantallas grandes */
   }
+
   mat-toolbar {
-      background-color: blueviolet; /* Color de fondo en pantallas grandes */
+    background-color: blueviolet;
+    /* Color de fondo en pantallas grandes */
   }
+
   #menuSecciones {
-      display: none; /* Ocultar botón en pantallas grandes */
+    display: none;
+    /* Ocultar botón en pantallas grandes */
   }
 }
 
@@ -69,7 +87,8 @@ img {
 }
 
 .list-group-item img {
-  max-width: 50px; /* Ajusta el tamaño según tus necesidades */
+  max-width: 50px;
+  /* Ajusta el tamaño según tus necesidades */
   height: auto;
   margin-right: 10px;
 }
@@ -110,58 +129,81 @@ img {
 }
 
 .profile-image {
-  width: 50px; /* Ajusta el tamaño según el espacio disponible */
-  height: 50px; /* Asegura que sea cuadrado para mantener el círculo */
-  border-radius: 50%; /* Esto hace que la imagen sea circular */
-  object-fit: cover; /* Asegura que la imagen se ajuste sin deformarse */
-  border: 2px solid #fff; /* Opcional: un borde alrededor de la imagen */
+  width: 50px;
+  /* Ajusta el tamaño según el espacio disponible */
+  height: 50px;
+  /* Asegura que sea cuadrado para mantener el círculo */
+  border-radius: 50%;
+  /* Esto hace que la imagen sea circular */
+  object-fit: cover;
+  /* Asegura que la imagen se ajuste sin deformarse */
+  border: 2px solid #fff;
+  /* Opcional: un borde alrededor de la imagen */
 }
 
-.card-container { /* Asegúrate de aplicar esto al contenedor del <p> */
+.card-container {
+  /* Asegúrate de aplicar esto al contenedor del <p> */
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente, si es necesario */
-  background-color: var(--primary-color); /* Mismo color que las tarjetas */
-  color:var(--text-color);
-  padding: 10px; /* Espaciado interno para el contenedor */
-  border-radius: 6px; /* Bordes redondeados */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente, si es necesario */
+  background-color: var(--primary-color);
+  /* Mismo color que las tarjetas */
+  color: var(--text-color);
+  padding: 10px;
+  /* Espaciado interno para el contenedor */
+  border-radius: 6px;
+  /* Bordes redondeados */
 }
 
 .carousel-inner img {
   width: 100%;
-  height: 300px; /* Ajusta esta altura según el tamaño deseado */
-  object-fit: cover; /* Para que la imagen ocupe todo el espacio sin distorsionarse */
+  height: 300px;
+  /* Ajusta esta altura según el tamaño deseado */
+  object-fit: cover;
+  /* Para que la imagen ocupe todo el espacio sin distorsionarse */
 }
 
 .button-container {
   display: flex;
-  justify-content: center; /* Centra el botón horizontalmente */
-  margin-top: 16px; /* Espacio superior para el botón */
+  justify-content: center;
+  /* Centra el botón horizontalmente */
+  margin-top: 16px;
+  /* Espacio superior para el botón */
 }
 
 .btn.btn-primary {
-  border: none; /* Ejemplo: quitar bordes */
-  background-color: var(--primary-color); /* Cambiar color de fondo */
+  border: none;
+  /* Ejemplo: quitar bordes */
+  background-color: var(--primary-color);
+  /* Cambiar color de fondo */
   /* Otros estilos */
 }
 
 .btn.btn-primary:hover {
-  background-color: var(--input-color); /* Cambiar color al pasar el cursor */
+  background-color: var(--input-color);
+  /* Cambiar color al pasar el cursor */
 }
 
-.producto-card{
-  background-color: var(--primary-color); /* Mismo color que las tarjetas */
-  color:var(--text-color);
+.producto-card {
+  background-color: var(--primary-color);
+  /* Mismo color que las tarjetas */
+  color: var(--text-color);
   text-align: center;
-  
+
 }
-.card-img-top{
+
+.card-img-top {
   align-self: center;
   width: 200px;
 }
+
 .mat-icon {
-  color: white; /* Cambia el color del icono */
+  color: white;
+  /* Cambia el color del icono */
 }
+
 .btn-close {
   padding: 0.5em;
   background-color: red;
@@ -172,17 +214,22 @@ img {
 
 
 .custom-button .mat-icon {
-  color: white; /* Cambia el color del icono en hover */
+  color: white;
+  /* Cambia el color del icono en hover */
 }
+
 /* Cambia el color en estado hover del botón */
 .custom-button:hover .mat-icon {
-  color: cyan; /* Cambia el color del icono en hover */
+  color: cyan;
+  /* Cambia el color del icono en hover */
 }
 
 /* Estilo adicional para centrar el total de la compra */
 .total-compra {
-  text-align: center; /* Centra el texto */
-  margin: 16px 0; /* Espaciado superior e inferior */
+  text-align: center;
+  /* Centra el texto */
+  margin: 16px 0;
+  /* Espaciado superior e inferior */
 }
 
 .hidden {
@@ -191,49 +238,66 @@ img {
 
 .offcanvas-body {
   display: flex;
-  flex-direction: column; /* Colocar los elementos en columna */
-  height: 100%; /* Asegúrate de que el cuerpo ocupa todo el espacio */
-  padding: 0; /* Elimina el padding para que no haya espacio extra */
+  flex-direction: column;
+  /* Colocar los elementos en columna */
+  height: 100%;
+  /* Asegúrate de que el cuerpo ocupa todo el espacio */
+  padding: 0;
+  /* Elimina el padding para que no haya espacio extra */
 }
 
 .list-group {
-  flex: 1; /* Asegúrate de que la lista ocupa todo el espacio disponible */
+  flex: 1;
+  /* Asegúrate de que la lista ocupa todo el espacio disponible */
   display: flex;
-  flex-direction: column; /* Coloca los items en columna */
+  flex-direction: column;
+  /* Coloca los items en columna */
 }
 
 .list-group-item {
-  flex: 1; /* Hace que cada item ocupe el mismo espacio */
+  flex: 1;
+  /* Hace que cada item ocupe el mismo espacio */
 }
 
 .offcanvas-button {
-  width: 100%; /* Asegura que cada botón ocupa todo el ancho */
-  height: 100%; /* Asegura que cada botón ocupa todo el alto disponible */
+  width: 100%;
+  /* Asegura que cada botón ocupa todo el ancho */
+  height: 100%;
+  /* Asegura que cada botón ocupa todo el alto disponible */
   display: flex;
-  align-items: center; /* Centra el icono y el texto verticalmente */
-  justify-content: flex-start; /* Alinea el texto a la izquierda */
+  align-items: center;
+  /* Centra el icono y el texto verticalmente */
+  justify-content: flex-start;
+  /* Alinea el texto a la izquierda */
 }
 
 
 
 .offcanvas-body mat-icon {
-  font-size: 30px; /* Ajusta el tamaño del ícono */
-  margin-right: 30px; /* Añade un espacio entre el ícono y el texto */
-  color: #fff; /* Asegúrate de que el color no esté en blanco o transparente */
+  font-size: 30px;
+  /* Ajusta el tamaño del ícono */
+  margin-right: 30px;
+  /* Añade un espacio entre el ícono y el texto */
+  color: #fff;
+  /* Asegúrate de que el color no esté en blanco o transparente */
 }
 
 .offcanvas .offcanvas-body .list-group-item button.mat-menu-item {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  min-height: 50px; /* Altura mínima para el botón */
+  min-height: 50px;
+  /* Altura mínima para el botón */
 }
 
 .offcanvas .offcanvas-body mat-icon {
-  font-size: 24px; /* Tamaño del icono */
-  width: 32px;     /* Asegura espacio suficiente para el icono */
+  font-size: 24px;
+  /* Tamaño del icono */
+  width: 32px;
+  /* Asegura espacio suficiente para el icono */
   height: 32px;
-  margin-right: 8px; /* Espacio entre el icono y el texto */
+  margin-right: 8px;
+  /* Espacio entre el icono y el texto */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -242,51 +306,73 @@ img {
 .offcanvas-header {
   background-color: rgb(32, 38, 133);
 }
+
 .offcanvas-body {
   background-color: var(--offcanvas-bg-color);
   background-image: var(--offcanvas-gradient);
   background-repeat: no-repeat;
 }
+
 .button-container .btn-primary {
   background-color: var(--offcanvas-bg-color);
   background-image: var(--offcanvas-gradient);
   background-repeat: no-repeat;
 }
 
-.offcanvas-title{
-  color:white
+.offcanvas-title {
+  color: white
 }
+
 .offcanvas-body {
-  border: none; /* Quitar cualquier borde del cuerpo del offcanvas */
-  padding: 0; /* Eliminar el padding para evitar espacios no deseados */
-  margin: 0; /* Eliminar margen si es necesario */
+  border: none;
+  /* Quitar cualquier borde del cuerpo del offcanvas */
+  padding: 0;
+  /* Eliminar el padding para evitar espacios no deseados */
+  margin: 0;
+  /* Eliminar margen si es necesario */
 }
 
 .list-group-item {
-  padding: 0; /* Eliminar el padding del li para que el botón ocupe todo el espacio */
-  margin: 0; /* Eliminar el margen del li */
-  background-color: var(--offcanvas-bg-color); /* Color de fondo */
-  color: white; /* Asegurar que el texto sea blanco */
-  border: none; /* Asegurarte de que no haya borde en el li */
+  padding: 0;
+  /* Eliminar el padding del li para que el botón ocupe todo el espacio */
+  margin: 0;
+  /* Eliminar el margen del li */
+  background-color: var(--offcanvas-bg-color);
+  /* Color de fondo */
+  color: white;
+  /* Asegurar que el texto sea blanco */
+  border: none;
+  /* Asegurarte de que no haya borde en el li */
 }
 
 .offcanvas-button {
-  width: 100%; /* Hacer que el botón ocupe todo el ancho del li */
-  background-color: var(--offcanvas-bg-color); /* Color de fondo */
-  
-  background-repeat: no-repeat; /* No repetir el fondo */
-  color: white; /* Color del texto del botón */
-  border: none; /* Quitar borde por defecto */
-  padding: 10px 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+  width: 100%;
+  /* Hacer que el botón ocupe todo el ancho del li */
+  background-color: var(--offcanvas-bg-color);
+  /* Color de fondo */
+
+  background-repeat: no-repeat;
+  /* No repetir el fondo */
+  color: white;
+  /* Color del texto del botón */
+  border: none;
+  /* Quitar borde por defecto */
+  padding: 10px 20px;
+  /* Espaciado interno */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  transition: background-color 0.3s, transform 0.3s;
+  /* Transiciones suaves */
 }
 
 /* Efecto hover para el botón */
 .offcanvas-button:hover {
-  background-color: rgba(2, 1, 3, 0.8); /* Color al pasar el mouse */
-  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+  background-color: rgba(2, 1, 3, 0.8);
+  /* Color al pasar el mouse */
+  transform: scale(1.05);
+  /* Efecto de aumento al pasar el mouse */
 }
+
 /* Estilos para el switch */
 .switch {
   font-size: 17px;
@@ -347,20 +433,20 @@ img {
 }
 
 /* Cambios cuando el switch está activado */
-input:checked + .slider {
+input:checked+.slider {
   background-color: #183153;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(30px);
 }
 
 /* Cuando está activado el input (modo noche) */
-input:checked + .slider .moon {
+input:checked+.slider .moon {
   display: none;
 }
 
-input:checked + .slider .sun {
+input:checked+.slider .sun {
   display: block;
 }
 
@@ -373,6 +459,7 @@ input:checked + .slider .sun {
   0% {
     transform: rotate(0);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -386,12 +473,15 @@ input:checked + .slider .sun {
   0% {
     transform: rotate(0deg);
   }
+
   25% {
     transform: rotate(-10deg);
   }
+
   75% {
     transform: rotate(10deg);
   }
+
   100% {
     transform: rotate(0deg);
   }

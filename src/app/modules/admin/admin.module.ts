@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 // Paqueterías de formularios y formularios reactivos de ANGULAR
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
